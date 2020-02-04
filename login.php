@@ -115,63 +115,39 @@ if(isset($_POST['but_login'])){
         $sql_query = "SELECT count(*) as cntUser from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$admin."'";
         $result = mysqli_query($con,$sql_query);
         $row = mysqli_fetch_array($result);
-
         $count = $row['cntUser'];
-
         if($count > 0){
-            header('Location: blank_admini.html');
+          header('Location: blank_admini.html');}
+
+        $sql_query2 = "SELECT count(*) as cntUser2 from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$finan."'";
+        $result2 = mysqli_query($con,$sql_query2);
+        $row = mysqli_fetch_array($result2);
+         $count2 = $row['cntUser2'];
+        if($count2 > 0){
+          header('Location: blank_finan.html');}
+
+        $sql_query3 = "SELECT count(*) as cntUser3 from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$beheer."'";
+        $result3 = mysqli_query($con,$sql_query3);
+        $row = mysqli_fetch_array($result3);
+        $count3 = $row['cntUser3'];
+        if($count3 > 0){
+          header('Location: blank_beheer.html');}
+
           
+          else  {echo "<form method='post'action=''> <input type='label' size='60' name='new' value='$string'</form>";
+          }
+      
+
+        
+      
+
+       
+            
+
            }
     }
 
-    if ($uname != "" && $password != ""){
-
-      $sql_query = "SELECT count(*) as cntUser from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$finan."'";
-      $result = mysqli_query($con,$sql_query);
-      $row = mysqli_fetch_array($result);
-
-      $count = $row['cntUser'];
-
-      if($count > 0){
-          header('Location: blank_finan.html');
-        
-         } 
-
-  }
-
-  if ($uname != "" && $password != ""){
-
-    $sql_query = "SELECT count(*) as cntUser from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$beheer."'";
-    $result = mysqli_query($con,$sql_query);
-    $row = mysqli_fetch_array($result);
-
-    $count = $row['cntUser'];
-
-    if($count > 0){
-        header('Location: blank_beheer.html');  }
-    }
-
-    if ($uname != "" && $password != ""){
-
-      $sql_query = "SELECT count(*) as cntUser from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$beheer."'";
-      $result = mysqli_query($con,$sql_query);
-      $row = mysqli_fetch_array($result);
   
-      $count = $row['cntUser'];
-  
-      if($count > 0){
-          header('Location: blank_beheer.html');  }
-          else{  echo "<form method='post'action=''> <input type='label' size='60' name='new' value='$string'</form>";}
-
-      }
-
-    else{
-       echo "<form method='post'action=''> <input type='label' size='60' name='new' value='$string2'</form>";
-        }
-
-
-
-}
 
 ?>
 
