@@ -45,9 +45,11 @@
 ::before {
     box-sizing: border-box
 }
-*{
+
+* {
     transition: 0.3s ease;
 }
+
 html {
     font-family: sans-serif;
     line-height: 1.15;
@@ -12241,4 +12243,46 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
+}
+
+
+button {
+    border: none;
+    outline: none;
+}
+
+.wrapper {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+}
+
+.circle {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    transition: 0.2s;
+}
+
+button:focus{
+    outline:none;
+}
+
+#addSign {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+}
+
+#addSign:hover,
+#addSign:focus {
+    cursor: pointer;
+}
+
+.modal-lg{
+    max-width:90%;
 }
