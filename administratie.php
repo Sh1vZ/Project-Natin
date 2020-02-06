@@ -40,21 +40,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt active"></i>
-<<<<<<< Updated upstream:administratie.html
           <span>Registreer</span></a>
-=======
-          <span>Dashboard</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="projecten.php">
-          <i class="fas fa-fw fa-tachometer-alt active"></i>
-          <span>Projecten</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tachometer-alt active"></i>
-          <span>TEST</span></a>
->>>>>>> Stashed changes:blank_finan.html
       </li>
       </li>
 
@@ -116,19 +102,19 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profiel
+                  Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Uitloggen
+                  Logout
                 </a>
               </div>
             </li>
@@ -139,11 +125,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-<<<<<<< Updated upstream:administratie.html
           <h1 class="h3 mb-4 text-gray-800">Registreer</h1>
-=======
-          <h1 class="h3 mb-4 text-gray-800">Blank_Financieel</h1>
->>>>>>> Stashed changes:blank_finan.html
         </div>
 
         <div id="addBtn" class="wrapper">
@@ -228,6 +210,61 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "natin_admin_en_fin";
+// Create connection
+$con = new mysqli($servername, $username, $password, $dbname);
+
+$sql ="SELECT * FROM project ";
+$count=1;
+$result = $con->query($sql);
+
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) { ?>
+       <tbody>
+<tr>
+<th>
+<?php echo $row['Project_ID']; ?>
+</th>
+<td>
+<?php echo $row['Project_Naam']; ?>
+</td>
+<td>
+<?php echo $row['Project_Omschrijving']; ?>
+</td>
+<td>
+<?php echo $row['Project_BeginDatum']; ?>
+</td>
+<td>
+<?php echo $row['Project_EindDatum']; ?>
+</td>
+<td>
+<?php echo $row['Project_Deelnemer']; ?>
+</td>
+<td>
+<?php echo $row['Project_Taak']; ?>
+</td>
+<td>
+<?php echo $row['Project_Status']; ?>
+</td>
+</tr>
+</tbody>
+<?php
+$count++;
+}
+} else {
+echo '0 results';
+}
+
+$con->close();
+?>
+</table>
                     
                   </tbody>
                 </table>
@@ -269,10 +306,10 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Selecteer "Uitloggen" Als u gereed bent om uit te loggen..</div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.php">Uitloggen</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>

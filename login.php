@@ -103,48 +103,30 @@ if(isset($_POST['but_login'])){
 
     $uname = mysqli_real_escape_string($con,$_POST['email']);
     $password = mysqli_real_escape_string($con,$_POST['pass']);
-    $admin= "Administratie";
-    $finan="Financieel";
-    $beheer="Beheerder";
-    $string= " Uw username of Password is niet correct. Probeer het opnieuw.";
+    $string1= " Uw username of Password is niet correct. Probeer het opnieuw.";
     $string2= "Vul uw Username en Password in";
 
 
     if ($uname != "" && $password != ""){
-
-        $sql_query = "SELECT count(*) as cntUser from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$admin."'";
+      $sql_query = "SELECT * from user where User_Email='".$uname."' and User_Password='".$password."'";
         $result = mysqli_query($con,$sql_query);
         $row = mysqli_fetch_array($result);
-        $count = $row['cntUser'];
-        if($count > 0){
-          header('Location: blank_admini.html');}
-
-        $sql_query2 = "SELECT count(*) as cntUser2 from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$finan."'";
-        $result2 = mysqli_query($con,$sql_query2);
-        $row = mysqli_fetch_array($result2);
-         $count2 = $row['cntUser2'];
-        if($count2 > 0){
-          header('Location: blank_finan.html');}
-
-        $sql_query3 = "SELECT count(*) as cntUser3 from user where User_Email='".$uname."' and User_Password='".$password."' and User_Rollen='".$beheer."'";
-        $result3 = mysqli_query($con,$sql_query3);
-        $row = mysqli_fetch_array($result3);
-        $count3 = $row['cntUser3'];
-        if($count3 > 0){
-          header('Location: blank_beheer.html');}
-
-          
-          else  {echo "<form method='post'action=''> <input type='label' size='60' name='new' value='$string'</form>";
-          }
-      
-
+        $functie = $row['User_Rollen'];
         
+        if($functie == "Beheerder"){
+          header('Location: blank_beheer.html');
+         } elseif($functie == "Financieel"){
+          header('Location: blank_finan.html');
+         } elseif($functie == "Administratie"){ header('Location: administratie.php');
+        }else{
+          echo "<p>Username of Password incorrect</p>";}
+        } 
+  
       
 
-       
-            
-
-           }
+      elseif($uname = " " && $password = " "){
+        echo "<p> Vul uw Username en Password in </p>";
+      } 
     }
 
   
