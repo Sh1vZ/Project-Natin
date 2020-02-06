@@ -21,7 +21,10 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
+<?php
+include "./PHP/dbConn.php";
+session_start();
+?>
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -102,7 +105,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">  <?=$_SESSION['name']?> </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -136,6 +139,26 @@
               alt="" />
           </button>
         </div>
+
+        <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
         <!-- Modal -->
@@ -210,60 +233,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "natin_admin_en_fin";
-// Create connection
-$con = new mysqli($servername, $username, $password, $dbname);
-
-$sql ="SELECT * FROM project ";
-$count=1;
-$result = $con->query($sql);
-
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) { ?>
-       <tbody>
-<tr>
-<th>
-<?php echo $row['Project_ID']; ?>
-</th>
-<td>
-<?php echo $row['Project_Naam']; ?>
-</td>
-<td>
-<?php echo $row['Project_Omschrijving']; ?>
-</td>
-<td>
-<?php echo $row['Project_BeginDatum']; ?>
-</td>
-<td>
-<?php echo $row['Project_EindDatum']; ?>
-</td>
-<td>
-<?php echo $row['Project_Deelnemer']; ?>
-</td>
-<td>
-<?php echo $row['Project_Taak']; ?>
-</td>
-<td>
-<?php echo $row['Project_Status']; ?>
-</td>
-</tr>
-</tbody>
-<?php
-$count++;
-}
-} else {
-echo '0 results';
-}
-
-$con->close();
-?>
 </table>
                     
                   </tbody>
@@ -295,25 +264,7 @@ $con->close();
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -95,41 +95,82 @@
 
 </html>
 
-
 <?php
-include "dbConn.php";
+include "./PHP/dbConn.php";
+session_start();
+if (isset($_SESSION['loggedin'])) {
+  if($_SESSION["role"]=="Administratie"){
+    header("Location:administratie.php");
+    exit();
+  }
 
-if(isset($_POST['but_login'])){
+  if($_SESSION["role"]=="Financieel"){
+    header("Location:blank_finan.html");
+    exit();
+  }
 
-    $uname = mysqli_real_escape_string($con,$_POST['email']);
-    $password = mysqli_real_escape_string($con,$_POST['pass']);
-    $string1= " Uw username of Password is niet correct. Probeer het opnieuw.";
-    $string2= "Vul uw Username en Password in";
+  if($_SESSION["role"]=="Beheerder"){
+    header("Location:blank_beheer.html");
+    exit();
+  }
+}
 
+if (isset($_POST['but_login'])) {
 
-    if ($uname != "" && $password != ""){
-      $sql_query = "SELECT * from user where User_Email='".$uname."' and User_Password='".$password."'";
-        $result = mysqli_query($con,$sql_query);
-        $row = mysqli_fetch_array($result);
-        $functie = $row['User_Rollen'];
-        
-        if($functie == "Beheerder"){
-          header('Location: blank_beheer.html');
-         } elseif($functie == "Financieel"){
-          header('Location: blank_finan.html');
-         } elseif($functie == "Administratie"){ header('Location: administratie.php');
-        }else{
-          echo "<p>Username of Password incorrect</p>";}
-        } 
-  
-      
+  $uname=$_POST["email"];
+  $pwd=$_POST["pass"];
 
-      elseif($uname = " " && $password = " "){
-        echo "<p> Vul uw Username en Password in </p>";
-      } 
+    if (empty($uname) || empty($pwd)) {
+        header("Location:index.php?error=emptyfields");
+        exit();
+    } else {
+        $sql  = "SELECT * FROM gebruikers WHERE User_Email=?";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location:index.php?error=sqlerror");
+            exit();
+        } else {
+            mysqli_stmt_bind_param($stmt, "s", $uname);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if ($row = mysqli_fetch_assoc($result)) {
+               $passwd= $row["User_Password"];
+               $role=$row["User_Rollen"];
+
+                if ($pwd !== $passwd) {
+                    header("Location:index.php?error=wrongpwd");
+                    exit();
+                } elseif ($pwd == $passwd) {
+                  $_SESSION['loggedin'] = true;
+                  $_SESSION["name"] = $row["User_Naam"];
+                  $_SESSION["role"] = $row["User_Rollen"];
+                  
+                  if($role=="Administratie"){
+                    header("Location:administratie.php");
+                    exit();
+                  }
+
+                  if($role=="Financieel"){
+                    header("Location:blank_finan.html");
+                    exit();
+                  }
+
+                  if($role=="Beheerder"){
+                    header("Location:blank_beheer.html");
+                    exit();
+                  }
+
+                } else {
+                    header("Location:index.php?error=wrongpwd");
+                    exit();
+                }
+            } else {
+                header("Location:index.php?error=nouser");
+                exit();
+            }
+        }
     }
-
-  
+}
 
 ?>
 

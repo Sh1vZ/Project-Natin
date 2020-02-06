@@ -1,12 +1,11 @@
 <?php
-session_start();
 $host = "localhost"; /* Host name */
 $user = "root"; /* User */
 $password = ""; /* Password */
-$dbname = "natin_admin_en_fin"; /* Database name */
+$dbname = "natin-admin"; /* Database name */
 
-$con = mysqli_connect($host, $user, $password,$dbname);
+$conn = mysqli_connect($host, $user, $password,$dbname);
 // Check connection
-if (!$con) {
+if (!$conn) {
  die("Connection failed: " . mysqli_connect_error());
 }
