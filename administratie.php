@@ -25,6 +25,7 @@
 include "./PHP/dbConn.php";
 session_start();
 ?>
+
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -105,7 +106,7 @@ session_start();
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">  <?=$_SESSION['name']?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?> </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -141,24 +142,24 @@ session_start();
         </div>
 
         <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
         <!-- Modal -->
@@ -173,12 +174,12 @@ session_start();
                 </button>
               </div>
               <div class="modal-body">
-                <form action="" method="POST" style="width:60vw; margin:0 auto">
+                <form action="./PHP/registratie-projecten.php" method="POST" style="width:60vw; margin:0 auto">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="pwd">Project-Naam:</label>
-                        <input type="text" class="form-control" name="#" placeholder="" required>
+                        <input type="text" class="form-control" name="project-naam" placeholder="" required>
                       </div>
                     </div>
                   </div>
@@ -186,13 +187,13 @@ session_start();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="pwd">Begin Datum:</label>
-                        <input type="date" class="form-control" name="#" placeholder="Begin Datum" required>
+                        <input type="date" class="form-control" name="datum-begin" placeholder="Begin Datum" required>
                       </div>
                     </div>
                     <div class="col-md-6 mb-2">
                       <div class="form-group">
                         <label for="pwd">Eind Datum:</label>
-                        <input type="date" class="form-control" name="#" placeholder="Begin Datum" required>
+                        <input type="date" class="form-control" name="datum-eind" placeholder="Begin Datum" required>
                       </div>
                     </div>
                   </div>
@@ -200,47 +201,84 @@ session_start();
                     <div class="col-md-12 mb-2">
                       <div class="form-group">
                         <label for="pwd">Project Omschrijving:</label>
-                        <textarea class="form-control" name="reden" placeholder="Voer in..." rows="3"></textarea>
+                        <textarea class="form-control" name="omschrijving" placeholder="Voer in..." rows="3"></textarea>
                       </div>
                     </div>
                   </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
         <!-- Modal -->
-        <div class="container-fluid">
-          <div class="card shadow mb-4">
 
-            <div class="card-body">
-              <div class="table-responsive-xl">
-                <table class="table table-hover">
+        <div class='container-fluid'>
+          <div class='card shadow mb-4'>
+
+            <div class='card-body'>
+              <div class='table-responsive-xl'>
+                <table class='table table-hover'>
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Projectnaam</th>
-                      <th scope="col">Project Omschrijving</th>
-                      <th scope="col">Begin Datum</th>
-                      <th scope="col">Eind Datum</th>
-                      <th scope="col">Deelnemer(s)</th>
-                      <th scope="col">Project Taken</th>
-                      <th scope="col">Project Status</th>
+                      <th scope='col'>#</th>
+                      <th scope='col'>Projectnaam</th>
+                      <th scope='col'>Project Omschrijving</th>
+                      <th scope='col'>Begin Datum</th>
+                      <th scope='col'>Eind Datum</th>
+                      <th scope='col'>Deelnemer(s)</th>
+                      <th scope='col'>Project Taken</th>
+                      <th scope='col'>Project Status</th>
+                      <th scope='col'>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-</table>
-                    
-                  </tbody>
+
+                  <?php
+$stmt="SELECT * FROM project";
+$res=mysqli_query($conn, $stmt);
+
+if (mysqli_num_rows($res)>0) {
+    $i = 1;
+    while ($row=mysqli_fetch_assoc($res)) {
+        $naam=$row['Project_Naam'];
+        $omschr=$row["Project_Omschrijving"];
+        $begind=$row["Project_BeginDatum"];
+        $eindd=$row["Project_EindDatum"];
+        $deelnemer=$row["Project_Deelnemer"];
+        $taak=$row["Project_Taak"];
+        $status=$row["Project_Status"];
+        $id=$row["Project_ID"];
+        $a=$i++;
+     
+        echo "
+        
+                <tr>
+                <td>$a</td>
+                <td>$naam</td>
+                <td>$omschr</td>
+                <td>$begind</td>
+                <td>$eindd</td>
+                <td>$deelnemer</td>
+                <td>$taak</td>
+                <td>$status</td>
+                <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
+                  </tr>
+                  
+                ";
+    }
+} else {
+    echo "error";
+}
+?>
                 </table>
               </div>
             </div>
           </div>
         </div>
+        </table>
 
         <!-- /.container-fluid -->
       </div>
@@ -264,7 +302,6 @@ session_start();
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-  
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
