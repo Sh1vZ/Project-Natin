@@ -107,7 +107,7 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?> </span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -178,7 +178,7 @@ session_start();
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="pwd">Project-Naam:</label>
+                        <label for="pwd">Project Naam:</label>
                         <input type="text" class="form-control" name="project-naam" placeholder="" required>
                       </div>
                     </div>
@@ -197,6 +197,14 @@ session_start();
                       </div>
                     </div>
                   </div>
+                  <!-- <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="pwd">Project Leider:</label>
+                        <input type="text" class="form-control" name="project-leider" placeholder="" required>
+                      </div>
+                    </div>
+                  </div> -->
                   <div class="row">
                     <div class="col-md-12 mb-2">
                       <div class="form-group">
@@ -229,8 +237,7 @@ session_start();
                       <th scope='col'>Project Omschrijving</th>
                       <th scope='col'>Begin Datum</th>
                       <th scope='col'>Eind Datum</th>
-                      <th scope='col'>Deelnemer(s)</th>
-                      <th scope='col'>Project Taken</th>
+                      <th scope='col'>Project Leider</th>
                       <th scope='col'>Project Status</th>
                       <th scope='col'>Actions</th>
                     </tr>
@@ -243,14 +250,14 @@ $res=mysqli_query($conn, $stmt);
 if (mysqli_num_rows($res)>0) {
     $i = 1;
     while ($row=mysqli_fetch_assoc($res)) {
-        $naam=$row['Project_Naam'];
-        $omschr=$row["Project_Omschrijving"];
-        $begind=$row["Project_BeginDatum"];
-        $eindd=$row["Project_EindDatum"];
-        $deelnemer=$row["Project_Deelnemer"];
-        $taak=$row["Project_Taak"];
-        $status=$row["Project_Status"];
-        $id=$row["Project_ID"];
+        $naam=$row['Naam'];
+        $omschr=$row["Omschrijving"];
+        $begind=$row["BeginDatum"];
+        $eindd=$row["EindDatum"];
+        // $leider=$row[""];
+        // $taak=$row[""];
+        $status=$row["Status"];
+        $id=$row["ID"];
         $a=$i++;
      
         echo "
@@ -261,9 +268,8 @@ if (mysqli_num_rows($res)>0) {
                 <td>$omschr</td>
                 <td>$begind</td>
                 <td>$eindd</td>
-                <td>$deelnemer</td>
-                <td>$taak</td>
                 <td>$status</td>
+                <td></td>
                 <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
                   </tr>
                   

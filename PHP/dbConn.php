@@ -2,7 +2,7 @@
 $host = "localhost"; /* Host name */
 $user = "root"; /* User */
 $password = ""; /* Password */
-$dbname = "natin-admin"; /* Database name */
+$dbname = "natin-1"; /* Database name */
 
 $conn = mysqli_connect($host, $user, $password,$dbname);
 // Check connection

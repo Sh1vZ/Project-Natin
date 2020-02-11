@@ -43,7 +43,7 @@
 
           <div class="wrap-input100 validate-input">
             <!-- Username-->
-            <input class="input100" type="text" name="email" placeholder="Username">
+            <input class="input100" type="text" name="name" placeholder="Username">
             <span class="focus-input100"></span>
             <span class="symbol-input100">
               <i class="fas fa-user" aria-hidden="true"></i>
@@ -117,14 +117,14 @@ if (isset($_SESSION['loggedin'])) {
 
 if (isset($_POST['but_login'])) {
 
-  $uname=$_POST["email"];
+  $uname=$_POST["name"];
   $pwd=$_POST["pass"];
 
     if (empty($uname) || empty($pwd)) {
         header("Location:index.php?error=emptyfields");
         exit();
     } else {
-        $sql  = "SELECT * FROM gebruikers WHERE User_Email=?";
+        $sql  = "SELECT * FROM user WHERE Usernaam=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location:index.php?error=sqlerror");
@@ -134,16 +134,16 @@ if (isset($_POST['but_login'])) {
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if ($row = mysqli_fetch_assoc($result)) {
-               $passwd= $row["User_Password"];
-               $role=$row["User_Rollen"];
+               $passwd= $row["Password"];
+               $role=$row["Rollen"];
 
                 if ($pwd !== $passwd) {
                     header("Location:index.php?error=wrongpwd");
                     exit();
                 } elseif ($pwd == $passwd) {
                   $_SESSION['loggedin'] = true;
-                  $_SESSION["name"] = $row["User_Naam"];
-                  $_SESSION["role"] = $row["User_Rollen"];
+                  $_SESSION["name"] = $row["Usernaam"];
+                  $_SESSION["role"] = $row["Rollen"];
                   
                   if($role=="Administratie"){
                     header("Location:administratie.php");
