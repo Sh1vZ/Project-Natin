@@ -19,6 +19,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/dashboard.css">
 
 </head>
 <?php
@@ -42,9 +43,14 @@ session_start();
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-tachometer-alt active"></i>
-          <span>Registreer</span></a>
+          <span>Registreer Projecten</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="administratie-personen.php">
+          <i class="fas fa-fw fa-tachometer-alt active"></i>
+          <span>Registreer Personen</span></a>
       </li>
       </li>
 
@@ -133,7 +139,7 @@ session_start();
         </div>
 
         <div id="addBtn" class="wrapper">
-          <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
+          <button class="circle button" id="modalActivate" type="button"  data-toggle="modal"
             data-target="#exampleModalPreview">
             <img id="addSign"
               src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -268,8 +274,9 @@ if (mysqli_num_rows($res)>0) {
                 <td>$omschr</td>
                 <td>$begind</td>
                 <td>$eindd</td>
-                <td>$status</td>
                 <td></td>
+                <td>$status</td>
+                
                 <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
                   </tr>
                   

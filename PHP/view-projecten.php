@@ -123,9 +123,6 @@ session_start();
         </nav>
         <!-- End of Topbar -->
 
-
-
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
@@ -159,103 +156,112 @@ if (mysqli_num_rows($res)>0) {
                   alt="" />
               </button>
             </div>
-              <!-- Modal -->
-        <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="" method="POST" style="width:60vw; margin:0 auto">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="pwd">Taak Naam:</label>
-                        <input type="text" class="form-control" name="taak-naam" placeholder="" required>
-                      </div>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="pwd">Begin Datum:</label>
-                        <input type="date" class="form-control" name="datum-begin" placeholder="Begin Datum" required>
+                  <div class="modal-body">
+
+                    <form action="" method="POST" style="width:60vw; margin:0 auto">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Taak Naam:</label>
+                            <input type="text" class="form-control" name="taak-naam" placeholder="" required>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                      <div class="form-group">
-                        <label for="pwd">Eind Datum:</label>
-                        <input type="date" class="form-control" name="datum-eind" placeholder="Begin Datum" required>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="pwd">Begin Datum:</label>
+                            <input type="date" class="form-control" name="datum-begin" placeholder="Begin Datum"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <div class="form-group">
+                            <label for="pwd">Eind Datum:</label>
+                            <input type="date" class="form-control" name="datum-eind" placeholder="Begin Datum"
+                              required>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Richting:</label>
+                            <input type="text" list="richting1"
+                                                            class="form-control" id="richting" name="richting">
+                                                        <datalist id="richting1" style="width: 100px;">
+                                                            <?php
+                                                 $sql = "SELECT * FROM richting";
+                                                 $result = mysqli_query($conn, $sql);
+                                                 while ($row = mysqli_fetch_assoc($result)) {
+                                                  echo "<option value='".$row['ID'] ." " . "($row[Richting])'>" . $row['Richting'] . "</option>";   
+                                                        }
+                                                    ?>
+                                                        </datalist>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 mb-2">
+                          <div class="form-group">
+                            <label for="pwd">Taak Omschrijving:</label>
+                            <textarea class="form-control" name="omschrijving" placeholder="Voer in..."
+                              rows="3"></textarea>
+                          </div>
+                        </div>
+                      </div>
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="pwd">Richting:</label>
-                        <input type="text" class="form-control" name="project-leider" placeholder="" required>
-                      </div>
-                    </div>
-                  </div> -->
-                  <div class="row">
-                    <div class="col-md-12 mb-2">
-                      <div class="form-group">
-                        <label for="pwd">Taak Omschrijving:</label>
-                        <textarea class="form-control" name="omschrijving" placeholder="Voer in..." rows="3"></textarea>
-                      </div>
-                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
+                    </form>
                   </div>
-              </div>
-
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
-               
-                </form>
-                <?php
-               if (isset($_POST["submit1"])) {
-                $taaknaam=$_POST["taak-naam"];
-                $begind=$_POST["datum-begin"];
-                $eindd=$_POST["datum-eind"];
-                $omschrijving=$_POST["omschrijving"];
-                $leider=$_POST["taak-leider"];
-                $id=$_GET["id"];
-              
-                if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
-                    header("Location:../administratie.php?error=emptyfields");
-                    exit();
-                } else {
-                    $sql  = "INSERT INTO taak (ProjectID,Naam,Omschrijving,BeginDatum,EindDatum) VALUES(?,?,?,?,?)";
-                    $stmt = mysqli_stmt_init($conn);
-                    if (!mysqli_stmt_prepare($stmt, $sql)) {
-                       
-                    } else {
-                        mysqli_stmt_bind_param($stmt, "issss", $id,$taaknaam, $omschrijving, $begind,$eindd);
-                        mysqli_stmt_execute($stmt);
-                        
-                    }
-                    
-                    mysqli_stmt_close($stmt);
-                    mysqli_close($conn);
-                }
-              }
-
-?>
+                </div>
               </div>
             </div>
+            <!-- Modal -->
           </div>
-        </div>
-        <!-- Modal -->
-          </div>
-           <!-- CARDS -->
-        
-        <!-- <div class="card1 green">
+          <?php
+               if (isset($_POST["submit1"])) {
+                   $taaknaam=$_POST["taak-naam"];
+                   $begind=$_POST["datum-begin"];
+                   $eindd=$_POST["datum-eind"];
+                   $omschrijving=$_POST["omschrijving"];
+                   $richt=$_POST["richting"];
+                   // $leider=$_POST["taak-leider"];
+                   $id=$_GET["id"];
+            
+                   if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
+                       header("Location:../administratie.php?error=emptyfields");
+                       exit();
+                   } else {
+                       $sql  = "INSERT INTO taak (ProjectID,Naam,Omschrijving,RichtingID,BeginDatum,EindDatum) VALUES(?,?,?,?,?,?)";
+                       $stmt = mysqli_stmt_init($conn);
+                       if (!mysqli_stmt_prepare($stmt, $sql)) {
+                       } else {
+                           mysqli_stmt_bind_param($stmt, "ississ", $id, $taaknaam, $omschrijving, $richt, $begind, $eindd);
+                           mysqli_stmt_execute($stmt);
+                       }
+                       mysqli_stmt_close($stmt);
+                       mysqli_close($conn);
+                   }
+                 
+               }
+?>
+          <!-- CARDS -->
+
+          <!-- <div class="card1 green">
     <div class="additional">
       <div class="user-card">
       </div>
@@ -275,13 +281,6 @@ if (mysqli_num_rows($res)>0) {
   </div> -->
 
 
-
-
-
-
-        
-
-        
         </div>
         <!-- /.container-fluid -->
 

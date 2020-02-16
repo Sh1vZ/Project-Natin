@@ -213,3 +213,68 @@ width:auto;
 }
 
   }
+
+
+
+  button {
+    border: none;
+    outline: none;
+    background:green;
+  }
+  
+  .wrapper {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    
+    z-index:9999;
+  }
+  
+  .circle {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    background:green;
+    transition: 0.2s;
+   
+  }
+  
+  button:focus{
+    outline:none;
+    
+  }
+  
+  button:hover{
+    background:rgb(2, 58, 2);
+    transition:0.3s;
+  }
+  
+  #addSign {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+  }
+  
+  #addSign:hover,
+  #addSign:focus {
+    cursor: pointer;
+  }
+
+  .modal-lg{
+    max-width:90%;
+  }
+
+  .nav a{
+
+margin-left:20px;
+
+  }
+
+  li .active{
+    color:green;
+  }
+

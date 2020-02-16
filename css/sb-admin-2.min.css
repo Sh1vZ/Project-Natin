@@ -12246,45 +12246,5 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 
-button {
-    border: none;
-    outline: none;
-}
 
-.wrapper {
-    width: 60px;
-    height: 60px;
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    z-index:9999;
-}
-
-.circle {
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    display: flex;
-    transition: 0.2s;
-}
-
-button:focus{
-    outline:none;
-}
-
-#addSign {
-    margin: auto;
-    width: 30px;
-    height: 30px;
-    transition: 0.5s;
-}
-
-#addSign:hover,
-#addSign:focus {
-    cursor: pointer;
-}
-
-.modal-lg{
-    max-width:90%;
-}
 
