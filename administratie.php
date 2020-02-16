@@ -20,7 +20,8 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/dashboard.css">
-
+  <link rel="stylesheet" href="./vendor/dropdown/fstdropdown.css">
+  <script src="./vendor/dropdown/fstdropdown.js"></script>
 </head>
 <?php
 include "./PHP/dbConn.php";
@@ -203,14 +204,26 @@ session_start();
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="row">
+                  <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="pwd">Project Leider:</label>
-                        <input type="text" class="form-control" name="project-leider" placeholder="" required>
+                        <select class="form-control fstdropdown-select" name="project-leider"  id="">
+                        <option value="" disabled selected>Select your option</option>
+                        <?php
+                             $sql = "SELECT * FROM personen";
+                             $result = mysqli_query($conn, $sql);
+                              while ($row = mysqli_fetch_assoc($result)) {
+                              echo "<option value='".$row['ID'] ."'>" . $row['Voornaam']." ". $row['Achternaam']."</option>";   
+                            }
+                     ?>
+                        </select>
+                        <script>
+                            $('.select2').select2();
+                        </script>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
                   <div class="row">
                     <div class="col-md-12 mb-2">
                       <div class="form-group">
@@ -250,7 +263,10 @@ session_start();
                   </thead>
 
                   <?php
-$stmt="SELECT * FROM project";
+$stmt="SELECT project.Naam,project.ID, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam, project.Status
+FROM project
+left JOIN personen
+ON project.ProjectleiderID = personen.ID;";
 $res=mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res)>0) {
@@ -260,7 +276,10 @@ if (mysqli_num_rows($res)>0) {
         $omschr=$row["Omschrijving"];
         $begind=$row["BeginDatum"];
         $eindd=$row["EindDatum"];
-        // $leider=$row[""];
+        // $leider=$row["ProjectleiderID"];
+        $vnaam=$row["Voornaam"];
+        $anaam=$row["Achternaam"];
+        
         // $taak=$row[""];
         $status=$row["Status"];
         $id=$row["ID"];
@@ -274,9 +293,8 @@ if (mysqli_num_rows($res)>0) {
                 <td>$omschr</td>
                 <td>$begind</td>
                 <td>$eindd</td>
-                <td></td>
+                <td>$anaam $vnaam</td>
                 <td>$status</td>
-                
                 <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
                   </tr>
                   

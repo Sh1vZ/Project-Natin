@@ -14,13 +14,13 @@ if (isset($_POST["submit"])) {
         header("Location:../administratie.php?error=emptyfields");
         exit();
     } else {
-        $sql  = "INSERT INTO project (Naam,Omschrijving,BeginDatum,EindDatum) VALUES(?,?,?,?)";
+        $sql  = "INSERT INTO project (Naam,Omschrijving,BeginDatum,EindDatum,ProjectleiderID) VALUES(?,?,?,?,?)";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location:../administratie.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ssss", $projectnaam, $omschrijving, $begind, $eindd);
+            mysqli_stmt_bind_param($stmt, "ssssi", $projectnaam, $omschrijving, $begind, $eindd,$leider);
             mysqli_stmt_execute($stmt);
             header("Location:../administratie.php?signup=success");
             exit();

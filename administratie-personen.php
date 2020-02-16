@@ -230,8 +230,8 @@ session_start();
                                                  $sql = "SELECT * FROM richting";
                                                  $result = mysqli_query($conn, $sql);
                                                  while ($row = mysqli_fetch_assoc($result)) {
-                                                  echo "<option value='".$row['ID'] ." " . "($row[Richting])'>" . $row['Richting'] . "</option>";   
-                                                        }
+                                                     echo "<option value='".$row['ID'] ." " . "($row[Richting])'>" . $row['Richting'] . "</option>";
+                                                 }
                                                     ?>
                                                         </datalist>
                                                     </div>
@@ -311,8 +311,8 @@ session_start();
                                                  $sql = "SELECT * FROM organisatie";
                                                  $result = mysqli_query($conn, $sql);
                                                  while ($row = mysqli_fetch_assoc($result)) {
-                                                  echo "<option value='".$row['ID'] ." " . "($row[Naam])'>" . $row['Naam'] . "</option>";   
-                                                        }
+                                                     echo "<option value='".$row['ID'] ." " . "($row[Naam])'>" . $row['Naam'] . "</option>";
+                                                 }
                                                     ?>
                                                         </datalist>
                                                     </div>
@@ -380,45 +380,48 @@ session_start();
                                             <th scope='col'>Richting</th>
                                             <th scope='col'>Functie</th>
                                             <th scope='col'>Telefoon Nummer</th>
-                                            <th scope='col'>Actions</th>
+                                            <!-- <th scope='col'>Actions</th> -->
                                         </tr>
                                     </thead>
 
                                     <?php
-// $stmt="SELECT * FROM project";
-// $res=mysqli_query($conn, $stmt);
+$stmt="SELECT personen.ID, personen.Achternaam, personen.Voornaam, organisatie.Naam, richting.richting, personen.Functie, personen.Telnummer
+FROM personen
+left JOIN organisatie ON personen.OrganisatieID = organisatie.ID
+left JOIN richting ON personen.RichtingID = richting.ID";
+$res=mysqli_query($conn, $stmt);
 
-// if (mysqli_num_rows($res)>0) {
-//     $i = 1;
-//     while ($row=mysqli_fetch_assoc($res)) {
-//         $naam=$row['Naam'];
-//         $omschr=$row["Omschrijving"];
-//         $begind=$row["BeginDatum"];
-//         $eindd=$row["EindDatum"];
-//         // $leider=$row[""];
-//         // $taak=$row[""];
-//         $status=$row["Status"];
-//         $id=$row["ID"];
-//         $a=$i++;
+if (mysqli_num_rows($res)>0) {
+    $i = 1;
+    while ($row=mysqli_fetch_assoc($res)) {
+        $anaam=$row['Achternaam'];
+        $vnaam=$row['Voornaam'];
+        $org=$row['Naam'];
+        $richting=$row['richting'];
+        $fucntie=$row["Functie"];
+        $telnum=$row["Telnummer"];
+        // $leider=$row[""];
+        // $taak=$row[""];
+        $id=$row["ID"];
+        $a=$i++;
      
-//         echo "
-//                 <tr>
-//                 <td>$a</td>
-//                 <td>$naam</td>
-//                 <td>$omschr</td>
-//                 <td>$begind</td>
-//                 <td>$eindd</td>
-//                 <td></td>
-//                 <td>$status</td>
+        echo "
+                <tr>
+                <td>$a</td>
+                <td>$anaam</td>
+                <td>$vnaam</td>
+                <td>$org</td>
+                <td>$richting</td>
+                <td>$fucntie</td>
+                <td>$telnum</td>
                 
-//                 <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
-//                   </tr>
+                  </tr>
                   
-//                 ";
-//     }
-// } else {
-//     echo "error";
-// }
+                ";
+    }
+} else {
+    echo "error";
+}
 
 ?>
                                 </table>
