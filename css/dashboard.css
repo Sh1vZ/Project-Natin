@@ -218,7 +218,7 @@ button{
     height: 60px;
     width: 60px;
     display: flex;
-    background:green;
+    background:rgb(4, 131, 4);
     transition: 0.2s;
    
   }
@@ -229,15 +229,25 @@ button{
   }
   
   .button:hover{
-    background:rgb(2, 58, 2);
+    background:green;;
     transition:0.3s;
   }
 
   .icon:hover{
-    color:rgb(2, 58, 2);
+    color:rgb(4, 131, 4);
+    transition:0.3s;
+  }
+  .link:hover{
+    color:rgb(4, 131, 4);
     transition:0.3s;
   }
   
+.link{
+
+font-size: 20px;
+
+}
+
   #addSign {
     margin: auto;
     width: 30px;
@@ -261,7 +271,7 @@ margin-left:20px;
   }
 
   li .active{
-    color:green;
+    color:rgb(4, 131, 4);
   }
 
 .icon{

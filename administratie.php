@@ -258,7 +258,7 @@ session_start();
                       <th scope='col'>Eind Datum</th>
                       <th scope='col'>Project Leider</th>
                       <th scope='col'>Project Status</th>
-                      <th scope='col'>Actions</th>
+                      <th scope='col'>Acties</th>
                     </tr>
                   </thead>
 
@@ -295,7 +295,7 @@ if (mysqli_num_rows($res)>0) {
                 <td>$eindd</td>
                 <td>$anaam $vnaam</td>
                 <td>$status</td>
-                <td> <a href='./PHP/view-projecten.php?id=$id'>more</a></td>
+                <td> <a class='link' href='./PHP/view-projecten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
                   </tr>
                   
                 ";

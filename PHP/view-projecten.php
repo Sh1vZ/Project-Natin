@@ -283,7 +283,7 @@ if (mysqli_num_rows($res)>0) {
 $id=$_GET["id"];
 $sql="SELECT * FROM taak WHERE ProjectID=$id";
 $res=mysqli_query($conn,$sql);
-if ($res) {
+if (mysqli_num_rows($res)>0) {
     while ($row = mysqli_fetch_assoc($res)) {
         $naam=$row["Naam"];
         $omschrijving=$row["Omschrijving"];
@@ -323,7 +323,7 @@ if ($res) {
 </div>
 </div>
 
-<script>
+<!-- <script>
         jQuery( document ).ready(function() {
             jQuery('#submit').submit(function(e){
                 e.preventDefault();
@@ -339,13 +339,12 @@ if ($res) {
                     }
                 }).done(function(data){
                     jQuery('#data').append(data);
+                    // document.getElementById("$submit").reset(); 
                     // document.location.reload();
                 });
             });
         });
-    </script>
-
-          
+    </script> -->
 
         </div>
         <!-- /.container-fluid -->
