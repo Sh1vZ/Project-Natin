@@ -20,6 +20,8 @@
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../vendor/dropdown/fstdropdown.css">
+  <script src="../vendor/dropdown/fstdropdown.js"></script>
 </head>
 <?php
 include "dbConn.php";
@@ -169,12 +171,12 @@ if (mysqli_num_rows($res)>0) {
                   </div>
                   <div class="modal-body">
 
-                    <form action="" method="POST" style="width:60vw; margin:0 auto">
+                    <form action="" id="submit" method="POST" style="width:60vw; margin:0 auto">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="pwd">Taak Naam:</label>
-                            <input type="text" class="form-control" name="taak-naam" placeholder="" required>
+                            <input type="text" id="naam" class="form-control" name="taak-naam" placeholder="" required>
                           </div>
                         </div>
                       </div>
@@ -182,14 +184,14 @@ if (mysqli_num_rows($res)>0) {
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="pwd">Begin Datum:</label>
-                            <input type="date" class="form-control" name="datum-begin" placeholder="Begin Datum"
+                            <input type="date" id="bdatum" class="form-control" name="datum-begin" placeholder="Begin Datum"
                               required>
                           </div>
                         </div>
                         <div class="col-md-6 mb-2">
                           <div class="form-group">
                             <label for="pwd">Eind Datum:</label>
-                            <input type="date" class="form-control" name="datum-eind" placeholder="Begin Datum"
+                            <input type="date" id="edatum" class="form-control" name="datum-eind" placeholder="Begin Datum"
                               required>
                           </div>
                         </div>
@@ -198,17 +200,27 @@ if (mysqli_num_rows($res)>0) {
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="pwd">Richting:</label>
-                            <input type="text" list="richting1"
-                                                            class="form-control" id="richting" name="richting">
-                                                        <datalist id="richting1" style="width: 100px;">
-                                                            <?php
-                                                 $sql = "SELECT * FROM richting";
-                                                 $result = mysqli_query($conn, $sql);
-                                                 while ($row = mysqli_fetch_assoc($result)) {
-                                                  echo "<option value='".$row['ID'] ." " . "($row[Richting])'>" . $row['Richting'] . "</option>";   
-                                                        }
-                                                    ?>
-                                                        </datalist>
+                            <select class="form-control fstdropdown-select" id="richting" name="richting">
+                        <option value="" disabled selected>Select your option</option>
+                        <?php
+                             $sql = "SELECT * FROM richting";
+                             $result = mysqli_query($conn, $sql);
+                              while ($row = mysqli_fetch_assoc($result)) {
+                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
+                            }
+                     ?>
+                        </select>
+                        <script>
+                            $('.select2').select2();
+                        </script>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Geschatte Kosten:</label>
+                            <input type="number" class="form-control" id="kosten" name="geschatte-kosten" placeholder="" >
                           </div>
                         </div>
                       </div>
@@ -216,7 +228,7 @@ if (mysqli_num_rows($res)>0) {
                         <div class="col-md-12 mb-2">
                           <div class="form-group">
                             <label for="pwd">Taak Omschrijving:</label>
-                            <textarea class="form-control" name="omschrijving" placeholder="Voer in..."
+                            <textarea class="form-control" id="omschrijving" name="omschrijving" placeholder="Voer in..."
                               rows="3"></textarea>
                           </div>
                         </div>
@@ -239,47 +251,98 @@ if (mysqli_num_rows($res)>0) {
                    $eindd=$_POST["datum-eind"];
                    $omschrijving=$_POST["omschrijving"];
                    $richt=$_POST["richting"];
+                   $kosten=$_POST["geschatte-kosten"];
                    // $leider=$_POST["taak-leider"];
                    $id=$_GET["id"];
             
                    if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
-                       header("Location:../administratie.php?error=emptyfields");
+                       header("Location:./view-projecten.php?error=emptyfields");
                        exit();
                    } else {
-                       $sql  = "INSERT INTO taak (ProjectID,Naam,Omschrijving,RichtingID,BeginDatum,EindDatum) VALUES(?,?,?,?,?,?)";
+                       $sql  = "INSERT INTO taak (ProjectID,RichtingID,Naam,Omschrijving,BeginDatum,EindDatum,GeschatteKosten) VALUES(?,?,?,?,?,?,?)";
                        $stmt = mysqli_stmt_init($conn);
                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("Location:./view-projecten.php?error=sqlerror");
+                        exit();
                        } else {
-                           mysqli_stmt_bind_param($stmt, "ississ", $id, $taaknaam, $omschrijving, $richt, $begind, $eindd);
+                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
                            mysqli_stmt_execute($stmt);
+                         
                        }
                        mysqli_stmt_close($stmt);
-                       mysqli_close($conn);
+                      
                    }
                  
                }
 ?>
           <!-- CARDS -->
+          <div class='container-fluid cont'>
+        <div class='card-body'>
+        <div class='row' id="data">
+<?php
+$id=$_GET["id"];
+$sql="SELECT * FROM taak WHERE ProjectID=$id";
+$res=mysqli_query($conn,$sql);
+if ($res) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $naam=$row["Naam"];
+        $omschrijving=$row["Omschrijving"];
+        $begind=$row["BeginDatum"];
+        $eindd=$row["EindDatum"];
+        $status=$row["Status"];
+        echo"  
+<div class='col-md-6'>
 
-          <!-- <div class="card1 green">
-    <div class="additional">
-      <div class="user-card">
+<div class='card1 green'>
+    <div class='additional'>
+      <div class='user-card'>
       </div>
-      <div class="more-info">
-        <h1>Jane Doe</h1>
-        <div class="morefo">
+      <div class='more-info'>
+        <h1>$naam</h1>
+        <div class='morefo'>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tenetur!</p>
           
         </div>
       </div>
     </div>
-    <div class="general">
-      <h1>Jane Doe</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
-      <span class="more">Mouse over the card for more info</span>
+    <div class='general'>
+      <h1>$naam</h1>
+      <p class'txt'> $omschrijving </p>
+      <span class='more'>Hover voor meer info</span>
     </div>
-  </div> -->
+  </div>
+</div>
+";
+    }
+}
+?>
+</div>
+</div>
+</div>
 
+<script>
+        jQuery( document ).ready(function() {
+            jQuery('#submit').submit(function(e){
+                e.preventDefault();
+                jQuery.ajax({
+                    url: e.currentTarget.action,
+                    data:{
+                        naam: jQuery('#naam').val(),
+                        bdatum: jQuery('#bdatum').val(),
+                        edatum: jQuery('#edatum').val(),
+                        richting: jQuery('#richting').val(),
+                        kosten: jQuery('#kosten').val(),
+                        omschrijving: jQuery('#omschrijving').val(),
+                    }
+                }).done(function(data){
+                    jQuery('#data').append(data);
+                    // document.location.reload();
+                });
+            });
+        });
+    </script>
+
+          
 
         </div>
         <!-- /.container-fluid -->
