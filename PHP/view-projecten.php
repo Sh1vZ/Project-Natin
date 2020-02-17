@@ -290,17 +290,20 @@ if ($res) {
         $begind=$row["BeginDatum"];
         $eindd=$row["EindDatum"];
         $status=$row["Status"];
+        $id=$row["ID"];
         echo"  
 <div class='col-md-6'>
 
 <div class='card1 green'>
     <div class='additional'>
       <div class='user-card'>
+      <i class='fas fa-info-circle icon1'></i>
       </div>
       <div class='more-info'>
         <h1>$naam</h1>
+       <button class='icon'><i class='fas fa-edit'></i></button>
         <div class='morefo'>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tenetur!</p>
+          <p class='card-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, tenetur!</p>
           
         </div>
       </div>
