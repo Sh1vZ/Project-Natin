@@ -9,14 +9,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>TEST</title>
+  <title>Natin-AFA</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/dashboard.css">
@@ -35,22 +37,22 @@ session_start();
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon ">
+         <img src="./img/natin.png" alt="" style="width:60px;">
         </div>
-        <div class="sidebar-brand-text mx-3">TEST</div>
+        <div class="sidebar-brand-text mx-3">AFA</div>
       </a>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tachometer-alt active"></i>
+        <a class="nav-link" href="">
+        <i class="fas fa-tasks"></i>
           <span>Registreer Projecten</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
-          <i class="fas fa-fw fa-tachometer-alt active"></i>
+        <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
       </li>
@@ -136,7 +138,6 @@ session_start();
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Registreer</h1>
         </div>
 
         <div id="addBtn" class="wrapper">
@@ -208,8 +209,7 @@ session_start();
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="pwd">Project Leider:</label>
-                        <select class="form-control fstdropdown-select" name="project-leider"  id="">
-                        <option value="" disabled selected>Select your option</option>
+                        <select class="selectpicker form-control" title="Kies Leider" data-live-search="true" name="project-leider"  id="">
                         <?php
                              $sql = "SELECT * FROM personen";
                              $result = mysqli_query($conn, $sql);
@@ -218,9 +218,7 @@ session_start();
                             }
                      ?>
                         </select>
-                        <script>
-                            $('.select2').select2();
-                        </script>
+                        
                       </div>
                     </div>
                   </div>
@@ -228,7 +226,7 @@ session_start();
                     <div class="col-md-12 mb-2">
                       <div class="form-group">
                         <label for="pwd">Project Omschrijving:</label>
-                        <textarea class="form-control" name="omschrijving" placeholder="Voer in..." rows="3"></textarea>
+                        <textarea class="form-control" name="omschrijving" placeholder="Voer in..." rows="3" required></textarea>
                       </div>
                     </div>
                   </div>
@@ -244,29 +242,30 @@ session_start();
         <!-- Modal -->
 
         <div class='container-fluid'>
-          <div class='card shadow mb-4'>
 
+          <div class='card shadow mb-4'>
             <div class='card-body'>
+            <h1 class="h3 mb-4 text-gray-800 center">Registreer Projecten</h1>
               <div class='table-responsive-xl'>
-                <table class='table table-hover'>
+                <table id="" class='table table-hover data1'>
                   <thead>
                     <tr>
-                      <th scope='col'>#</th>
-                      <th scope='col'>Projectnaam</th>
-                      <th scope='col'>Project Omschrijving</th>
-                      <th scope='col'>Begin Datum</th>
-                      <th scope='col'>Eind Datum</th>
-                      <th scope='col'>Project Leider</th>
-                      <th scope='col'>Project Status</th>
-                      <th scope='col'>Acties</th>
+                      <th>#</th>
+                      <th>Projectnaam</th>
+                      <th style="width:30%">Project Omschrijving</th>
+                      <th>Begin Datum</th>
+                      <th>Eind Datum</th>
+                      <th>Project Leider</th>
+                      <th>Project Status</th>
+                      <th>Acties</th>
                     </tr>
                   </thead>
-
+                  <tbody>          
                   <?php
 $stmt="SELECT project.Naam,project.ID, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam, project.Status
 FROM project
 left JOIN personen
-ON project.ProjectleiderID = personen.ID;";
+ON project.ProjectleiderID = personen.ID ";
 $res=mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res)>0) {
@@ -279,7 +278,6 @@ if (mysqli_num_rows($res)>0) {
         // $leider=$row["ProjectleiderID"];
         $vnaam=$row["Voornaam"];
         $anaam=$row["Achternaam"];
-        
         // $taak=$row[""];
         $status=$row["Status"];
         $id=$row["ID"];
@@ -301,9 +299,10 @@ if (mysqli_num_rows($res)>0) {
                 ";
     }
 } else {
-    echo "error";
+    
 }
 ?>
+</tbody>
                 </table>
               </div>
             </div>
@@ -333,12 +332,25 @@ if (mysqli_num_rows($res)>0) {
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.selectpicker').selectpicker();
+    $('.data1').DataTable({
+     
+});
+} );
+</script>
 
 </body>
 

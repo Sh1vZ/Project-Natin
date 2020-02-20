@@ -9,17 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TEST</title>
+    <title>Natin-AFA | Personen</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
 
 </head>
 <?php
@@ -31,28 +34,28 @@ session_start();
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">TEST</div>
-            </a>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="administratie.php">
-                    <i class="fas fa-fw fa-tachometer-alt active"></i>
-                    <span>Registreer Projecten</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-tachometer-alt active"></i>
-                    <span>Registreer Personen</span></a>
-            </li>
-            </li>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon ">
+         <img src="./img/natin.png" alt="" style="width:60px;">
+        </div>
+        <div class="sidebar-brand-text mx-3">AFA</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="administratie.php">
+        <i class="fas fa-tasks"></i>
+          <span>Registreer Projecten</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="administratie-personen.php">
+        <i class="fas fa-user-friends"></i>
+          <span>Registreer Personen</span></a>
+      </li>
+      </li>
 
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -139,7 +142,6 @@ session_start();
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Registreer</h1>
                 </div>
 
                 <div id="addBtn" class="wrapper">
@@ -178,18 +180,18 @@ session_start();
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Organisaties / Studenten</h5>
+                                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Organisaties / Natin</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <ul class="nav nav-tabs" id="tabContent">
-                                <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Studenten </a></li>
+                                <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Natin </a></li>
                                 <li><a  href="#access-security" data-toggle="tab">Registreer Organisaties</a></li>
                             </ul>
 
                             <div class="tab-content">
-                                <div class="tab-pane active" id="details">
+                                <div class="tab-pane active " id="details">
                                     <div class="modal-body">
                                         <form action="./PHP/registratie-studenten.php" method="POST"
                                             style="width:60vw; margin:0 auto">
@@ -278,7 +280,7 @@ session_start();
                                     </div>
                                 </div>
                                     <!-- ORGANISATIE -->
-                                <div class="tab-pane" id="access-security">
+                                <div class="tab-pane fade" id="access-security">
                                     <div class="modal-body">
                                     <form action="./PHP/registratie-organisatie.php" method="POST"
                                             style="width:60vw; margin:0 auto">
@@ -369,8 +371,9 @@ session_start();
                     <div class='card shadow mb-4'>
 
                         <div class='card-body'>
+                        <h1 class="h3 mb-4 text-gray-800 center">Registreer Personen</h1>
                             <div class='table-responsive-xl'>
-                                <table class='table table-hover'>
+                                <table class='table table-hover data1'>
                                     <thead>
                                         <tr>
                                             <th scope='col'>#</th>
@@ -420,7 +423,7 @@ if (mysqli_num_rows($res)>0) {
                 ";
     }
 } else {
-    echo "error";
+    
 }
 
 ?>
@@ -459,6 +462,18 @@ if (mysqli_num_rows($res)>0) {
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $('.data1').DataTable({
+
+});
+} );
+</script>
 
 </body>
 

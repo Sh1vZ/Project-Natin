@@ -36,7 +36,8 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+  font-family: Poppins-Regular, sans-serif;
+
 }
 
 /*---------------------------------------------*/
@@ -64,6 +65,12 @@ a:hover {
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
+}
+
+body{
+  background: url(../img/background.png);
+  background-size:cover;
+  background-repeat: no-repeat;
 }
 
 p {
@@ -168,7 +175,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #0f0f0f;
+  /* background: #0f0f0f; */
   /* background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
   background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
   background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);

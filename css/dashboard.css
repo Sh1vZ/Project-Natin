@@ -3,7 +3,6 @@
     width: auto;
     height: 250px;
     background-color: #fff;
-    background: linear-gradient(#f8f8f8, #fff);
     box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
     border-radius: 6px;
     overflow: hidden;
@@ -180,6 +179,7 @@
   
   .morefo{
     padding: 1rem;
+    color:white;
   }
   @media (max-width:645px) {
 .cont{
@@ -212,13 +212,25 @@ button{
     
     z-index:9999;
   }
+
+
+  .wrapper1 {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    
+    z-index:9999;
+  }
   
   .circle {
     border-radius: 50%;
     height: 60px;
     width: 60px;
     display: flex;
-    background:rgb(4, 131, 4);
+    /* background:rgb(4, 131, 4); */
+    background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
     transition: 0.2s;
    
   }
@@ -229,7 +241,6 @@ button{
   }
   
   .button:hover{
-    background:green;;
     transition:0.3s;
   }
 
@@ -277,8 +288,31 @@ margin-left:20px;
 .icon{
   position: absolute;
   top:10px;
-  right:10px;
+  left:10px;
   color:white;
   font-size:20px;
   background:none;
+}
+
+.icon2{
+  position: absolute;
+  top:10px;
+  left:15px;
+  color:white;
+  font-size:40px;
+}
+.center{
+  text-align: center;
+}
+
+.dataTables_paginate{
+  display:flex;
+  align-items:center;
+  }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgb(4, 131, 4);
+    border-color: rgb(4, 131, 4);
 }
