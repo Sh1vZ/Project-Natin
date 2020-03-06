@@ -391,7 +391,7 @@ session_start();
 $stmt="SELECT personen.ID, personen.Achternaam, personen.Voornaam, organisatie.Naam, richting.richting, personen.Functie, personen.Telnummer
 FROM personen
 left JOIN organisatie ON personen.OrganisatieID = organisatie.ID
-left JOIN richting ON personen.RichtingID = richting.ID";
+left JOIN richting ON personen.RichtingID = richting.ID ORDER BY personen.ID  DESC";
 $res=mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res)>0) {

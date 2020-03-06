@@ -265,7 +265,7 @@ session_start();
 $stmt="SELECT project.Naam,project.ID, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam, project.Status
 FROM project
 left JOIN personen
-ON project.ProjectleiderID = personen.ID ";
+ON project.ProjectleiderID = personen.ID ORDER BY project.ID DESC ";
 $res=mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res)>0) {
