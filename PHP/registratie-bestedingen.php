@@ -452,7 +452,7 @@ if (mysqli_num_rows($res)>0) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; 2019</span>

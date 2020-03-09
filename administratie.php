@@ -30,7 +30,6 @@ include "./PHP/dbConn.php";
 session_start();
 ?>
 
-
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -46,6 +45,12 @@ session_start();
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="home.php">
+        <i class="fas fa-tasks"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="">
         <i class="fas fa-tasks"></i>
@@ -246,7 +251,7 @@ session_start();
 
           <div class='card shadow mb-4'>
             <div class='card-body'>
-            <h1 class="h3 mb-4 text-gray-800 center">Registreer Projecten</h1>
+            <h1 class=" m-0 h3 mb-4 text-gray-800 center">Registreer Projecten</h1>
               <div class='table-responsive-xl'>
                 <table id="" class='table table-hover data1'>
                   <thead>
@@ -316,7 +321,7 @@ if (mysqli_num_rows($res)>0) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; 2019</span>

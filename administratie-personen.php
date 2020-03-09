@@ -46,6 +46,12 @@ session_start();
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
+        <a class="nav-link" href="home.php">
+        <i class="fas fa-tasks"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item ">
         <a class="nav-link" href="administratie.php">
         <i class="fas fa-tasks"></i>
           <span>Registreer Projecten</span></a>
@@ -58,12 +64,12 @@ session_start();
       </li>
 
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
-        <!-- End of Sidebar -->
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -439,7 +445,7 @@ if (mysqli_num_rows($res)>0) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-gradient-primary">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; 2019</span>

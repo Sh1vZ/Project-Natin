@@ -100,7 +100,7 @@ include "./PHP/dbConn.php";
 session_start();
 if (isset($_SESSION['loggedin'])) {
   if($_SESSION["role"]=="Administratie"){
-    header("Location:administratie.php");
+    header("Location:home.php");
     exit();
   }
 
@@ -146,7 +146,7 @@ if (isset($_POST['but_login'])) {
                   $_SESSION["role"] = $row["Rollen"];
                   
                   if($role=="Administratie"){
-                    header("Location:administratie.php");
+                    header("Location:home.php");
                     exit();
                   }
 

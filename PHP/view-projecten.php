@@ -29,7 +29,7 @@ session_start();
   <!-- Page Wrapper -->
   <div id="wrapper">
        <!-- Sidebar -->
-       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon ">
@@ -40,17 +40,24 @@ session_start();
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active ">
+      <li class="nav-item ">
+        <a class="nav-link" href="../home.php">
+        <i class="fas fa-tasks"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
         <i class="fas fa-tasks"></i>
           <span>Registreer Projecten</span></a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
         <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
       </li>
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -129,9 +136,7 @@ session_start();
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <div class='card shadow mb-4'>
-            <div class='card-body'>
-              <?php
+          <?php
 $id=$_GET["id"];
 $sql="SELECT * FROM project WHERE ID=$id";
 $res=mysqli_query($conn, $sql);
@@ -142,26 +147,43 @@ if (mysqli_num_rows($res)>0) {
         $begind=$row["BeginDatum"];
         $eindd=$row["EindDatum"];
         $status=$row["Status"];
-        echo "<h3 class='card-title center'>$naam</h5>";
-        echo"<p class='card-text'> $omschr</p>";
-        echo"  <table>
-        <tr>
-        <td>Begin Datum: </td>
-            <td>$begind</td>
-        </tr>
-        <tr>
-        <td>Eind Datum: </td>
-           <td>$eindd</td>
-        </tr>
-        <tr>
-        <td>Status: </td>
-           <td>$status</td>
-        </tr>
-    </table>";
+        // echo "<h3 class='card-title center'>$naam</h5>";
+      
+       
     }
 }
 ?>
+          <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $naam ?></h6>
+                </div>
+                <div class="card-body">
+              <?php
+                echo"<p class='card-text'> $omschr</p>";
+ echo"  <table>
+ <tr>
+ <td>Begin Datum: </td>
+     <td>$begind</td>
+ </tr>
+ <tr>
+ <td>Eind Datum: </td>
+    <td>$eindd</td>
+ </tr>
+ <tr>
+ <td>Status: </td>
+    <td>$status</td>
+ </tr>
+</table>";
+
+
+?>
+                </div>
+              </div>
+
             </div>
+                
+                 
+            
             <div id="addBtn" class="wrapper">
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
@@ -256,47 +278,9 @@ if (mysqli_num_rows($res)>0) {
               </div>
             </div>
             <!-- Modal -->
-            <!-- <script>
-function submitForm() {
-  // $('form[name="form"]').submit();
-  // $('input[type="text"], textarea').val('');
-  document.submit.reset();
-  
-}
- </script> -->
-          </div>
-          <?php
-               if (isset($_POST["submit1"])) {
-                   $taaknaam=$_POST["taak-naam"];
-                   $begind=$_POST["datum-begin"];
-                   $eindd=$_POST["datum-eind"];
-                   $omschrijving=$_POST["omschrijving"];
-                   $richt=$_POST["richting"];
-                   $kosten=$_POST["geschatte-kosten"];
-                   // $leider=$_POST["taak-leider"];
-                   $id=$_GET["id"];
-            
-                   if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
-                       header("Location:./view-projecten.php?error=emptyfields");
-                       exit();
-                   } else {
-                       $sql  = "INSERT INTO taak (ProjectID,RichtingID,Naam,Omschrijving,BeginDatum,EindDatum,GeschatteKosten) VALUES(?,?,?,?,?,?,?)";
-                       $stmt = mysqli_stmt_init($conn);
-                       if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("Location:./view-projecten.php?error=sqlerror");
-                        exit();
-                       } else {
-                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
-                           mysqli_stmt_execute($stmt);
-                           echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
-                       }
-                       mysqli_stmt_close($stmt);
-                      
-                   }
-                 
-               }
-?>
-          <!-- CARDS -->
+
+
+            <!-- CARDS -->
           <div class='container-fluid cont'>
             <div class='card-body'>
               <div class='row' id="data">
@@ -372,6 +356,47 @@ left join taak on  bestedingen.TaakID = taak.ID
               </div>
             </div>
           </div>
+            <!-- <script>
+function submitForm() {
+  // $('form[name="form"]').submit();
+  // $('input[type="text"], textarea').val('');
+  document.submit.reset();
+  
+}
+ </script> -->
+          </div>
+          <?php
+               if (isset($_POST["submit1"])) {
+                   $taaknaam=$_POST["taak-naam"];
+                   $begind=$_POST["datum-begin"];
+                   $eindd=$_POST["datum-eind"];
+                   $omschrijving=$_POST["omschrijving"];
+                   $richt=$_POST["richting"];
+                   $kosten=$_POST["geschatte-kosten"];
+                   // $leider=$_POST["taak-leider"];
+                   $id=$_GET["id"];
+            
+                   if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
+                       header("Location:./view-projecten.php?error=emptyfields");
+                       exit();
+                   } else {
+                       $sql  = "INSERT INTO taak (ProjectID,RichtingID,Naam,Omschrijving,BeginDatum,EindDatum,GeschatteKosten) VALUES(?,?,?,?,?,?,?)";
+                       $stmt = mysqli_stmt_init($conn);
+                       if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("Location:./view-projecten.php?error=sqlerror");
+                        exit();
+                       } else {
+                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
+                           mysqli_stmt_execute($stmt);
+                           echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                       }
+                       mysqli_stmt_close($stmt);
+                      
+                   }
+                 
+               }
+?>
+          
           <!-- <script>
         jQuery( document ).ready(function() {
             jQuery('#submit').submit(function(e){
@@ -399,7 +424,7 @@ left join taak on  bestedingen.TaakID = taak.ID
       </div>
       <!-- End of Main Content -->
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; 2019</span>

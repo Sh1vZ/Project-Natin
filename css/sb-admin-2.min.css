@@ -10872,7 +10872,7 @@ a:focus {
 }
 
 .text-xs {
-    font-size: .7rem
+    font-size: 0.8rem
 }
 
 .text-lg {
@@ -12238,13 +12238,11 @@ footer.sticky-footer {
 
 footer.sticky-footer .copyright {
     line-height: 1;
-    font-size: .8rem
+    font-size: .8rem;
+    color:var(--white);
 }
 
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
-
-
-
 
