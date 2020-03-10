@@ -310,11 +310,11 @@ left join taak on  bestedingen.TaakID = taak.ID
 <div class='card1 green'>
     <div class='additional'>
       <div class='user-card'>";
-      if($status=="Niet Compleet"){
+      // if($status=="Niet Compleet"){
       echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>";
-      }else{
+      // }else{
 
-      }
+      // }
       echo"
       <i class='fas fa-info-circle icon1'></i>
       </div>

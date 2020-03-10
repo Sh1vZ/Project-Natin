@@ -16,11 +16,11 @@
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
   <!-- Custom styles for this template-->
-  
+
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../vendor/bootstrap-select.css">
@@ -55,14 +55,7 @@ session_start();
       </script>
 
 
-      <div id="addBtn" class="wrapper">
-        <button class="circle button" id="modalActivate" type="button" data-toggle="modal"
-          data-target="#exampleModalPreview">
-          <img id="addSign"
-            src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-            alt="" />
-        </button>
-      </div>
+
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -144,9 +137,64 @@ session_start();
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Registreer Materialen / Diensten</h1>
+          
+
+          <?php
+           $idt=$_GET["idt"];
+          $sql = "SELECT * FROM taak where ID=$idt";
+          $result = mysqli_query($conn, $sql);
+           while ($row = mysqli_fetch_assoc($result)) {
+           $status=$row['Status'];   
+         }
+         if($status=="Niet Compleet"){
+           echo"<h1 class='h3 mb-4 text-gray-800'>Registreer Materialen / Diensten</h1>";
+           echo"  <div id='addBtn' class='wrapper'>
+           <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
+             data-target='#exampleModalPreview'>
+             <img id='addSign'
+               src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
+               />
+           </button>
+         </div>";
+         echo" <div id='addBtn' class='wrapper2'>
+         <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
+           data-target='#finishModal'>
+           <!-- <img id='addSign'
+             src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
+             /> -->
+         </button>
+       </div>";
+         } else{
+           echo " <div class='d-sm-flex align-items-center justify-content-between mb-4'>
+           <h1 class='h3  text-gray-800'>Registreer Materialen / Diensten</h1>
+           <a href='#' class='d-none d-sm-inline-block btn btn-md btn-success shadow-sm'><i class='fas fa-download fa-md text-white-50'></i> Compleet</a>
+         </div>";
+         }
+
+?>
         </div>
 
+        <!-- FINISH-->
+        <div class="modal fade" id="finishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Taak registreren als Compleet?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Select "Submit" below if you are ready to Mark as complete.</div>
+              <form action="" method="POST">
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" name="submit-finish" class="btn btn-primary">Submit</button>
+             </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Logout Modal-->
@@ -324,30 +372,41 @@ if (isset($_POST["submit-materialen"])) {
 }
 
 
+if (isset($_POST["submit-finish"])) {
+  
+$sql="UPDATE taak SET `Status`='Compleet' WHERE ID=$idt";
+$result = mysqli_query($conn, $sql);
+if($result){
+  echo"<script> window.location = 'registratie-bestedingen.php?id=$id&idt=$idt'</script>";
+}
+
+}
+
+
 ?>
 
 
-<div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-            <div class='card shadow mb-4'>
-              <div class="card-body">
-              <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
-                <div class='table-responsive-xl'>
-                  <table class='table data1 table-hover'>
-                    <thead>
-                      <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Diensten</th>
-                        <th scope='col'>Organisatie</th>
-                        <th scope='col'>Facatuurtype</th>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class='card shadow mb-4'>
+                <div class="card-body">
+                  <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
+                  <div class='table-responsive-xl'>
+                    <table class='table data1 table-hover'>
+                      <thead>
+                        <tr>
+                          <th scope='col'>#</th>
+                          <th scope='col'>Diensten</th>
+                          <th scope='col'>Organisatie</th>
+                          <th scope='col'>Facatuurtype</th>
 
-                        <!-- <th scope='col'>Actions</th> -->
-                      </tr>
-                    </thead>
+                          <!-- <th scope='col'>Actions</th> -->
+                        </tr>
+                      </thead>
 
-                    <?php
-                      $idt=$_GET["idt"];
+                      <?php
+                     
                                    
 $stmt="SELECT taak.Naam, bestedingen.Materialen, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype
 from bestedingen 
@@ -384,28 +443,28 @@ if (mysqli_num_rows($res)>0) {
 }
 
 ?>
-                  </table>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class='card shadow mb-4'>
-              <div class='card-body'>
-              <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
-                <div class='table-responsive-xl'>
-                  <table class='table data1 table-hover'>
-                    <thead>
-                      <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Materialen</th>
-                        <th scope='col'>Facatuurtype</th>
+            <div class="col-md-6">
+              <div class='card shadow mb-4'>
+                <div class='card-body'>
+                  <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
+                  <div class='table-responsive-xl'>
+                    <table class='table data1 table-hover'>
+                      <thead>
+                        <tr>
+                          <th scope='col'>#</th>
+                          <th scope='col'>Materialen</th>
+                          <th scope='col'>Facatuurtype</th>
 
-                        <!-- <th scope='col'>Actions</th> -->
-                      </tr>
-                    </thead>
+                          <!-- <th scope='col'>Actions</th> -->
+                        </tr>
+                      </thead>
 
-                    <?php
+                      <?php
                       $idt=$_GET["idt"];
                                    
 $stmt="SELECT Materialen,Factuurtype from bestedingen where TaakID =$idt and Materialen IS NOT NULL";
@@ -435,12 +494,11 @@ if (mysqli_num_rows($res)>0) {
 }
 
 ?>
-                  </table>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-</div>
-
+            </div>        
           </div>
         </div>
 
@@ -476,18 +534,18 @@ if (mysqli_num_rows($res)>0) {
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../js/sb-admin-2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
   <script>
-$(document).ready(function() {
-    $('.data1').DataTable({
-     
-});
-} );
-</script>
+    $(document).ready(function () {
+      $('.data1').DataTable({
+
+      });
+    });
+  </script>
 </body>
 
 </html>
