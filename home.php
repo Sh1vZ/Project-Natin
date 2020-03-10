@@ -395,8 +395,8 @@ if (mysqli_num_rows($res)>0) {
                         type: 'bar',
                         data: chartdata,
                         animation:{
-          animateScale:true
-        }
+                        animateScale:true
+                        }
                     });
                 });
             }

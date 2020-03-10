@@ -237,7 +237,7 @@ if (mysqli_num_rows($res)>0) {
                             <select class="form-control fstdropdown-select" id="richting" name="richting">
                               <option value="" disabled selected>Select your option</option>
                               <?php
-                             $sql = "SELECT * FROM richting";
+                             $sql = "SELECT * FROM richting where Richting != 'Other'";
                              $result = mysqli_query($conn, $sql);
                               while ($row = mysqli_fetch_assoc($result)) {
                               echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
@@ -385,17 +385,25 @@ function submitForm() {
                        exit();
                    } else {
                        $sql  = "INSERT INTO taak (ProjectID,RichtingID,Naam,Omschrijving,BeginDatum,EindDatum,GeschatteKosten) VALUES(?,?,?,?,?,?,?)";
-                       $stmt = mysqli_stmt_init($conn);
+                          $sql1=mysqli_query($conn,"SELECT * FROM richting WHERE (Richting)='Other'");
+                          $row = mysqli_fetch_assoc($sql1);
+                          $idr=$row['ID'];
+                        $stmt = mysqli_stmt_init($conn);
                        if (!mysqli_stmt_prepare($stmt, $sql)) {
                         header("Location:./view-projecten.php?error=sqlerror");
                         exit();
                        } else {
-                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
-                           mysqli_stmt_execute($stmt);
-                           echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                         if(empty($richt)){
+                          mysqli_stmt_bind_param($stmt, "iissssi", $id, $idr,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
+                          mysqli_stmt_execute($stmt);
+                          echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                         }else{
+                             mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt, $taaknaam, $omschrijving, $begind, $eindd, $kosten);
+                             mysqli_stmt_execute($stmt);
+                             echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                         }
                        }
                        mysqli_stmt_close($stmt);
-                      
                    }
                  
                }
