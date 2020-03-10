@@ -307,11 +307,15 @@ left join taak on  bestedingen.TaakID = taak.ID
  
         echo"  
 <div class='col-md-6'>
-
 <div class='card1 green'>
     <div class='additional'>
-      <div class='user-card'>
-      <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>
+      <div class='user-card'>";
+      if($status=="Niet Compleet"){
+      echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>";
+      }else{
+
+      }
+      echo"
       <i class='fas fa-info-circle icon1'></i>
       </div>
       <div class='more-info'>
