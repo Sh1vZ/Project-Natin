@@ -137,15 +137,14 @@ session_start();
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          
-
           <?php
+           include "dbConn.php";
            $idt=$_GET["idt"];
           $sql = "SELECT * FROM taak where ID=$idt";
           $result = mysqli_query($conn, $sql);
            while ($row = mysqli_fetch_assoc($result)) {
            $status=$row['Status'];   
-         }
+         } if ($_SESSION['role'] == 'Administratie'){
          if($status=="Niet Compleet"){
            echo"<h1 class='h3 mb-4 text-gray-800'>Registreer Materialen / Diensten</h1>";
            echo"  <div id='addBtn' class='wrapper'>
@@ -169,7 +168,7 @@ session_start();
            <h1 class='h3  text-gray-800'>Registreer Materialen / Diensten</h1>
            <a href='#' class='d-none d-sm-inline-block btn btn-md btn-success shadow-sm'><i class='fas fa-download fa-md text-white-50'></i> Compleet</a>
          </div>";
-         }
+         }}
 
 ?>
         </div>
@@ -400,6 +399,7 @@ if($result){
                           <th scope='col'>Diensten</th>
                           <th scope='col'>Organisatie</th>
                           <th scope='col'>Facatuurtype</th>
+                          <?php if($_SESSION['role'] == 'Financieel') { echo"<th scope='col'>Kosten</th>"; }?>
 
                           <!-- <th scope='col'>Actions</th> -->
                         </tr>
@@ -423,6 +423,7 @@ if (mysqli_num_rows($res)>0) {
       $vnaam=$row["Voornaam"];
       $org=$row["Naam"];
       $facu=$row["Factuurtype"];
+     
         // $leider=$row[""];
         // $taak=$row[""];
         
@@ -433,10 +434,11 @@ if (mysqli_num_rows($res)>0) {
                 <td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
-                <td>$facu</td>
-                  </tr>
-                  
-                ";
+                <td>$facu</td>";
+                if($_SESSION['role'] == 'Financieel') {
+                  echo" <td> <a class='link' href='registratie-Wkosten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
+                  </tr>";   
+                  }
     }
 } else {
    
@@ -459,6 +461,7 @@ if (mysqli_num_rows($res)>0) {
                           <th scope='col'>#</th>
                           <th scope='col'>Materialen</th>
                           <th scope='col'>Facatuurtype</th>
+                      <?php if($_SESSION['role'] == 'Financieel') { echo"<th scope='col'>Kosten</th>"; }?>
 
                           <!-- <th scope='col'>Actions</th> -->
                         </tr>
@@ -484,14 +487,14 @@ if (mysqli_num_rows($res)>0) {
                 <tr>
                 <td>$a</td>          
                 <td>$mat</td>
-                <td>$facu</td>
-                  </tr>
-                  
-                ";
-    }
+                <td>$facu</td>";
+                if($_SESSION['role'] == 'Financieel') {
+                  echo" <td> <a class='link' href='registratie-Wkosten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
+                  </tr>"; 
+    
 } else {
    
-}
+}}}
 
 ?>
                     </table>

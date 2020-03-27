@@ -203,98 +203,29 @@ session_start();
           <div class='container-fluid cont'>
             <div class='card-body'>
               <div class='row' id="data">
-                <?php
-$id=$_GET["id"];
-$sql="SELECT * FROM kwitantie WHERE BestedingenID=$id";
-$res=mysqli_query($conn,$sql);
-if (mysqli_num_rows($res)>0) {
-    while ($row = mysqli_fetch_assoc($res)) {
-      $naam="naam";
-        $kosten=$row["WerkelijkeBedrag"];
-        $Idatum=$row["IngeleverdDatum"];
-        $foto=$row["Foto"];
-        $status=$row["Status"];
-        
-    
-       
-echo"  <table>
-<tr>
-<td>Kosten: </td>
-<td>$kosten</td>
-</tr>
-<tr>
-<td>Inleverdatum: </td>
-<td>$Idatum</td>
-</tr>
-<tr>
-<td>Foto: </td>
-<td>$foto</td>
-</tr>
-<tr>
-<td>Status: </td>
-<td>$status</td>
-</tr>
-
-</table>";}}
- 
-       ?>
+               
         </div>
         </div>
               </div>
             
-            <!-- <script>
-function submitForm() {
-  // $('form[name="form"]').submit();
-  // $('input[type="text"], textarea').val('');
-  document.submit.reset();
-  
-}
- </script> -->
+          
           </div>
           <?php
-               if (isset($_POST["submit1"])) {
-                   $taaknaam=$_POST["bedrag"];
-                   $begind=$_POST["Idatum"];
-                   $eindd=$_POST["image"];
-                  
-                   // $leider=$_POST["taak-leider"];
-                   $id=$_GET["id"];
-            
-                   if (empty($taaknaam) || empty($begind)|| empty($eindd)) {
-                       header("Location:./view-projecten.php?error=emptyfields");
-                       exit();
-                   } else {
-                       $sql  = "INSERT INTO taak (WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES(?,?,?)";
-                          
-                       }}
-                      
-                   
+               if (isset($_POST['submit1'])) {
                  
-               
+                $taaknaam= mysqli_real_escape_string($conn,$_POST['bedrag']);
+    $InlDatum = mysqli_real_escape_string($conn,$_POST['Idatum']);
+    $foto = mysqli_real_escape_string($conn,$_POST['image']);
+                   
+
+            
+                       $sql = "INSERT INTO kwitantie (WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES ('$taaknaam', '$InlDatum','$foto')";
+                       if (!mysqli_query($conn,$sql)) { die('Error: ' . mysqli_error($conn)); }
+              }               
 ?>
           
-          <!-- <script>
-        jQuery( document ).ready(function() {
-            jQuery('#submit').submit(function(e){
-                e.preventDefault();
-                jQuery.ajax({
-                    url: e.currentTarget.action,
-                    data:{
-                        naam: jQuery('#naam').val(),
-                        bdatum: jQuery('#bdatum').val(),
-                        edatum: jQuery('#edatum').val(),
-                        richting: jQuery('#richting').val(),
-                        kosten: jQuery('#kosten').val(),
-                        omschrijving: jQuery('#omschrijving').val(),
-                    }
-                }).done(function(data){
-                    jQuery('#data').append(data);
-                    // document.getElementById("$submit").reset(); 
-                    // document.location.reload();
-                });
-            });
-        });
-    </script> -->
+      
+        
         </div>
         <!-- /.container-fluid -->
       </div>

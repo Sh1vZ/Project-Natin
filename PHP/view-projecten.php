@@ -185,13 +185,22 @@ if (mysqli_num_rows($res)>0) {
                  
             
             <div id="addBtn" class="wrapper">
+            <?php
+                      include "dbConn.php";
+
+                     if($_SESSION['role'] == 'Administratie') {
+                      ?>
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
                 <img id="addSign"
                   src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
                   alt="" />
               </button>
+              <?php
+                       }
+                       ?>
             </div>
+           
             <!-- Modal -->
             <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
@@ -259,6 +268,8 @@ if (mysqli_num_rows($res)>0) {
                           </div>
                         </div>
                       </div>
+                     
+                    
                       <div class="row">
                         <div class="col-md-12 mb-2">
                           <div class="form-group">
@@ -297,6 +308,9 @@ if (mysqli_num_rows($res)>0) {
         $status=$row["Status"];
         $idt=$row["ID"];
         $kosten=$row["GeschatteKosten"];
+        $Wkosten=$row["WerkelijkeKosten"];
+  
+                     
         $sql1="SELECT taak.ID , COUNT(bestedingen.TaakID) as aant
 FROM bestedingen
 left join taak on  bestedingen.TaakID = taak.ID
@@ -314,7 +328,6 @@ left join taak on  bestedingen.TaakID = taak.ID
       echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>";
       // }else{
 
-      // }
       echo"
       <i class='fas fa-info-circle icon1'></i>
       </div>
@@ -337,7 +350,15 @@ left join taak on  bestedingen.TaakID = taak.ID
         <tr>
         <td>GeschatteKosten: </td>
            <td> SRD $kosten</td>
-        </tr>
+        </tr> ";
+      
+                     if($_SESSION['role'] == 'Financieel') {
+                     echo" <tr>
+                      <td>Werkelijke kosten: </td>
+                         <td> $Wkosten</td>
+                      </tr> ";
+                     }
+  echo"
         <tr>
         <td>Status: </td>
            <td> $status</td>
@@ -354,8 +375,8 @@ left join taak on  bestedingen.TaakID = taak.ID
   </div>
 </div>
 ";
-    }
-}
+    }}
+
 ?>
               </div>
             </div>
