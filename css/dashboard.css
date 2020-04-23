@@ -1,0 +1,339 @@
+
+  .card1 {
+    width: auto;
+    height: 250px;
+    background-color: #fff;
+    box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    margin: 1.5rem;
+    word-wrap: break-word;
+  }
+  
+  .card1 h1 {
+    text-align: center;
+  }
+
+
+  .icon1{
+    position: absolute;
+    top:30%;
+    bottom:30%;
+    left:25%;
+    right:25%;
+    font-size:80px;
+    color:white;
+  }
+  
+  .card1 .additional {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(#dE685E, #EE786E);
+    transition: width 0.4s;
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+  .card1.green .additional {
+    background: linear-gradient(#92bCa6, #A2CCB6);
+  }
+  
+  
+  .card1:hover .additional {
+    width: 100%;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .card1 .additional .user-card {
+    width: 150px;
+    height: 100%;
+    position: relative;
+    float: left;
+  }
+  
+  .card1 .additional .user-card::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10%;
+    right: -2px;
+    height: 80%;
+    border-left: 2px solid rgba(0,0,0,0.025);
+  }
+  
+  .card1 .additional .user-card .level,
+  .card1 .additional .user-card .points {
+    top: 15%;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: bold;
+    background: rgba(0,0,0,0.15);
+    padding: 0.125rem 0.75rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  
+  .card1 .additional .user-card .points {
+    top: 85%;
+  }
+  
+  .card1 .additional .user-card svg {
+    top: 50%;
+  }
+  
+  .card1 .additional .more-info {
+    width: auto;
+    float: left;
+    position: absolute;
+    left: 150px;
+    height: 100%;
+  }
+  
+  .card1 .additional .more-info h1 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  
+  .card1.green .additional .more-info h1 {
+    color: #224C36;
+  }
+  
+  .card1 .additional .coords {
+    margin: 0 1rem;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .card1.green .additional .coords {
+    color: #325C46;
+  }
+  
+  .card1 .additional .coords span + span {
+    float: right;
+  }
+  
+  .card1 .additional .stats {
+    font-size: 0.75em;
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    color: #fff;
+  }
+  
+  .card1.green .additional .stats {
+    color: #325C46;
+  }
+  
+  .card1 .additional .stats > div {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .card1 .additional .stats i {
+    display: block;
+  }
+  
+  .card1 .additional .stats div.title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .card1 .additional .stats div.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+  }
+  
+  .card1 .additional .stats div.value.infinity {
+    font-size: 2.5rem;
+  }
+  
+  .card1 .general {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    padding-top: 0;
+  }
+  
+  .card1 .general .more {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.9em;
+  }
+
+  .txt{
+    word-wrap: break-word;
+  }
+  
+  .morefo{
+    padding: 1rem;
+    color:white;
+  }
+  @media (max-width:645px) {
+.cont{
+margin-left:-80px;
+max-height: 800px;
+}
+
+.card1{
+  width:390px;
+  height:350px;
+}
+
+  }
+
+
+button{
+  border: none;
+  outline: none;
+
+}
+  .button {
+   
+    background:green;
+  }
+  
+  .wrapper {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index:9999;
+  }
+
+
+  .wrapper2 {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 200px;
+    right: 30px;
+    z-index:9999;
+  }
+
+
+  .wrapper1 {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    
+    z-index:9999;
+  }
+  
+  .circle {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    /* background:rgb(4, 131, 4); */
+    background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+    transition: 0.2s;
+   
+  }
+  
+  button:focus{
+    outline:none;
+    
+  }
+  
+  .button:hover{
+    transition:0.3s;
+  }
+
+  .icon:hover{
+    color:rgb(4, 131, 4);
+    transition:0.3s;
+  }
+  .link:hover{
+    color:rgb(4, 131, 4);
+    transition:0.3s;
+  }
+  
+.link{
+
+font-size: 20px;
+
+}
+
+  #addSign {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    transition: 0.5s;
+  }
+  
+  #addSign:hover,
+  #addSign:focus {
+    cursor: pointer;
+  }
+
+  .modal-lg{
+    max-width:90%;
+  }
+
+  .nav a{
+
+margin-left:20px;
+
+  }
+
+  li .active{
+    color:rgb(4, 131, 4);
+  }
+
+.icon{
+  position: absolute;
+  top:10px;
+  left:10px;
+  color:white;
+  font-size:20px;
+  background:none;
+}
+.Wicon{
+  position: absolute;
+  top:10px;
+  left:30px;
+  color:white;
+  font-size:20px;
+  background:none;
+}
+
+.icon2{
+  position: absolute;
+  top:10px;
+  left:15px;
+  color:white;
+  font-size:40px;
+}
+.center{
+  text-align: center;
+}
+
+.dataTables_paginate{
+  display:flex;
+  align-items:center;
+  }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgb(4, 131, 4);
+    border-color: rgb(4, 131, 4);
+}
+
