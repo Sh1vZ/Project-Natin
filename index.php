@@ -146,7 +146,7 @@ if (isset($_POST['but_login'])) {
                   }
 
                   if($role=="Beheerder"){
-                    header("Location:home.php");
+                    header("Location:Beheerder_Dashboard.php");
                     exit();
                   }
 
