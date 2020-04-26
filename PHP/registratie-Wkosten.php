@@ -26,127 +26,13 @@ session_start();
 </head>
 
 <body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-       <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon ">
-         <img src="../img/natin.png" alt="" style="width:60px;">
-        </div>
-        <div class="sidebar-brand-text mx-3">AFA</div>
-      </a>
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
-        <a class="nav-link" href="../home.php">
-        <i class="fas fa-tasks"></i>
-          <span>Dashboard</span></a>
-      </li>
-      <hr class="sidebar-divider my-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="../administratie.php">
-        <i class="fas fa-tasks"></i>
-          <span>Registreer Projecten</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
-          <span>Registreer Personen</span></a>
-      </li>
-      </li>
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-    </ul>
-    <!-- End of Sidebar -->
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-      <!-- Main Content -->
-      <div id="content">
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                      aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['name']?></span>
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profiel
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Uitloggen
-                </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <!-- End of Topbar -->
-        <!-- Begin Page Content -->
+  
       
                  
             
-            <div id="addBtn" class="wrapper">
-              <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#exampleModalPreview">
-                <img id="addSign"
-                  src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-                  alt="" />
-              </button>
-            </div>
+           
             <!-- Modal -->
-            <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
+            <div class="modal-header" id="exampleModalPreview" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -163,7 +49,7 @@ session_start();
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="pwd">Werkelijk bedrag:</label>
-                            <input type="number" id="bedrag" class="form-control" name="bedrag" placeholder="" required>
+                            <input type="number" id="bedrag" class="form-control" name="bedrag" placeholder="">
                           </div>
                         </div>
                       </div>
@@ -172,7 +58,7 @@ session_start();
                           <div class="form-group">
                             <label for="pwd">Inleverdatum:</label>
                             <input type="date" id="Idatum" class="form-control" name="Idatum"
-                              placeholder="Begin Datum" required>
+                              placeholder="Begin Datum">
                           </div>
                         </div>
                     
@@ -189,8 +75,8 @@ session_start();
                   
                     
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="close" class="btn btn-secondary" >Close</button>
+                    <button type="submit"  name="submit1" class="btn btn-primary">Submit</button>
                     </form>
                   </div>
                 </div>
@@ -214,14 +100,21 @@ session_start();
                if (isset($_POST['submit1'])) {
                  
                 $taaknaam= mysqli_real_escape_string($conn,$_POST['bedrag']);
-    $InlDatum = mysqli_real_escape_string($conn,$_POST['Idatum']);
-    $foto = mysqli_real_escape_string($conn,$_POST['image']);
+                $InlDatum = mysqli_real_escape_string($conn,$_POST['Idatum']);
+                $foto = mysqli_real_escape_string($conn,$_POST['image']);
+                $idb=$_GET["idb"];
                    
 
             
-                       $sql = "INSERT INTO kwitantie (WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES ('$taaknaam', '$InlDatum','$foto')";
+                       $sql = "INSERT INTO kwitantie (BestedingenID, WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES ('$idb','$taaknaam', '$InlDatum','$foto')";
                        if (!mysqli_query($conn,$sql)) { die('Error: ' . mysqli_error($conn)); }
-              }               
+              } 
+              
+              if (isset($_POST['close'])) {
+               
+                $id=$_GET["id"];
+                $idt=$_GET["idt"];
+                header("Location:registratie-bestedingen.php?id=$id&idt=$idt");}
 ?>
           
       

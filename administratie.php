@@ -54,13 +54,31 @@ session_start();
       <li class="nav-item active">
         <a class="nav-link" href="">
         <i class="fas fa-tasks"></i>
+        <?php
+        include "PHP/dbConn.php";
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
           <span>Registreer Projecten</span></a>
+      
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
       </li>
+      <?php
+        include "PHP/dbConn.php";
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+           ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
         <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
+      <?php
+        }
+        ?>
       </li>
 
 
@@ -81,18 +99,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+         
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -145,7 +152,10 @@ session_start();
         <div class="container-fluid">
           <!-- Page Heading -->
         </div>
-
+        <?php
+        include "PHP/dbConn.php";
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+           ?>
         <div id="addBtn" class="wrapper">
           <button class="circle button" id="modalActivate" type="button"  data-toggle="modal"
             data-target="#exampleModalPreview">
@@ -154,7 +164,9 @@ session_start();
               alt="" />
           </button>
         </div>
-
+      <?php
+      }
+      ?>
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
@@ -251,7 +263,13 @@ session_start();
 
           <div class='card shadow mb-4'>
             <div class='card-body'>
-            <h1 class=" m-0 h3 mb-4 text-gray-800 center">Registreer Projecten</h1>
+            <h1 class=" m-0 h3 mb-4 text-gray-800 center"><?php
+       
+       if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+          ?>Registreer projecten</h1> <?php }else{
+           ?>
+                       Projecten</h5></a>
+           <?php } ?>
               <div class='table-responsive-xl'>
                 <table id="" class='table table-hover data1'>
                   <thead>
