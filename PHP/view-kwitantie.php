@@ -185,22 +185,13 @@ if (mysqli_num_rows($res)>0) {
                  
             
             <div id="addBtn" class="wrapper">
-            <?php
-                      include "dbConn.php";
-
-                     if($_SESSION['role'] == 'Administratie') {
-                      ?>
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
                 <img id="addSign"
                   src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
                   alt="" />
               </button>
-              <?php
-                       }
-                       ?>
             </div>
-           
             <!-- Modal -->
             <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
@@ -268,8 +259,24 @@ if (mysqli_num_rows($res)>0) {
                           </div>
                         </div>
                       </div>
-                     
-                    
+                      <?php
+                      include "dbConn.php";
+
+                     if($_SESSION['role'] == 'Financieel') {
+                      ?>
+                       <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Werkelijke Kosten:</label>
+                            <input type="number" class="form-control" id="Wkosten" name="werkelijke-kosten"
+                              placeholder="">
+                          </div>
+                        </div>
+                      </div>
+  
+                     <?php
+                       }
+                       ?>
                       <div class="row">
                         <div class="col-md-12 mb-2">
                           <div class="form-group">

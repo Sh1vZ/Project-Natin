@@ -134,80 +134,24 @@ session_start();
         </nav>
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
-        <div class="container-fluid">
-          <!-- Page Heading -->
-          <?php
-$id=$_GET["id"];
-$sql="SELECT * FROM project WHERE ID=$id";
-$res=mysqli_query($conn, $sql);
-if (mysqli_num_rows($res)>0) {
-    while ($row=mysqli_fetch_assoc($res)) {
-        $naam=$row['Naam'];
-        $omschr=$row["Omschrijving"];
-        $begind=$row["BeginDatum"];
-        $eindd=$row["EindDatum"];
-        $status=$row["Status"];
-        // echo "<h3 class='card-title center'>$naam</h5>";
       
-       
-    }
-}
-?>
-          <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $naam ?></h6>
-                </div>
-                <div class="card-body">
-              <?php
-                echo"<p class='card-text'> $omschr</p>";
- echo"  <table>
- <tr>
- <td>Begin Datum: </td>
-     <td>$begind</td>
- </tr>
- <tr>
- <td>Eind Datum: </td>
-    <td>$eindd</td>
- </tr>
- <tr>
- <td>Status: </td>
-    <td>$status</td>
- </tr>
-</table>";
-
-
-?>
-                </div>
-              </div>
-
-            </div>
-                
                  
             
             <div id="addBtn" class="wrapper">
-            <?php
-                      include "dbConn.php";
-
-                     if($_SESSION['role'] == 'Administratie') {
-                      ?>
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
                 <img id="addSign"
                   src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
                   alt="" />
               </button>
-              <?php
-                       }
-                       ?>
             </div>
-           
             <!-- Modal -->
             <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Project</h5>
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Bedrag</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -218,68 +162,32 @@ if (mysqli_num_rows($res)>0) {
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="pwd">Taak Naam:</label>
-                            <input type="text" id="naam" class="form-control" name="taak-naam" placeholder="" required>
+                            <label for="pwd">Werkelijk bedrag:</label>
+                            <input type="number" id="bedrag" class="form-control" name="bedrag" placeholder="" required>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="pwd">Begin Datum:</label>
-                            <input type="date" id="bdatum" class="form-control" name="datum-begin"
+                            <label for="pwd">Inleverdatum:</label>
+                            <input type="date" id="Idatum" class="form-control" name="Idatum"
                               placeholder="Begin Datum" required>
                           </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                          <div class="form-group">
-                            <label for="pwd">Eind Datum:</label>
-                            <input type="date" id="edatum" class="form-control" name="datum-eind"
-                              placeholder="Begin Datum" required>
-                          </div>
-                        </div>
-                      </div>
+                    
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="pwd">Richting:</label>
-                            <select class="form-control fstdropdown-select" id="richting" name="richting">
-                              <option value="" disabled selected>Select your option</option>
-                              <?php
-                             $sql = "SELECT * FROM richting where Richting != 'Other'";
-                             $result = mysqli_query($conn, $sql);
-                              while ($row = mysqli_fetch_assoc($result)) {
-                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
-                            }
-                     ?>
-                            </select>
-                            <script>
-                              $('.select2').select2();
-                            </script>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Geschatte Kosten:</label>
-                            <input type="number" class="form-control" id="kosten" name="geschatte-kosten"
+                            <label for="pwd">Foto:</label>
+                            <input type="file" id="image" class="form-control" name="image"
                               placeholder="">
                           </div>
                         </div>
                       </div>
-                     
+                      
+                  
                     
-                      <div class="row">
-                        <div class="col-md-12 mb-2">
-                          <div class="form-group">
-                            <label for="pwd">Taak Omschrijving:</label>
-                            <textarea class="form-control" id="omschrijving" name="omschrijving"
-                              placeholder="Voer in..." rows="3"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
@@ -295,163 +203,29 @@ if (mysqli_num_rows($res)>0) {
           <div class='container-fluid cont'>
             <div class='card-body'>
               <div class='row' id="data">
-                <?php
-$id=$_GET["id"];
-$sql="SELECT * FROM taak WHERE ProjectID=$id";
-$res=mysqli_query($conn,$sql);
-if (mysqli_num_rows($res)>0) {
-    while ($row = mysqli_fetch_assoc($res)) {
-        $naam=$row["Naam"];
-        $omschrijving=$row["Omschrijving"];
-        $begind=$row["BeginDatum"];
-        $eindd=$row["EindDatum"];
-        $status=$row["Status"];
-        $idt=$row["ID"];
-        $kosten=$row["GeschatteKosten"];
-        $Wkosten=$row["WerkelijkeKosten"];
-  
-                     
-        $sql1="SELECT taak.ID , COUNT(bestedingen.TaakID) as aant
-FROM bestedingen
-left join taak on  bestedingen.TaakID = taak.ID
- WHERE TaakID =$idt";
- $res1=mysqli_query($conn,$sql1);
- $row1 = mysqli_fetch_assoc($res1);
- $aant=$row1["aant"];
- 
-        echo"  
-<div class='col-md-6'>
-<div class='card1 green'>
-    <div class='additional'>
-      <div class='user-card'>";
-      // if($status=="Niet Compleet"){
-      echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>";
-      // }else{
-
-      echo"
-      <i class='fas fa-info-circle icon1'></i>
-      </div>
-      <div class='more-info'>
-        <h1>$naam</h1>
-        <div class='morefo'>
-        <table>
-        <tr>
-        <td>Begin Datum: </td>
-            <td> $begind</td>
-        </tr>
-        <tr>
-        <td>Eind Datum: </td>
-           <td> $eindd</td>
-        </tr>
-        <tr>
-        <td>Aantal Bestedingen: </td>
-           <td> $aant</td>
-        </tr>  
-        <tr>
-        <td>GeschatteKosten: </td>
-           <td> SRD $kosten</td>
-        </tr> ";
-      
-                     if($_SESSION['role'] == 'Financieel') {
-                     echo" <tr>
-                      <td>Werkelijke kosten: </td>
-                         <td> $Wkosten</td>
-                      </tr> ";
-                     }
-  echo"
-        <tr>
-        <td>Status: </td>
-           <td> $status</td>
-        </tr>  
-    </table>
+               
         </div>
-      </div>
-    </div>
-    <div class='general'>
-      <h1>$naam</h1>
-      <p class'txt'> $omschrijving </p>
-      <span class='more'>Hover voor meer info</span>
-    </div>
-  </div>
-</div>
-";
-    }}
-
-?>
+        </div>
               </div>
-            </div>
-          </div>
-            <!-- <script>
-function submitForm() {
-  // $('form[name="form"]').submit();
-  // $('input[type="text"], textarea').val('');
-  document.submit.reset();
-  
-}
- </script> -->
+            
+          
           </div>
           <?php
-               if (isset($_POST["submit1"])) {
-                   $taaknaam=$_POST["taak-naam"];
-                   $begind=$_POST["datum-begin"];
-                   $eindd=$_POST["datum-eind"];
-                   $omschrijving=$_POST["omschrijving"];
-                   $richt=$_POST["richting"];
-                   $kosten=$_POST["geschatte-kosten"];
-                   // $leider=$_POST["taak-leider"];
-                   $id=$_GET["id"];
-            
-                   if (empty($taaknaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
-                       header("Location:./view-projecten.php?error=emptyfields");
-                       exit();
-                   } else {
-                       $sql  = "INSERT INTO taak (ProjectID,RichtingID,Naam,Omschrijving,BeginDatum,EindDatum,GeschatteKosten) VALUES(?,?,?,?,?,?,?)";
-                          $sql1=mysqli_query($conn,"SELECT * FROM richting WHERE (Richting)='Other'");
-                          $row = mysqli_fetch_assoc($sql1);
-                          $idr=$row['ID'];
-                        $stmt = mysqli_stmt_init($conn);
-                       if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("Location:./view-projecten.php?error=sqlerror");
-                        exit();
-                       } else {
-                         if(empty($richt)){
-                          mysqli_stmt_bind_param($stmt, "iissssi", $id, $idr,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
-                          mysqli_stmt_execute($stmt);
-                          echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
-                         }else{
-                             mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt, $taaknaam, $omschrijving, $begind, $eindd, $kosten);
-                             mysqli_stmt_execute($stmt);
-                             echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
-                         }
-                       }
-                       mysqli_stmt_close($stmt);
-                   }
+               if (isset($_POST['submit1'])) {
                  
-               }
+                $taaknaam= mysqli_real_escape_string($conn,$_POST['bedrag']);
+    $InlDatum = mysqli_real_escape_string($conn,$_POST['Idatum']);
+    $foto = mysqli_real_escape_string($conn,$_POST['image']);
+                   
+
+            
+                       $sql = "INSERT INTO kwitantie (WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES ('$taaknaam', '$InlDatum','$foto')";
+                       if (!mysqli_query($conn,$sql)) { die('Error: ' . mysqli_error($conn)); }
+              }               
 ?>
           
-          <!-- <script>
-        jQuery( document ).ready(function() {
-            jQuery('#submit').submit(function(e){
-                e.preventDefault();
-                jQuery.ajax({
-                    url: e.currentTarget.action,
-                    data:{
-                        naam: jQuery('#naam').val(),
-                        bdatum: jQuery('#bdatum').val(),
-                        edatum: jQuery('#edatum').val(),
-                        richting: jQuery('#richting').val(),
-                        kosten: jQuery('#kosten').val(),
-                        omschrijving: jQuery('#omschrijving').val(),
-                    }
-                }).done(function(data){
-                    jQuery('#data').append(data);
-                    // document.getElementById("$submit").reset(); 
-                    // document.location.reload();
-                });
-            });
-        });
-    </script> -->
+      
+        
         </div>
         <!-- /.container-fluid -->
       </div>

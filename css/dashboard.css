@@ -185,6 +185,7 @@
   @media (max-width:645px) {
 .cont{
 margin-left:-80px;
+max-height: 800px;
 }
 
 .card1{
@@ -300,6 +301,14 @@ margin-left:20px;
   position: absolute;
   top:10px;
   left:10px;
+  color:white;
+  font-size:20px;
+  background:none;
+}
+.Wicon{
+  position: absolute;
+  top:10px;
+  left:30px;
   color:white;
   font-size:20px;
   background:none;

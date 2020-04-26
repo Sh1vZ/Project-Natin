@@ -99,21 +99,11 @@
 include "./PHP/dbConn.php";
 session_start();
 if (isset($_SESSION['loggedin'])) {
-  if($_SESSION["role"]=="Administratie"){
+  
     header("Location:home.php");
     exit();
   }
 
-  if($_SESSION["role"]=="Financieel"){
-    header("Location:blank_finan.html");
-    exit();
-  }
-
-  if($_SESSION["role"]=="Beheerder"){
-    header("Location:blank_beheer.html");
-    exit();
-  }
-}
 
 if (isset($_POST['but_login'])) {
 
@@ -151,12 +141,12 @@ if (isset($_POST['but_login'])) {
                   }
 
                   if($role=="Financieel"){
-                    header("Location:blank_finan.html");
+                    header("Location:home.php");
                     exit();
                   }
 
                   if($role=="Beheerder"){
-                    header("Location:blank_beheer.html");
+                    header("Location:Beheerder_Dashboard.php");
                     exit();
                   }
 
