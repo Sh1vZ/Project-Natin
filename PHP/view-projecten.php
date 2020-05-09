@@ -49,13 +49,30 @@ session_start();
       <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
         <i class="fas fa-tasks"></i>
+        <?php
+      
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
           <span>Registreer Projecten</span></a>
+      
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
       </li>
+      <?php
+      
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){ ?>
       <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
         <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
+      <?php
+    }
+    ?>
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -74,18 +91,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+         
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -188,7 +194,7 @@ if (mysqli_num_rows($res)>0) {
             <?php
                       include "dbConn.php";
 
-                     if($_SESSION['role'] == 'Administratie') {
+                     if($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' ) {
                       ?>
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
@@ -205,9 +211,19 @@ if (mysqli_num_rows($res)>0) {
             <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
               aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                <div class="modal-content"> <?php
+     
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
+        
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Project</h5>
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Taken</h5> 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -290,7 +306,7 @@ if (mysqli_num_rows($res)>0) {
             </div>
             <!-- Modal -->
 
-
+          
             <!-- CARDS -->
           <div class='container-fluid cont'>
             <div class='card-body'>
@@ -308,7 +324,10 @@ if (mysqli_num_rows($res)>0) {
         $status=$row["Status"];
         $idt=$row["ID"];
         $kosten=$row["GeschatteKosten"];
-        $Wkosten=$row["WerkelijkeKosten"];
+        $som= "SELECT SUM(bedrag)as Som From bestedingen WHERE taakID = $idt";
+        $res2=mysqli_query($conn,$som);
+        $row2 = mysqli_fetch_assoc($res2);
+        $Wbedrag=$row2["Som"];
   
                      
         $sql1="SELECT taak.ID , COUNT(bestedingen.TaakID) as aant
@@ -318,6 +337,8 @@ left join taak on  bestedingen.TaakID = taak.ID
  $res1=mysqli_query($conn,$sql1);
  $row1 = mysqli_fetch_assoc($res1);
  $aant=$row1["aant"];
+
+ if (  $_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' or $_SESSION['role'] == 'Financieel' and $status=='Compleet'){
  
         echo"  
 <div class='col-md-6'>
@@ -352,10 +373,10 @@ left join taak on  bestedingen.TaakID = taak.ID
            <td> SRD $kosten</td>
         </tr> ";
       
-                     if($_SESSION['role'] == 'Financieel') {
+                     if($_SESSION['role'] == 'Financieel'or $_SESSION['role'] == 'Beheerder') {
                      echo" <tr>
                       <td>Werkelijke kosten: </td>
-                         <td> $Wkosten</td>
+                         <td>SRD $Wbedrag</td>
                       </tr> ";
                      }
   echo"
@@ -373,12 +394,12 @@ left join taak on  bestedingen.TaakID = taak.ID
       <span class='more'>Hover voor meer info</span>
     </div>
   </div>
-</div>
+</div> 
 ";
     }}
 
 ?>
-              </div>
+    <?php }?>          </div>
             </div>
           </div>
             <!-- <script>
