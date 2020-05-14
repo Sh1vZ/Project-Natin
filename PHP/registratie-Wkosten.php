@@ -24,6 +24,7 @@ session_start();
 </head>
 
 <body id="page-top">
+<<<<<<< HEAD
   <!-- Page Wrapper -->
   <div id="wrapper">
     <!-- Sidebar -->
@@ -179,6 +180,62 @@ session_start();
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
                 </form>
+=======
+  
+      
+                 
+            
+           
+            <!-- Modal -->
+            <div class="modal-header" id="exampleModalPreview" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Bedrag</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <form action="" id="submit" name="form" method="POST" style="width:60vw; margin:0 auto">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Werkelijk bedrag:</label>
+                            <input type="number" id="bedrag" class="form-control" name="bedrag" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="pwd">Inleverdatum:</label>
+                            <input type="date" id="Idatum" class="form-control" name="Idatum"
+                              placeholder="Begin Datum">
+                          </div>
+                        </div>
+                    
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="pwd">Foto:</label>
+                            <input type="file" id="image" class="form-control" name="image"
+                              placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                      
+                  
+                    
+                  <div class="modal-footer">
+                    <button type="submit" name="close" class="btn btn-secondary" >Close</button>
+                    <button type="submit"  name="submit1" class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
               </div>
             </div>
           </div>
@@ -195,6 +252,32 @@ session_start();
 
             </div>
           </div>
+<<<<<<< HEAD
+=======
+          <?php
+               if (isset($_POST['submit1'])) {
+                 
+                $taaknaam= mysqli_real_escape_string($conn,$_POST['bedrag']);
+                $InlDatum = mysqli_real_escape_string($conn,$_POST['Idatum']);
+                $foto = mysqli_real_escape_string($conn,$_POST['image']);
+                $idb=$_GET["idb"];
+                   
+
+            
+                       $sql = "INSERT INTO kwitantie (BestedingenID, WerkelijkeBedrag,IngeleverdDatum,Foto) VALUES ('$idb','$taaknaam', '$InlDatum','$foto')";
+                       if (!mysqli_query($conn,$sql)) { die('Error: ' . mysqli_error($conn)); }
+              } 
+              
+              if (isset($_POST['close'])) {
+               
+                $id=$_GET["id"];
+                $idt=$_GET["idt"];
+                header("Location:registratie-bestedingen.php?id=$id&idt=$idt");}
+?>
+          
+      
+        
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
         </div>
 
 

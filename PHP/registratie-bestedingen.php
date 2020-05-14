@@ -74,19 +74,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-          <!-- Topbar Navbar -->
+         
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
@@ -140,11 +128,12 @@ session_start();
           <?php
            include "dbConn.php";
            $idt=$_GET["idt"];
+       
           $sql = "SELECT * FROM taak where ID=$idt";
           $result = mysqli_query($conn, $sql);
            while ($row = mysqli_fetch_assoc($result)) {
            $status=$row['Status'];   
-         } if ($_SESSION['role'] == 'Administratie'){
+         } if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
          if($status=="Niet Compleet"){
            echo"<h1 class='h3 mb-4 text-gray-800'>Registreer Materialen / Diensten</h1>";
            echo"  <div id='addBtn' class='wrapper'>
@@ -215,6 +204,62 @@ session_start();
             </div>
           </div>
         </div>
+         <!--- invoer bedrag modal --->
+        <div class="modal fade top" id="BedragModal" tabindex="-1" role="dialog" 
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+             <form action="" method="POST" style="width:; margin:0 auto">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                          <label for="pwd">Bedrag:</label>
+                            <input type="number" class="form-control" id="bedrag" name="bedrag"
+                              placeholder="">
+                              </form>
+                         
+
+                          <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submitBedrag" class="btn btn-primary" chk=<?php $idt ?>>Submit</button>
+                   
+                  </div>
+                </div>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+    </div>
+       
+
+<!--- kwitantie vraag modal
+        <div class="modal fade top" id="vraagModal" tabindex="-1" role="dialog" 
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+              
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              <a class="btn btn-secondary"  href="registratie-Wkosten.php">Wel kwitantie</a>
+                <a class="btn btn-primary" id='modalActivate' type='button' data-toggle='modal'
+             data-target='#BedragModal' data-dismiss="modal">Geen kwitantie</a>
+              </div>
+            </div>
+          </div>
+        </div>
+--->
+       
 
 
         <!-- Modal -->
@@ -313,13 +358,22 @@ session_start();
             </div>
           </div>
         </div>
+        
 
         <!-- Modal -->
+
+
+
         <?php
+
+
+
+
 if (isset($_POST["submit"])) {
   $diensten=$_POST["diensten"];
   $fac=$_POST["factuur"];
   $id=$_GET["id"];
+  $idt=$_GET["idt"];
   $idt=$_GET["idt"];
 
   if (empty($diensten) || empty($fac)) {
@@ -340,6 +394,7 @@ if (isset($_POST["submit"])) {
       mysqli_stmt_close($stmt);
       
   }
+  
 }
 
 
@@ -395,20 +450,25 @@ if($result){
                     <table class='table data1 table-hover'>
                       <thead>
                         <tr>
+                        <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
+                                                                    else{ echo" ";}?>
                           <th scope='col'>#</th>
                           <th scope='col'>Diensten</th>
                           <th scope='col'>Organisatie</th>
                           <th scope='col'>Facatuurtype</th>
-                          <?php if($_SESSION['role'] == 'Financieel') { echo"<th scope='col'>Kosten</th>"; }?>
+                          <?php
+                          if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
+                         ?> 
 
                           <!-- <th scope='col'>Actions</th> -->
                         </tr>
                       </thead>
 
                       <?php
-                     
+
+                      
                                    
-$stmt="SELECT taak.Naam, bestedingen.Materialen, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype
+$stmt="SELECT taak.Naam, bestedingen.Materialen,bestedingen.Bedrag, bestedingen.bID, bestedingen.DienstenID, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype
 from bestedingen 
 left join taak on bestedingen.TaakID = taak.ID
 left join personen on bestedingen.DienstenID = personen.ID
@@ -423,6 +483,12 @@ if (mysqli_num_rows($res)>0) {
       $vnaam=$row["Voornaam"];
       $org=$row["Naam"];
       $facu=$row["Factuurtype"];
+      $bedragr=$row["Bedrag"];
+      $idb=$row["bID"];
+      $idd=$row["DienstenID"];
+      $id=$_GET["id"];
+      $idt=$_GET["idt"];
+     
      
         // $leider=$row[""];
         // $taak=$row[""];
@@ -430,16 +496,23 @@ if (mysqli_num_rows($res)>0) {
         $a=$i++;
      
         echo "
-                <tr>
-                <td>$a</td>          
+        <tr>";
+        if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar'){
+          echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
+          else{ echo"<td></td>  ";}
+               echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
                 <td>$facu</td>";
-                if($_SESSION['role'] == 'Financieel') {
-                  echo" <td> <a class='link' href='registratie-Wkosten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
-                  </tr>";   
+                if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                  echo"<td>$bedragr</td>"; } 
+                echo" </tr>"; 
+                   
+      
                   }
-    }
+
+              
+    
 } else {
    
 }
@@ -450,6 +523,7 @@ if (mysqli_num_rows($res)>0) {
                 </div>
               </div>
             </div>
+            
             <div class="col-md-6">
               <div class='card shadow mb-4'>
                 <div class='card-body'>
@@ -458,10 +532,16 @@ if (mysqli_num_rows($res)>0) {
                     <table class='table data1 table-hover'>
                       <thead>
                         <tr>
+                        <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
+                                                                    else{ echo" ";}?>
                           <th scope='col'>#</th>
                           <th scope='col'>Materialen</th>
                           <th scope='col'>Facatuurtype</th>
-                      <?php if($_SESSION['role'] == 'Financieel') { echo"<th scope='col'>Kosten</th>"; }?>
+                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
+                           if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                           echo" <th scope='col'>Kwitantie</th>"; } else{ echo"";}?>
+                           
 
                           <!-- <th scope='col'>Actions</th> -->
                         </tr>
@@ -469,8 +549,11 @@ if (mysqli_num_rows($res)>0) {
 
                       <?php
                       $idt=$_GET["idt"];
+                      $bedragr=$row["Bedrag"];
+      
+     
                                    
-$stmt="SELECT Materialen,Factuurtype from bestedingen where TaakID =$idt and Materialen IS NOT NULL";
+$stmt="SELECT Materialen,Factuurtype, bID, Bedrag from bestedingen where TaakID =$idt and Materialen IS NOT NULL";
 $res=mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res)>0) {
@@ -478,23 +561,36 @@ if (mysqli_num_rows($res)>0) {
     while ($row=mysqli_fetch_assoc($res)) {
       $mat=$row["Materialen"];
       $facu=$row["Factuurtype"];
+      $bedragr=$row["Bedrag"];
+      $idb=$row["bID"];
+      $idb=$row["bID"];
+      $id=$_GET["id"];
+      $idt=$_GET["idt"];
+     
         // $leider=$row[""];
         // $taak=$row[""];
         
         $a=$i++;
      
         echo "
-                <tr>
-                <td>$a</td>          
+        <tr>";
+        if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
+          echo" <td> <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
+          else{ echo"<td></td> ";}
+               echo "<td>$a</td>          
                 <td>$mat</td>
-                <td>$facu</td>";
-                if($_SESSION['role'] == 'Financieel') {
-                  echo" <td> <a class='link' href='registratie-Wkosten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
-                  </tr>"; 
+                <td>$facu</td>
+                "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
+                  echo"<td>$bedragr</td>";
+                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a></td>";
+                   } else{ echo" ";}
+               
+               
+                echo" </tr>"; 
     
-} else {
-   
-}}}
+} } 
+
+
 
 ?>
                     </table>

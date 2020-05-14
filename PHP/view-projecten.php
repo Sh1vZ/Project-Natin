@@ -46,14 +46,35 @@ session_start();
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
+<<<<<<< HEAD
           <i class="fas fa-tasks"></i>
+=======
+        <i class="fas fa-tasks"></i>
+        <?php
+      
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
           <span>Registreer Projecten</span></a>
+      
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
       </li>
+      <?php
+      
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){ ?>
       <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
           <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
+      <?php
+    }
+    ?>
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -72,6 +93,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+<<<<<<< HEAD
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
@@ -83,6 +105,9 @@ session_start();
               </div>
             </div>
           </form>
+=======
+         
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -176,6 +201,44 @@ session_start();
         </div>
 
 
+<<<<<<< HEAD
+=======
+                     if($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' ) {
+                      ?>
+              <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#exampleModalPreview">
+                <img id="addSign"
+                  src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
+                  alt="" />
+              </button>
+              <?php
+                       }
+                       ?>
+            </div>
+           
+            <!-- Modal -->
+            <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content"> <?php
+     
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
+        
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Taken</h5> 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
 
         <div id="addBtn" class="wrapper">
           <?php
@@ -275,6 +338,7 @@ session_start();
         </div>
         <!-- Modal -->
 
+<<<<<<< HEAD
 
         <!-- CARDS -->
         <div class='container-fluid cont'>
@@ -305,6 +369,43 @@ left join taak on  bestedingen.TaakID = taak.ID
                   $aant = $row1["aant"];
 
                   echo "  
+=======
+          
+            <!-- CARDS -->
+          <div class='container-fluid cont'>
+            <div class='card-body'>
+              <div class='row' id="data">
+                <?php
+$id=$_GET["id"];
+$sql="SELECT * FROM taak WHERE ProjectID=$id";
+$res=mysqli_query($conn,$sql);
+if (mysqli_num_rows($res)>0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $naam=$row["Naam"];
+        $omschrijving=$row["Omschrijving"];
+        $begind=$row["BeginDatum"];
+        $eindd=$row["EindDatum"];
+        $status=$row["Status"];
+        $idt=$row["ID"];
+        $kosten=$row["GeschatteKosten"];
+        $som= "SELECT SUM(bedrag)as Som From bestedingen WHERE taakID = $idt";
+        $res2=mysqli_query($conn,$som);
+        $row2 = mysqli_fetch_assoc($res2);
+        $Wbedrag=$row2["Som"];
+  
+                     
+        $sql1="SELECT taak.ID , COUNT(bestedingen.TaakID) as aant
+FROM bestedingen
+left join taak on  bestedingen.TaakID = taak.ID
+ WHERE TaakID =$idt";
+ $res1=mysqli_query($conn,$sql1);
+ $row1 = mysqli_fetch_assoc($res1);
+ $aant=$row1["aant"];
+
+ if (  $_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' or $_SESSION['role'] == 'Financieel' and $status=='Compleet'){
+ 
+        echo"  
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
 <div class='col-md-6'>
 <div class='card1 green'>
     <div class='additional'>
@@ -336,11 +437,17 @@ left join taak on  bestedingen.TaakID = taak.ID
         <td>GeschatteKosten: </td>
            <td> SRD $kosten</td>
         </tr> ";
+<<<<<<< HEAD
 
                   if ($_SESSION['role'] == 'Financieel') {
                     echo " <tr>
+=======
+      
+                     if($_SESSION['role'] == 'Financieel'or $_SESSION['role'] == 'Beheerder') {
+                     echo" <tr>
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
                       <td>Werkelijke kosten: </td>
-                         <td> $Wkosten</td>
+                         <td>SRD $Wbedrag</td>
                       </tr> ";
                   }
                   echo "
@@ -358,12 +465,17 @@ left join taak on  bestedingen.TaakID = taak.ID
       <span class='more'>Hover voor meer info</span>
     </div>
   </div>
-</div>
+</div> 
 ";
                 }
               }
 
+<<<<<<< HEAD
               ?>
+=======
+?>
+    <?php }?>          </div>
+>>>>>>> 176579078d994ef1ea89681ad5eb42e8eed381be
             </div>
           </div>
         </div>
