@@ -1,5 +1,5 @@
 <?php
-require_once "dbConn.php";
+include "dbConn.php";
 session_start();
 ?>
 
