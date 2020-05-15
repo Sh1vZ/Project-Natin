@@ -246,6 +246,17 @@ button{
     transition: 0.2s;
    
   }
+
+  .circle1 {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    /* background:rgb(4, 131, 4); */
+    background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+    transition: 0.2s;
+   
+  }
   
   button:focus{
     outline:none;
@@ -305,6 +316,16 @@ margin-left:20px;
   font-size:20px;
   background:none;
 }
+
+.icon5{
+  position: absolute;
+  top:11px;
+  left:35px;
+  color:white;
+  font-size:20px;
+  background:none;
+}  
+
 .Wicon{
   position: absolute;
   top:10px;
@@ -337,3 +358,29 @@ margin-left:20px;
     border-color: rgb(4, 131, 4);
 }
 
+.a{
+  transition: 0s !important;
+  animation-name:fade-in ;
+  animation-duration: 0.5s;
+}
+
+.sa{
+  margin-left: 10px;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

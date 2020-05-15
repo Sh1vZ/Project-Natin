@@ -28,12 +28,12 @@ session_start();
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
-       <!-- Sidebar -->
+    <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon ">
-         <img src="../img/natin.png" alt="" style="width:60px;">
+          <img src="../img/natin.png" alt="" style="width:60px;">
         </div>
         <div class="sidebar-brand-text mx-3">AFA</div>
       </a>
@@ -42,24 +42,24 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="../home.php">
-        <i class="fas fa-tasks"></i>
+          <i class="fas fa-tasks"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
-        <i class="fas fa-tasks"></i>
-        <?php
+          <i class="fas fa-project-diagram"></i>
+          <?php
       
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
            ?>
-     
+
           <span>Registreer Projecten</span></a>
-      
-      <?php
+
+        <?php
         }else{
         ?>
-                    <span>Projecten</span></a>
+        <span>Projecten</span></a>
         <?php } ?>
       </li>
       <?php
@@ -67,7 +67,7 @@ session_start();
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){ ?>
       <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
+          <i class="fas fa-user-friends"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php
@@ -91,7 +91,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-         
+
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -144,7 +144,9 @@ session_start();
           <!-- Page Heading -->
           <?php
 $id=$_GET["id"];
-$sql="SELECT * FROM project WHERE ID=$id";
+$sql="SELECT project.Naam, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam,project.Status
+from project 
+left join personen on project.ProjectleiderID = personen.ID where project.ID=$id";
 $res=mysqli_query($conn, $sql);
 if (mysqli_num_rows($res)>0) {
     while ($row=mysqli_fetch_assoc($res)) {
@@ -153,6 +155,8 @@ if (mysqli_num_rows($res)>0) {
         $begind=$row["BeginDatum"];
         $eindd=$row["EindDatum"];
         $status=$row["Status"];
+        $anaam=$row["Achternaam"];
+        $vnaam=$row["Voornaam"];
         // echo "<h3 class='card-title center'>$naam</h5>";
       
        
@@ -160,10 +164,10 @@ if (mysqli_num_rows($res)>0) {
 }
 ?>
           <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $naam ?></h6>
-                </div>
-                <div class="card-body">
+            <div class="card-header py-3">
+              <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $naam ?></h6>
+            </div>
+            <div class="card-body">
               <?php
                 echo"<p class='card-text'> $omschr</p>";
  echo"  <table>
@@ -176,6 +180,10 @@ if (mysqli_num_rows($res)>0) {
     <td>$eindd</td>
  </tr>
  <tr>
+ <td>Project Leider: </td>
+    <td> $vnaam $anaam </td>
+ </tr>
+ <tr>
  <td>Status: </td>
     <td>$status</td>
  </tr>
@@ -183,137 +191,42 @@ if (mysqli_num_rows($res)>0) {
 
 
 ?>
-                </div>
-              </div>
-
             </div>
-                
-                 
-            
-            <div id="addBtn" class="wrapper">
-            <?php
+          </div>
+
+        </div>
+
+
+
+        <div id="addBtn" class="wrapper">
+          <?php
                       include "dbConn.php";
 
                      if($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' ) {
                       ?>
-              <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
-                data-target="#exampleModalPreview">
-                <img id="addSign"
-                  src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-                  alt="" />
-              </button>
-              <?php
+          <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="#exampleModalPreview">
+            <img id="addSign"
+              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
+              alt="" />
+          </button>
+          <?php
                        }
                        ?>
-            </div>
-           
-            <!-- Modal -->
-            <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
-              aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content"> <?php
-     
-        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
-           ?>
-     
-        
-      <?php
-        }else{
-        ?>
-                    <span>Projecten</span></a>
-        <?php } ?>
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Taken</h5> 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
+        </div>
 
-                    <form action="" id="submit" name="form" method="POST" style="width:60vw; margin:0 auto">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Taak Naam:</label>
-                            <input type="text" id="naam" class="form-control" name="taak-naam" placeholder="" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="pwd">Begin Datum:</label>
-                            <input type="date" id="bdatum" class="form-control" name="datum-begin"
-                              placeholder="Begin Datum" required>
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <div class="form-group">
-                            <label for="pwd">Eind Datum:</label>
-                            <input type="date" id="edatum" class="form-control" name="datum-eind"
-                              placeholder="Begin Datum" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Richting:</label>
-                            <select class="form-control fstdropdown-select" id="richting" name="richting">
-                              <option value="" disabled selected>Select your option</option>
-                              <?php
-                             $sql = "SELECT * FROM richting where Richting != 'Other'";
-                             $result = mysqli_query($conn, $sql);
-                              while ($row = mysqli_fetch_assoc($result)) {
-                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
-                            }
-                     ?>
-                            </select>
-                            <script>
-                              $('.select2').select2();
-                            </script>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Geschatte Kosten:</label>
-                            <input type="number" class="form-control" id="kosten" name="geschatte-kosten"
-                              placeholder="">
-                          </div>
-                        </div>
-                      </div>
-                     
-                    
-                      <div class="row">
-                        <div class="col-md-12 mb-2">
-                          <div class="form-group">
-                            <label for="pwd">Taak Omschrijving:</label>
-                            <textarea class="form-control" id="omschrijving" name="omschrijving"
-                              placeholder="Voer in..." rows="3"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal -->
+       
 
-          
-            <!-- CARDS -->
-          <div class='container-fluid cont'>
-            <div class='card-body'>
-              <div class='row' id="data">
-                <?php
+
+        <!-- CARDS -->
+        <div class='container-fluid cont'>
+          <div class='card-body'>
+            <div class='row' id="data">
+              <?php
 $id=$_GET["id"];
-$sql="SELECT * FROM taak WHERE ProjectID=$id";
+$sql="SELECT taak.Naam , taak.Omschrijving, taak.BeginDatum, taak.EindDatum, richting.Richting, taak.Status,taak.ID,taak.GeschatteKosten
+from taak
+left join richting on taak.RichtingID = richting.ID where taak.ProjectID=$id";
 $res=mysqli_query($conn,$sql);
 if (mysqli_num_rows($res)>0) {
     while ($row = mysqli_fetch_assoc($res)) {
@@ -324,6 +237,7 @@ if (mysqli_num_rows($res)>0) {
         $status=$row["Status"];
         $idt=$row["ID"];
         $kosten=$row["GeschatteKosten"];
+        $richt=$row["Richting"];
         $som= "SELECT SUM(bedrag)as Som From bestedingen WHERE taakID = $idt";
         $res2=mysqli_query($conn,$som);
         $row2 = mysqli_fetch_assoc($res2);
@@ -346,30 +260,37 @@ left join taak on  bestedingen.TaakID = taak.ID
     <div class='additional'>
       <div class='user-card'>";
       // if($status=="Niet Compleet"){
-      echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>";
+        echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>
+              <a class='link' href='#'><button class='icon5' onclick=EditTaak($idt) data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>   
+        ";
+
       // }else{
 
       echo"
-      <i class='fas fa-info-circle icon1'></i>
+      <i class='fas fa-file-signature icon1'></i>
       </div>
       <div class='more-info'>
         <h1>$naam</h1>
         <div class='morefo'>
         <table>
         <tr>
-        <td>Begin Datum: </td>
-            <td> $begind</td>
+        <th id=''>Begin Datum: </th>
+            <td data-target='begind'>$begind</td>
         </tr>
-        <tr>
-        <td>Eind Datum: </td>
-           <td> $eindd</td>
+        <tr >
+        <th id='$idt'>Eind Datum: </th>
+           <td data-target='eindd'> $eindd</td>
         </tr>
-        <tr>
-        <td>Aantal Bestedingen: </td>
-           <td> $aant</td>
+        <tr >
+        <th>Richting: </th>
+           <td> $richt</td>
         </tr>  
         <tr>
-        <td>GeschatteKosten: </td>
+        <th>Aantal Bestedingen: </th>
+           <td> $aant</td>
+        </tr>  
+        <tr >
+        <th>GeschatteKosten: </th>
            <td> SRD $kosten</td>
         </tr> ";
       
@@ -381,7 +302,7 @@ left join taak on  bestedingen.TaakID = taak.ID
                      }
   echo"
         <tr>
-        <td>Status: </td>
+        <th>Status: </th>
            <td> $status</td>
         </tr>  
     </table>
@@ -399,19 +320,109 @@ left join taak on  bestedingen.TaakID = taak.ID
     }}
 
 ?>
-    <?php }?>          </div>
+              <?php }?> </div>
+          </div>
+        </div>
+
+      </div>
+
+       <!-- Modal -->
+       <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"> <?php
+     
+        if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
+           ?>
+
+
+              <?php
+        }else{
+        ?>
+              <span>Projecten</span></a>
+              <?php } ?>
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Taken</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form action="" id="submit" name="form" method="POST" style="width:60vw; margin:0 auto">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="pwd">Taak Naam:</label>
+                        <input type="text" id="naam" class="form-control" name="taak-naam" placeholder="" value='' required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="pwd">Begin Datum:</label>
+                        <input type="date" id="bdatum" class="form-control" name="datum-begin" placeholder="Begin Datum"
+                          required>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <div class="form-group">
+                        <label for="pwd">Eind Datum:</label>
+                        <input type="date" id="edatum" class="form-control" name="datum-eind" placeholder="Begin Datum"
+                          required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="pwd">Richting:</label>
+                        <select class="form-control fstdropdown-select" id="richting" name="richting">
+                          <option value="" disabled selected>Select your option</option>
+                          <?php
+                             $sql = "SELECT * FROM richting where Richting != 'Other'";
+                             $result = mysqli_query($conn, $sql);
+                              while ($row = mysqli_fetch_assoc($result)) {
+                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
+                            }
+                     ?>
+                        </select>
+                        <script>
+                          $('.select2').select2();
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="pwd">Geschatte Kosten:</label>
+                        <input type="number" class="form-control" id="kosten" name="geschatte-kosten" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 mb-2">
+                      <div class="form-group">
+                        <label for="pwd">Taak Omschrijving:</label>
+                        <textarea class="form-control" id="omschrijving" name="omschrijving" placeholder="Voer in..."
+                          rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
             </div>
           </div>
-            <!-- <script>
-function submitForm() {
-  // $('form[name="form"]').submit();
-  // $('input[type="text"], textarea').val('');
-  document.submit.reset();
-  
-}
- </script> -->
-          </div>
-          <?php
+        </div>
+        <!-- Modal -->
+      <?php
                if (isset($_POST["submit1"])) {
                    $taaknaam=$_POST["taak-naam"];
                    $begind=$_POST["datum-begin"];
@@ -450,44 +461,23 @@ function submitForm() {
                  
                }
 ?>
-          
-          <!-- <script>
-        jQuery( document ).ready(function() {
-            jQuery('#submit').submit(function(e){
-                e.preventDefault();
-                jQuery.ajax({
-                    url: e.currentTarget.action,
-                    data:{
-                        naam: jQuery('#naam').val(),
-                        bdatum: jQuery('#bdatum').val(),
-                        edatum: jQuery('#edatum').val(),
-                        richting: jQuery('#richting').val(),
-                        kosten: jQuery('#kosten').val(),
-                        omschrijving: jQuery('#omschrijving').val(),
-                    }
-                }).done(function(data){
-                    jQuery('#data').append(data);
-                    // document.getElementById("$submit").reset(); 
-                    // document.location.reload();
-                });
-            });
-        });
-    </script> -->
-        </div>
-        <!-- /.container-fluid -->
-      </div>
-      <!-- End of Main Content -->
-      <!-- Footer -->
-      <footer class="sticky-footer bg-gradient-primary">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+
+     
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+  </div>
+  <!-- End of Main Content -->
+  <!-- Footer -->
+  <footer class="sticky-footer bg-gradient-primary">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; 2019</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
   </div>
   <!-- End of Page Wrapper -->
   <!-- Scroll to Top Button-->
@@ -518,6 +508,17 @@ function submitForm() {
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="../js/sb-admin-2.min.js"></script>
-</body>
+<script>
 
+function EditTaak(e){
+alert(e);
+// $('#exampleModalPreview').modal('toggle');
+
+}
+
+
+</script>
+
+
+</body>
 </html>

@@ -53,7 +53,7 @@ session_start();
       <hr class="sidebar-divider my-0">
       <li class="nav-item ">
         <a class="nav-link" href="administratie.php">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-project-diagram"></i>
           <span>Registreer Projecten</span></a>
       </li>
       <li class="nav-item active">
@@ -81,19 +81,7 @@ session_start();
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -151,7 +139,7 @@ session_start();
                 </div>
 
                 <div id="addBtn" class="wrapper">
-                    <button class="circle button" id="modalActivate" type="button" data-toggle="modal"
+                    <button class="circle button" id="modalActivate" type="button" data-toggle="modal" onclick=foo()
                         data-target="#exampleModalPreview">
                         <img id="addSign"
                             src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -192,27 +180,27 @@ session_start();
                                 </button>
                             </div>
                             <ul class="nav nav-tabs" id="tabContent">
-                                <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Natin </a></li>
-                                <li><a  href="#access-security" data-toggle="tab">Registreer Organisaties</a></li>
+                                <li class="active"><a class="active" id='an' href="#details" data-toggle="tab">Registreer Natin </a></li>
+                                <li><a  href="#access-security" id='ag'data-toggle="tab">Registreer Organisaties</a></li>
                             </ul>
 
                             <div class="tab-content">
                                 <div class="tab-pane active " id="details">
                                     <div class="modal-body">
-                                        <form action="./PHP/registratie-studenten.php" method="POST"
+                                        <form action="./PHP/registratie-studenten.php" id='stud' method="POST"
                                             style="width:60vw; margin:0 auto">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="pwd">Voornaam</label>
-                                                        <input type="text" class="form-control" name="vnaam"
+                                                        <input type="text" id='vnaam' class="form-control" name="vnaam"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-group">
                                                         <label for="pwd">Achternaam</label>
-                                                        <input type="text" class="form-control" name="anaam"
+                                                        <input type="text" id='anaam' class="form-control" name="anaam"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
@@ -221,7 +209,7 @@ session_start();
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Organisatie</label>
-                                                        <input type="text" class="form-control" name="organisatie"
+                                                        <input type="text" id='org' class="form-control" name="organisatie"
                                                             placeholder="Natin" readonly>
                                                     </div>
                                                 </div>
@@ -230,8 +218,8 @@ session_start();
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group">
                                                         <label for="pwd">Richting <span
-                                                                id="user-availability-status"></span> </label>
-                                                        <input type="text" list="richting1" onBlur="checkAvailability()"
+                                                                id="user-availability-status"></span> </label><div id="richting2" style="color:red;"></div>
+                                                        <input type="text" id='richting' list="richting1" onBlur="checkAvailability()"
                                                             class="form-control" id="richting" name="richting">
                                                         <datalist id="richting1" style="width: 100px;">
                                                             <?php
@@ -263,7 +251,7 @@ session_start();
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Functie</label>
-                                                        <input type="text" class="form-control" name="functie"
+                                                        <input type="text" id='func'  class="form-control" name="functie"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
@@ -272,8 +260,9 @@ session_start();
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Telefoon Nummer</label>
-                                                        <input type="text" class="form-control" name="telnumm"
+                                                        <input type="text" id='telnumm' class="form-control" name="telnumm"
                                                             placeholder="" required>
+                                                            <input type="hidden" name="sid" id="sid">
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,27 +270,27 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                 </div>
                                     <!-- ORGANISATIE -->
                                 <div class="tab-pane fade" id="access-security">
                                     <div class="modal-body">
-                                    <form action="./PHP/registratie-organisatie.php" method="POST"
+                                    <form action="./PHP/registratie-studenten.php" id='stud1' method="POST"
                                             style="width:60vw; margin:0 auto">
                                             <div class="row">
                                             <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="pwd">Voornaam</label>
-                                                        <input type="text" class="form-control" name="vnaam"
+                                                        <input type="text" id='vnaamo' class="form-control" name="vnaam"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-group">
                                                         <label for="pwd">Achternaam</label>
-                                                        <input type="text" class="form-control" name="anaam"
+                                                        <input type="text" id='anaamo' class="form-control" name="anaam"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
@@ -310,10 +299,10 @@ session_start();
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="pwd">Organisatie <span
-                                                                id="user-availability-status-orga"></span></label>
-                                                        <input type="text" list="organisatie1" onBlur="checkAvailabilityorga()"
-                                                            class="form-control" id="organisatie" name="organisatie">
+                                                        <label for="pwd">Organisatie: <span
+                                                                id="user-availability-status-orga"></span></label><div id="organisatie2" style="color:red;"></div>
+                                                        <input type="text" id='organisatie' list="organisatie1" onBlur="checkAvailabilityorga()"
+                                                            class="form-control"  name="organisatie">
                                                         <datalist id="organisatie1" style="width: 100px;">
                                                             <?php
                                                  $sql = "SELECT * FROM organisatie";
@@ -344,7 +333,7 @@ session_start();
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Functie</label>
-                                                        <input type="text" class="form-control" name="functie"
+                                                        <input type="text" id='funco' class="form-control" name="functie"
                                                             placeholder="" required>
                                                     </div>
                                                 </div>
@@ -354,7 +343,8 @@ session_start();
                                                     <div class="form-group">
                                                         <label for="pwd">Telefoon Nummer</label>
                                                         <input type="text" class="form-control" name="telnumm"
-                                                            placeholder="" required>
+                                                            placeholder="" id='telnummo' required>
+                                                            <input type="hidden" name="oid" id="oid">
                                                     </div>
                                                 </div>
                                             </div>    
@@ -362,7 +352,7 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -389,6 +379,7 @@ session_start();
                                             <th scope='col'>Richting</th>
                                             <th scope='col'>Functie</th>
                                             <th scope='col'>Telefoon Nummer</th>
+                                            <th scope='col'>Acties</th>
                                             <!-- <th scope='col'>Actions</th> -->
                                         </tr>
                                     </thead>
@@ -411,19 +402,22 @@ if (mysqli_num_rows($res)>0) {
         $telnum=$row["Telnummer"];
         // $leider=$row[""];
         // $taak=$row[""];
+        if(empty($richting)){
+            $richting='-';
+        }
         $id=$row["ID"];
         $a=$i++;
      
         echo "
-                <tr>
+                <tr id=$id>
                 <td>$a</td>
-                <td>$anaam</td>
-                <td>$vnaam</td>
-                <td>$org</td>
-                <td>$richting</td>
-                <td>$fucntie</td>
-                <td>$telnum</td>
-                
+                <td data-target='naam'>$anaam</td>
+                <td data-target='vnaam'>$vnaam</td>
+                <td data-target='org'>$org</td>
+                <td data-target='richting'>$richting</td>
+                <td data-target='functie'>$fucntie</td>
+                <td data-target='telnum'>$telnum</td>
+                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa'></i></a> </td>
                   </tr>
                   
                 ";
@@ -478,7 +472,71 @@ $(document).ready(function() {
     $('.data1').DataTable({
 
 });
-} );
+});
+
+function foo(){
+    $('#an').removeClass('disabled');
+    $('#ag').removeClass('disabled');
+    $('#stud')[0].reset();
+    $('#stud1')[0].reset();
+    $('#organisatie').html("");
+    $('#richting').html("");
+}
+
+function Org(){
+$('#details').removeClass('active');
+$('#an').addClass('disabled');
+$('#ag').addClass('active');
+$('#an').removeClass('active');
+$('#access-security').addClass('active');
+$('#access-security').removeClass('fade');
+$('#edit-org').attr('name', 'edit-org');
+$('#exampleModalPreview').modal('toggle');
+}
+
+
+function Nat(){
+$('#access-security').removeClass('active');
+$('#ag').addClass('disabled');
+$('#an').addClass('active');
+$('#ag').removeClass('active');
+$('#details').addClass('active');
+$('#details').removeClass('fade')
+$('#edit-stud').attr('name', 'edit-stud');;
+$('#exampleModalPreview').modal('toggle');
+}
+
+
+function EditRow(e){
+    var naam= $('#'+e).children('td[data-target=naam]').text();
+    var vnaam= $('#'+e).children('td[data-target=vnaam]').text();
+    var org= $('#'+e).children('td[data-target=org]').text();
+    var richting= $('#'+e).children('td[data-target=richting]').text();
+    var functie= $('#'+e).children('td[data-target=functie]').text();
+    var telnum= $('#'+e).children('td[data-target=telnum]').text();
+
+    if (org=='Natin') {
+        Nat();
+        $('#vnaam').val(vnaam);
+        $('#anaam').val(naam);
+        $('#telnumm').val(telnum);
+        $('#func').val(functie);
+        $('#richting2').html(`Huidige richting is ${richting}`);
+        $('#sid').val(e);
+    }else{
+        Org();
+        $('#vnaamo').val(vnaam);
+        $('#anaamo').val(naam);
+        $('#telnummo').val(telnum);
+        $('#funco').val(functie);
+        $('#organisatie2').html(`Huidige richting is ${org}`);
+        $('#oid').val(e);
+    }
+
+}
+
+
+
 </script>
 
 </body>

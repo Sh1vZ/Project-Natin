@@ -74,7 +74,7 @@ session_start();
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-         
+
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
@@ -145,17 +145,15 @@ session_start();
            </button>
          </div>";
          echo" <div id='addBtn' class='wrapper2'>
-         <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
+         <button class='circle1 button' id='modalActivate' type='button' data-toggle='modal'
            data-target='#finishModal'>
-           <!-- <img id='addSign'
-             src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
-             /> -->
+           <i class='fas fa-check fa-2x text-white' id='addSign'></i>
          </button>
        </div>";
          } else{
            echo " <div class='d-sm-flex align-items-center justify-content-between mb-4'>
            <h1 class='h3  text-gray-800'>Registreer Materialen / Diensten</h1>
-           <a href='#' class='d-none d-sm-inline-block btn btn-md btn-success shadow-sm'><i class='fas fa-download fa-md text-white-50'></i> Compleet</a>
+           <a href='#' class='d-none d-sm-inline-block btn btn-md btn-success shadow-sm'> <i class='fas fa-check text-white'></i> Compleet</a>
          </div>";
          }}
 
@@ -175,71 +173,69 @@ session_start();
               </div>
               <div class="modal-body">Select "Submit" below if you are ready to Mark as complete.</div>
               <form action="" method="POST">
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  <button type="submit" name="submit-finish" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="logout.php">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--- invoer bedrag modal --->
+      <div class="modal fade top" id="BedragModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" method="POST" style="width:; margin:0 auto">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="pwd">Bedrag:</label>
+                      <input type="number" class="form-control" id="bedrag" name="bedrag" placeholder="">
+              </form>
+
+
               <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" name="submit-finish" class="btn btn-primary">Submit</button>
-             </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submitBedrag" class="btn btn-primary" chk=<?php $idt ?>>Submit</button>
+
               </div>
             </div>
           </div>
         </div>
-
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-              <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="logout.php">Logout</a>
-              </div>
-            </div>
-          </div>
-        </div>
-         <!--- invoer bedrag modal --->
-        <div class="modal fade top" id="BedragModal" tabindex="-1" role="dialog" 
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">
-             <form action="" method="POST" style="width:; margin:0 auto">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                          <label for="pwd">Bedrag:</label>
-                            <input type="number" class="form-control" id="bedrag" name="bedrag"
-                              placeholder="">
-                              </form>
-                         
-
-                          <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submitBedrag" class="btn btn-primary" chk=<?php $idt ?>>Submit</button>
-                   
-                  </div>
-                </div>
-            </div>
-          </div>
-              </div>
-            </div>
-          </div>
+      </div>
     </div>
-       
+  </div>
+  </div>
 
-<!--- kwitantie vraag modal
+
+  <!--- kwitantie vraag modal
         <div class="modal fade top" id="vraagModal" tabindex="-1" role="dialog" 
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -259,112 +255,112 @@ session_start();
           </div>
         </div>
 --->
-       
 
 
-        <!-- Modal -->
-        <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <ul class="nav nav-tabs" id="tabContent">
-                <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Diensten </a></li>
-                <li><a href="#access-security" data-toggle="tab">Registreer Materialen</a></li>
-              </ul>
 
-              <div class="tab-content">
-                <div class="tab-pane active " id="details">
-                  <div class="modal-body">
-                    <form action="" method="POST" style="width:; margin:0 auto">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Diensten:</label>
-                            <select class="selectpicker form-control" data-live-search="true" title="Kies uit diensten"
-                              name="diensten">
-                              <?php
+  <!-- Modal -->
+  <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <ul class="nav nav-tabs" id="tabContent">
+          <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Diensten </a></li>
+          <li><a href="#access-security" data-toggle="tab">Registreer Materialen</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active " id="details">
+            <div class="modal-body">
+              <form action="" method="POST" style="width:; margin:0 auto">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="pwd">Diensten:</label>
+                      <select class="selectpicker form-control" data-live-search="true" title="Kies uit diensten"
+                        name="diensten">
+                        <?php
                              $sql = "SELECT * FROM personen";
                              $result = mysqli_query($conn, $sql);
                               while ($row = mysqli_fetch_assoc($result)) {
                               echo "<option value='".$row['ID'] ."'>" . $row['Voornaam']." ". $row['Achternaam']."</option>";   
                             }
                      ?>
-                            </select>
-                            <script>
-                              $(document).ready(function () {
-                                $('.selectpicker').selectpicker();
-                              })
-                            </script>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="pwd">Facatuur:</label>
-                            <select name="factuur" class="form-control" id="">
-                              <option value="Verekenbaar">Verekenbaar</option>
-                              <option value="Niet Verekenbaar">Niet Verekenbaar</option>
-                            </select>
-                          </div>
-                        </div>
-
-                      </div>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                      </select>
+                      <script>
+                        $(document).ready(function () {
+                          $('.selectpicker').selectpicker();
+                        })
+                      </script>
+                    </div>
                   </div>
                 </div>
-                <!-- ORGANISATIE -->
-                <div class="tab-pane fade" id="access-security">
-                  <div class="modal-body">
-                    <form action="" method="POST" style="width:; margin:0 auto">
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <label for="pwd">Facatuur:</label>
-                          <select name="factuur" class="form-control" id="">
-                            <option value="Verekenbaar">Verekenbaar</option>
-                            <option value="Niet Verekenbaar">Niet Verekenbaar</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 mb-2">
-                          <div class="form-group">
-                            <label for="pwd">Materialen:</label>
-                            <textarea class="form-control" name="materialen" placeholder="Voer in..." rows="3"
-                              required></textarea>
-                          </div>
-                        </div>
-                      </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="pwd">Facatuur:</label>
+                      <select name="factuur" class="form-control" id="">
+                        <option value="Verekenbaar">Verekenbaar</option>
+                        <option value="Niet Verekenbaar">Niet Verekenbaar</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit-materialen" class="btn btn-primary">Submit</button>
-                    </form>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          <!-- ORGANISATIE -->
+          <div class="tab-pane fade" id="access-security">
+            <div class="modal-body">
+              <form action="" method="POST" style="width:; margin:0 auto">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="pwd">Facatuur:</label>
+                    <select name="factuur" class="form-control" id="">
+                      <option value="Verekenbaar">Verekenbaar</option>
+                      <option value="Niet Verekenbaar">Niet Verekenbaar</option>
+                    </select>
                   </div>
                 </div>
-              </div>
+                <div class="row">
+                  <div class="col-md-12 mb-2">
+                    <div class="form-group">
+                      <label for="pwd">Materialen:</label>
+                      <textarea class="form-control" name="materialen" placeholder="Voer in..." rows="3"
+                        required></textarea>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" name="submit-materialen" class="btn btn-primary">Submit</button>
+              </form>
             </div>
           </div>
         </div>
-        
+      </div>
+    </div>
+  </div>
 
-        <!-- Modal -->
+
+  <!-- Modal -->
 
 
 
-        <?php
+  <?php
 
 
 
@@ -440,31 +436,31 @@ if($result){
 ?>
 
 
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <div class='card shadow mb-4'>
-                <div class="card-body">
-                  <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
-                  <div class='table-responsive-xl'>
-                    <table class='table data1 table-hover'>
-                      <thead>
-                        <tr>
-                        <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class='card shadow mb-4'>
+          <div class="card-body">
+            <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
+            <div class='table-responsive-xl'>
+              <table class='table data1 table-hover'>
+                <thead>
+                  <tr>
+                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
-                          <th scope='col'>#</th>
-                          <th scope='col'>Diensten</th>
-                          <th scope='col'>Organisatie</th>
-                          <th scope='col'>Facatuurtype</th>
-                          <?php
+                    <th scope='col'>#</th>
+                    <th scope='col'>Diensten</th>
+                    <th scope='col'>Organisatie</th>
+                    <th scope='col'>Facatuurtype</th>
+                    <?php
                           if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
-                         ?> 
+                         ?>
 
-                          <!-- <th scope='col'>Actions</th> -->
-                        </tr>
-                      </thead>
+                    <!-- <th scope='col'>Actions</th> -->
+                  </tr>
+                </thead>
 
-                      <?php
+                <?php
 
                       
                                    
@@ -499,7 +495,7 @@ if (mysqli_num_rows($res)>0) {
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar'){
           echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
-          else{ echo"<td></td>  ";}
+          else{ echo" ";}
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
@@ -518,36 +514,36 @@ if (mysqli_num_rows($res)>0) {
 }
 
 ?>
-                    </table>
-                  </div>
-                </div>
-              </div>
+              </table>
             </div>
-            
-            <div class="col-md-6">
-              <div class='card shadow mb-4'>
-                <div class='card-body'>
-                  <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
-                  <div class='table-responsive-xl'>
-                    <table class='table data1 table-hover'>
-                      <thead>
-                        <tr>
-                        <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class='card shadow mb-4'>
+          <div class='card-body'>
+            <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
+            <div class='table-responsive-xl'>
+              <table class='table data1 table-hover'>
+                <thead>
+                  <tr>
+                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
-                          <th scope='col'>#</th>
-                          <th scope='col'>Materialen</th>
-                          <th scope='col'>Facatuurtype</th>
-                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                    <th scope='col'>#</th>
+                    <th scope='col'>Materialen</th>
+                    <th scope='col'>Facatuurtype</th>
+                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
                            echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
                            if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
                            echo" <th scope='col'>Kwitantie</th>"; } else{ echo"";}?>
-                           
 
-                          <!-- <th scope='col'>Actions</th> -->
-                        </tr>
-                      </thead>
 
-                      <?php
+                    <!-- <th scope='col'>Actions</th> -->
+                  </tr>
+                </thead>
+
+                <?php
                       $idt=$_GET["idt"];
                       $bedragr=$row["Bedrag"];
       
@@ -576,7 +572,7 @@ if (mysqli_num_rows($res)>0) {
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
           echo" <td> <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
-          else{ echo"<td></td> ";}
+          else{ echo"";}
                echo "<td>$a</td>          
                 <td>$mat</td>
                 <td>$facu</td>
@@ -593,32 +589,32 @@ if (mysqli_num_rows($res)>0) {
 
 
 ?>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>        
+              </table>
+            </div>
           </div>
         </div>
-
-
-
-
-        <!-- /.container-fluid -->
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-gradient-primary">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
     </div>
-    <!-- End of Content Wrapper -->
+  </div>
+
+
+
+
+  <!-- /.container-fluid -->
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-gradient-primary">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; 2019</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
   </div>
   <!-- End of Page Wrapper -->
 

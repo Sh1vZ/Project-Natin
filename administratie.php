@@ -53,9 +53,8 @@ session_start();
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-project-diagram"></i>
         <?php
-        include "PHP/dbConn.php";
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
      
@@ -68,7 +67,6 @@ session_start();
         <?php } ?>
       </li>
       <?php
-        include "PHP/dbConn.php";
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
       <li class="nav-item">
@@ -187,6 +185,31 @@ session_start();
           </div>
         </div>
 
+        <!-- Confirm-Delete Modal
+        <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+              
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+
+        
+
 
         <!-- Modal -->
         <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
@@ -205,7 +228,7 @@ session_start();
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="pwd">Project Naam:</label>
-                        <input type="text" class="form-control" name="project-naam" placeholder="" required>
+                        <input type="text" id='naam' class="form-control" name="project-naam" placeholder="" required>
                       </div>
                     </div>
                   </div>
@@ -213,21 +236,21 @@ session_start();
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="pwd">Begin Datum:</label>
-                        <input type="date" class="form-control" name="datum-begin" placeholder="Begin Datum" required>
+                        <input type="date" id='datum-begin' class="form-control" name="datum-begin" placeholder="Begin Datum" required>
                       </div>
                     </div>
                     <div class="col-md-6 mb-2">
                       <div class="form-group">
                         <label for="pwd">Eind Datum:</label>
-                        <input type="date" class="form-control" name="datum-eind" placeholder="Begin Datum" required>
+                        <input type="date" id='datum-eind' class="form-control" name="datum-eind" placeholder="Begin Datum" required>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="pwd">Project Leider:</label>
-                        <select class="selectpicker form-control" title="Kies Leider" data-live-search="true" name="project-leider"  id="">
+                        <label for="pwd">Project Leider:</label> <span style="color:red;" id=ac></span>
+                        <select class="selectpicker form-control" title="Kies Leider" data-live-search="true" name="project-leider" >
                         <?php
                              $sql = "SELECT * FROM personen";
                              $result = mysqli_query($conn, $sql);
@@ -243,21 +266,24 @@ session_start();
                   <div class="row">
                     <div class="col-md-12 mb-2">
                       <div class="form-group">
-                        <label for="pwd">Project Omschrijving:</label>
-                        <textarea class="form-control" name="omschrijving" placeholder="Voer in..." rows="3" required></textarea>
+                        <label for="pwd">Project Omschrijving:</label> 
+                        <textarea class="form-control" id="omschr" name="omschrijving" placeholder="Voer in..." rows="3" required></textarea>
+                        <input type="hidden" name="pid" id="pid">
                       </div>
                     </div>
                   </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="edite" name="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
         <!-- Modal -->
+
+
 
         <div class='container-fluid'>
 
@@ -306,34 +332,42 @@ if (mysqli_num_rows($res)>0) {
         $status=$row["Status"];
         $id=$row["ID"];
         $a=$i++;
-     
-        echo "
+    
+             echo "
         
-                <tr>
+                <tr id=$id>
                 <td>$a</td>
-                <td>$naam</td>
-                <td>$omschr</td>
-                <td>$begind</td>
-                <td>$eindd</td>
-                <td>$anaam $vnaam</td>
+                <td data-target='naam'>$naam</td>
+                <td data-target='omschr'>$omschr</td>
+                <td data-target='begind'>$begind</td>
+                <td data-target='eindd'>$eindd</td>
+                <td data-target='leider'>$anaam $vnaam</td>
                 <td>$status</td>
-                <td> <a class='link' href='./PHP/view-projecten.php?id=$id'><i class='fas fa-external-link-alt'></i></a></td>
+                <td class='dropleft'> 
+                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h ' ></i></a>
+                <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
+    </div>
+                </td> 
                   </tr>
-                  
-                ";
-    }
+                 ";
+                
+         }
+     
+    
 } else {
     
 }
 ?>
-</tbody>
+                    </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
+        
         </table>
-
         <!-- /.container-fluid -->
       </div>
       <!-- End of Main Content -->
@@ -367,13 +401,30 @@ if (mysqli_num_rows($res)>0) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script>
-$(document).ready(function() {
+
+
+<script type="text/javascript">
+$(document).ready(function() {  
   $('.selectpicker').selectpicker();
     $('.data1').DataTable({
-     
 });
-} );
+});
+
+function EditRow(e){
+var naam= $('#'+e).children('td[data-target=naam]').text();
+var omsch= $('#'+e).children('td[data-target=omschr]').text();
+var leider= $('#'+e).children('td[data-target=leider]').text();
+var begind= $('#'+e).children('td[data-target=begind]').text();
+var eindd= $('#'+e).children('td[data-target=eindd]').text();
+$('#ac').html(`Huidige Project leider is ${leider}`);
+$('#naam').val(naam);
+$('#datum-begin').val(begind);
+$('#datum-eind').val(eindd);
+$('#omschr').val(omsch);
+$('#pid').val(e);
+$('#edite').attr('name', 'edit');
+$('#exampleModalPreview').modal('toggle');
+}
 </script>
 
 </body>
