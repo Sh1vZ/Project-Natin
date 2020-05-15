@@ -37,7 +37,8 @@
   }
   
   .card1.green .additional {
-    background: linear-gradient(#92bCa6, #A2CCB6);
+    /* background: linear-gradient(#92bCa6, #A2CCB6); */
+      background: rgb(135,169,107);
   }
   
   
@@ -241,10 +242,14 @@ button{
     height: 60px;
     width: 60px;
     display: flex;
-    /* background:rgb(4, 131, 4); */
-    background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+    background:rgb(4, 131, 4);
+    /* background: linear-gradient(to top, #0fd850 0%, #f9f047 100%); */
     transition: 0.2s;
    
+  }
+  .circle:hover {
+    text-decoration: none;
+    background: rgb(0,100,0);
   }
 
   .circle1 {
@@ -252,10 +257,14 @@ button{
     height: 60px;
     width: 60px;
     display: flex;
-    /* background:rgb(4, 131, 4); */
-    background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+    background:rgb(4, 131, 4);
     transition: 0.2s;
    
+  }
+
+  .circle1:hover {
+    text-decoration: none;
+    background: rgb(0,100,0);
   }
   
   button:focus{
