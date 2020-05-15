@@ -64,12 +64,29 @@
             <button class="login100-form-btn" name="but_login">
               Login
             </button>
+            
+
+          <div class="  text-center a p-t-25">
+          <?php
+            if (isset($_GET['error'])) {
+              if ("emptyfields" == $_GET['error']) {
+                echo'<div class="alert alert-danger ">
+                <strong>Error</strong> Vul alles in.
+              </div>';
+              }
+              if ("wrongpwd" == $_GET['error']) {
+                echo'<div class="alert alert-danger ">
+                <strong>Error</strong> Password is incorrect.
+              </div>';
+              }
+              if ("nouser" == $_GET['error']) {
+                echo'<div class="alert alert-danger ">
+                <strong>Error</strong> Gebruiker bestaat niet.
+              </div>';
+              }
+            }
+            ?>
           </div>
-
-
-          <div class="text-center p-t-136">
-            <a class="txt2" href="#">
-            </a>
           </div>
         </form>
       </div>

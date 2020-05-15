@@ -56,7 +56,7 @@ session_start();
             <hr class="sidebar-divider my-0">
             <li class="nav-item ">
                 <a class="nav-link" href="administratie.php">
-                    <i class="fas fa-tasks"></i>
+                <i class="fas fa-project-diagram"></i>
                     <?php
         include "PHP/dbConn.php";
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
