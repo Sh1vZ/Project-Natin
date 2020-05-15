@@ -212,7 +212,7 @@ session_start();
               </button>
             </div>
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -277,7 +277,7 @@ session_start();
         <div class="tab-content">
           <div class="tab-pane active " id="details">
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -323,7 +323,7 @@ session_start();
           <!-- ORGANISATIE -->
           <div class="tab-pane fade" id="access-security">
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
 
                 <div class="row">
                   <div class="col-md-12">
@@ -545,7 +545,7 @@ if (mysqli_num_rows($res)>0) {
 
                 <?php
                       $idt=$_GET["idt"];
-                      $bedragr=$row["Bedrag"];
+                      // $bedragr=$row["Bedrag"];
       
      
                                    
