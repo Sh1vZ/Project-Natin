@@ -299,7 +299,7 @@ session_start();
               <div class='table-responsive-xl'>
                 <table id="" class='table table-hover data1'>
                   <thead>
-                    <tr>
+                    <tr id="firstrow">
                       <th>#</th>
                       <th>Projectnaam</th>
                       <th style="width:30%">Project Omschrijving</th>

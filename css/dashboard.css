@@ -98,9 +98,9 @@
     margin-bottom: 0;
   }
   
-  .card1.green .additional .more-info h1 {
+  /* .card1.green .additional .more-info h1 {
     color: #224C36;
-  }
+  } */
   
   .card1 .additional .coords {
     margin: 0 1rem;
