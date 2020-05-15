@@ -320,7 +320,7 @@ if (mysqli_num_rows($res)>0) {
       <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019</span>
+            <span>Copyright &copy; 2019-2020 Natin-AFA. Designed & Developed with ❤</span>
           </div>
         </div>
       </footer>
