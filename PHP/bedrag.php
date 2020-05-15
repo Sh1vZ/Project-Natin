@@ -37,7 +37,7 @@
                 </button>
               </div>
               <div class="modal-body">
-             <form action="" method="POST" style="width:; margin:0 auto">
+             <form action="" method="POST" style="margin:0 auto">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">

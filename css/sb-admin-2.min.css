@@ -76,7 +76,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #858796;
+    color: rgb(84,162,84);
     text-align: left;
     background-color: #fff
 }
@@ -175,7 +175,7 @@ sup {
     top: -.5em
 }
 th {
-    color: rgb(4, 131, 4);
+    color: rgb(255, 255, 255)
   }
 
 a {
@@ -1636,6 +1636,11 @@ pre code {
     color: #858796
 }
 
+th{
+    background-color: rgb(84,162,84);
+    padding-bottom: 60px;
+}
+
 .table td,
 .table th {
     padding: .75rem;
@@ -1988,7 +1993,7 @@ pre code {
     color: #6e707e;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #d1d3e2;
+    border: 1px solid rgb(84,162,84);
     border-radius: .35rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
@@ -3978,7 +3983,7 @@ input[type=submit].btn-block {
     vertical-align: middle;
     background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%235a5c69' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
     background-color: #fff;
-    border: 1px solid #d1d3e2;
+    border: 1px solid rgb(84,162,84);
     border-radius: .35rem;
     -webkit-appearance: none;
     -moz-appearance: none;
