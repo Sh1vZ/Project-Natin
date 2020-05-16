@@ -47,18 +47,18 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="home.php">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item ">
         <a class="nav-link" href="administratie.php">
-        <i class="fas fa-project-diagram"></i>
+        <i class="fas fa-file-medical"></i>
           <span>Registreer Projecten</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-user-plus"></i>
           <span>Registreer Personen</span></a>
       </li>
       </li>
@@ -162,7 +162,7 @@ session_start();
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
                             </div>
                         </div>
                     </div>
@@ -270,7 +270,7 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>

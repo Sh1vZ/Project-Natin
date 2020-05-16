@@ -45,7 +45,7 @@ session_start();
 
       <div id="addBtn" class="wrapper1">
         <button onclick="goBack()" class="circle button">
-          <i class="fas fa-chevron-left icon2"></i>
+          <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
       <script>
@@ -139,15 +139,15 @@ session_start();
            echo"  <div id='addBtn' class='wrapper'>
            <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
              data-target='#exampleModalPreview'>
-             <img id='addSign'
+            <img id='addSign'
                src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
-               />
+               /> 
            </button>
          </div>";
          echo" <div id='addBtn' class='wrapper2'>
-         <button class='circle1 button' id='modalActivate' type='button' data-toggle='modal'
+         <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
            data-target='#finishModal'>
-           <i class='fas fa-check fa-2x text-white' id='addSign'></i>
+           <i class='fas fa-check fa-lg' id='addSign'></i>
          </button>
        </div>";
          } else{
@@ -175,7 +175,7 @@ session_start();
               <form action="" method="POST">
                 <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  <button type="submit" name="submit-finish" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="submit-finish" class="btn btn-success">Submit</button>
               </form>
             </div>
           </div>

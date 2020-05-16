@@ -42,13 +42,13 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="../home.php">
-          <i class="fas fa-tasks"></i>
+          <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
-          <i class="fas fa-project-diagram"></i>
+          <i class="fas fa-file-medical"></i>
           <?php
       
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
@@ -67,7 +67,7 @@ session_start();
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){ ?>
       <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
-          <i class="fas fa-user-friends"></i>
+          <i class="fas fa-user-plus"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php
@@ -206,9 +206,7 @@ if (mysqli_num_rows($res)>0) {
                       ?>
           <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
             data-target="#exampleModalPreview">
-            <img id="addSign"
-              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-              alt="" />
+            <i id="addSign" class="fas fa-plus fa-lg"></i>
           </button>
           <?php
                        }
@@ -415,7 +413,7 @@ left join taak on  bestedingen.TaakID = taak.ID
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
+                <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-success">Submit</button>
                 </form>
               </div>
             </div>

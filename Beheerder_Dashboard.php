@@ -52,7 +52,7 @@ session_start();
                                                 <!-- Nav Item - BEHEERDER Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="Beheerder_Dashboard.php">
-                    <i class="fas fa-tasks"></i>
+                    <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -69,7 +69,7 @@ session_start();
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="administratie.php">
-                    <i class="fas fa-user-friends"></i>
+                    <i class="fas fa-user-plus"></i>
                     <span>Registreer Personen</span></a>
             </li>
             </li>

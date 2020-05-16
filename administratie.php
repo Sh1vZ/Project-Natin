@@ -47,13 +47,13 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="home.php">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="">
-        <i class="fas fa-project-diagram"></i>
+        <i class="fas fa-file-medical"></i>
         <?php
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
@@ -71,7 +71,7 @@ session_start();
            ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-user-plus"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php
@@ -157,9 +157,8 @@ session_start();
         <div id="addBtn" class="wrapper">
           <button class="circle button" id="modalActivate" type="button"  data-toggle="modal"
             data-target="#exampleModalPreview">
-            <img id="addSign"
-              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-              alt="" />
+            <i id="addSign" class="fas fa-plus fa-lg"></i>
+
           </button>
         </div>
       <?php

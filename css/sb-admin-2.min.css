@@ -17,7 +17,7 @@
     --red: #e74a3b;
     --orange: #fd7e14;
     --yellow: #f6c23e;
-    --green: #1cc88a;
+    --green: #28a745;
     --teal: #20c9a6;
     --cyan: #36b9cc;
     --white: #fff;
@@ -179,13 +179,15 @@ th {
   }
 
 a {
-    color: rgb(4, 131, 4);
+    color: rgb(0,100,0);
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
     background-color: transparent
 }
 
 a:hover {
-    color: rgb(57,255,20);
+    color: rgb(4, 131, 4);
     text-decoration: underline
 }
 
@@ -2658,14 +2660,14 @@ fieldset:disabled a.btn {
 
 .btn-success {
     color: #fff;
-    background-color: #1cc88a;
-    border-color: #1cc88a
+    background-color: #28a745;
+    border-color: #28a745
 }
 
 .btn-success:hover {
     color: #fff;
-    background-color: #17a673;
-    border-color: #169b6b
+    background-color: #218838;
+    border-color: #218838
 }
 
 .btn-success.focus,
@@ -10927,7 +10929,6 @@ a:focus {
     font-family: roboto-regular;
     src: url('../font/Roboto-Regular.ttf');
     font-weight: 700;
-    text-decoration: underline;
     text-transform: uppercase !important
 }
 
@@ -10937,7 +10938,6 @@ a:focus {
     font-family: roboto-regular;
     src: url('../font/Roboto-Regular.ttf');
     font-weight: 700;
-    text-decoration: underline;
     text-transform: uppercase !important
 }
 
@@ -11316,6 +11316,7 @@ a:focus {
     height: 2.5rem;
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     cursor: pointer
 }
 
@@ -11350,7 +11351,7 @@ a:focus {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 800;
-    padding: 1.5rem 1rem;
+    padding: 60px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: .05rem;

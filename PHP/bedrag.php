@@ -49,7 +49,7 @@
 
                           <div class="modal-footer">
                     <button type="submit" name="Close" class="btn btn-secondary" >Close</button>
-                    <button type="submit" name="submitBedrag" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submitBedrag" class="btn btn-success">Submit</button>
                    
                   </div>
                 </div>
