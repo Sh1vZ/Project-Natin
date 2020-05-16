@@ -39,7 +39,7 @@ session_start();
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
                 <div class="sidebar-brand-icon ">
                     <img src="./img/natin.png" alt="" style="width:60px;">
                 </div>
@@ -175,7 +175,7 @@ session_start();
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
                             </div>
                         </div>
                     </div>
