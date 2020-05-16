@@ -309,7 +309,7 @@ select.selectpicker {
   position: static;
   display: inline;
   padding: 0;
-  width: auto;
+  /* width: auto; */
 }
 .bootstrap-select.fit-width .dropdown-toggle .filter-option-inner,
 .bootstrap-select.fit-width .dropdown-toggle .filter-option-inner-inner {

@@ -1644,6 +1644,15 @@ tr#firstrow {
     border-top-right-radius:.35rem;
     text-transform: uppercase;
 }
+table.dataTable{
+    border-top-left-radius: .35rem;
+    border-top-right-radius: .35rem;
+    overflow: hidden;
+}
+
+tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
 
 .table td,
 .table th {

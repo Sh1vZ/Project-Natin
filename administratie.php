@@ -36,7 +36,7 @@ session_start();
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon ">
          <img src="./img/natin.png" alt="" style="width:60px;">
         </div>
@@ -71,7 +71,7 @@ session_start();
            ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-plus"></i>
+        <i class="fas fa-user-edit"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php

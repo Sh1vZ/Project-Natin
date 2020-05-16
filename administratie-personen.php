@@ -36,7 +36,7 @@ session_start();
         <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon ">
          <img src="./img/natin.png" alt="" style="width:60px;">
         </div>
@@ -58,7 +58,7 @@ session_start();
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-plus"></i>
+        <i class="fas fa-user-edit"></i>
           <span>Registreer Personen</span></a>
       </li>
       </li>
@@ -99,7 +99,7 @@ session_start();
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-success" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
@@ -352,7 +352,7 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -371,7 +371,7 @@ session_start();
                             <div class='table-responsive-xl'>
                                 <table class='table table-hover data1'>
                                     <thead>
-                                        <tr>
+                                        <tr id="firstrow">
                                             <th scope='col'>#</th>
                                             <th scope='col'>Achternaam</th>
                                             <th scope='col'>Voornaam</th>
