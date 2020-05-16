@@ -1650,9 +1650,9 @@ table.dataTable{
     overflow: hidden;
 }
 
-tr:nth-of-type(even){
+/* tr:nth-of-type(even){
     background-color: #f3f3f3;
-}
+} */
 
 .table td,
 .table th {
@@ -3185,12 +3185,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #4e73df;
+    color: rgb(135, 169, 107);
     text-decoration: none
 }
 
 .btn-link:hover {
-    color: #224abe;
+    color: rgb(135, 169, 107);
     text-decoration: underline
 }
 
@@ -3497,7 +3497,7 @@ input[type=submit].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #4e73df
+    background-color: rgb(135, 169, 107)
 }
 
 .dropdown-item.disabled,
@@ -4354,7 +4354,7 @@ input[type=submit].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #4e73df
+    background-color: rgb(135, 169, 107)
 }
 
 .nav-fill .nav-item {
@@ -10935,8 +10935,7 @@ a:focus {
 .text-gray-800 {
     color: #858796;
     padding-top: 40px;
-    font-family: roboto-regular;
-    src: url('../font/Roboto-Regular.ttf');
+    font-family: "Times New Roman";
     font-weight: 700;
     text-transform: uppercase !important
 }
@@ -10944,8 +10943,7 @@ a:focus {
 .text-gray-900 {
     color: #858796;
     padding: 20px;
-    font-family: roboto-regular;
-    src: url('../font/Roboto-Regular.ttf');
+    font-family: "Times New Roman";
     font-weight: 700;
     text-transform: uppercase !important
 }

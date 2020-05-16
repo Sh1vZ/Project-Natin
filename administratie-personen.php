@@ -369,7 +369,7 @@ session_start();
                         <div class='card-body'>
                         <h1 class="h3 mb-4 text-gray-800 center">Registreer Personen</h1>
                             <div class='table-responsive-xl'>
-                                <table class='table table-hover data1'>
+                                <table class='table table-striped table-hover data1'>
                                     <thead>
                                         <tr id="firstrow">
                                             <th scope='col'>#</th>
@@ -417,7 +417,7 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='richting'>$richting</td>
                 <td data-target='functie'>$fucntie</td>
                 <td data-target='telnum'>$telnum</td>
-                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa'></i></a> </td>
+                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa1'></i></a> </td>
                   </tr>
                   
                 ";

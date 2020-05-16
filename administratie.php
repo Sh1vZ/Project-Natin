@@ -296,9 +296,9 @@ session_start();
                        Projecten</h5></a>
            <?php } ?>
               <div class='table-responsive-xl'>
-                <table id="" class='table table-hover data1'>
+                <table id="" class='table table-hover table-striped data1'>
                   <thead>
-                    <tr id="firstrow">
+                    <tr id="firstrow" class='tableRows'>
                       <th>#</th>
                       <th>Projectnaam</th>
                       <th style="width:30%">Project Omschrijving</th>
@@ -343,7 +343,7 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='leider'>$anaam $vnaam</td>
                 <td>$status</td>
                 <td class='dropleft'> 
-                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h ' ></i></a>
+                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
     <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
     <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
