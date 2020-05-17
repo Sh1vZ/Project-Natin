@@ -443,9 +443,9 @@ if($result){
           <div class="card-body">
             <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
             <div class='table-responsive-xl'>
-              <table class='table data1 table-hover'>
+              <table class='table data1 table-hover table-striped'>
                 <thead>
-                  <tr>
+                  <tr id='firstrow'>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
                     <th scope='col'>#</th>
@@ -494,7 +494,10 @@ if (mysqli_num_rows($res)>0) {
         echo "
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar'){
-          echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
+          echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+          <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+<a class='dropdown-item' href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag<i class='fas fa-dollar-sign sa'></i> </a>      
+</div></a></td>";}
           else{ echo" ";}
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
@@ -525,18 +528,16 @@ if (mysqli_num_rows($res)>0) {
           <div class='card-body'>
             <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
             <div class='table-responsive-xl'>
-              <table class='table data1 table-hover'>
+              <table class='table data1 table-hover table-striped'>
                 <thead>
-                  <tr>
+                  <tr id='firstrow'>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
                     <th scope='col'>#</th>
                     <th scope='col'>Materialen</th>
                     <th scope='col'>Facatuurtype</th>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
-                           if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo" <th scope='col'>Kwitantie</th>"; } else{ echo"";}?>
+                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}?>
 
 
                     <!-- <th scope='col'>Actions</th> -->
@@ -571,14 +572,17 @@ if (mysqli_num_rows($res)>0) {
         echo "
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
-          echo" <td> <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
+          echo" <td> <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+          <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+<a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag <i class='fas fa-dollar-sign sa'></i> </a>
+<a class='dropdown-item' onclick=EditRow($id) href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >kwitantie<i class='fas fa-receipt sa'></i></a>      
+</div></td>";}
           else{ echo"";}
                echo "<td>$a</td>          
                 <td>$mat</td>
                 <td>$facu</td>
                 "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
                   echo"<td>$bedragr</td>";
-                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a></td>";
                    } else{ echo" ";}
                
                
