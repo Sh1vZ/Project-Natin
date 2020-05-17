@@ -537,7 +537,9 @@ if (mysqli_num_rows($res)>0) {
                     <th scope='col'>Materialen</th>
                     <th scope='col'>Facatuurtype</th>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}?>
+                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
+                           if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                           echo" <th scope='col'>Kwitantie</th>"; } else{ echo"";}?>
 
 
                     <!-- <th scope='col'>Actions</th> -->
@@ -583,6 +585,7 @@ if (mysqli_num_rows($res)>0) {
                 <td>$facu</td>
                 "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
                   echo"<td>$bedragr</td>";
+                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a></td>";
                    } else{ echo" ";}
                
                
