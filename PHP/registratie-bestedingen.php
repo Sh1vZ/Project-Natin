@@ -139,9 +139,7 @@ session_start();
            echo"  <div id='addBtn' class='wrapper'>
            <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
              data-target='#exampleModalPreview'>
-            <img id='addSign'
-               src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
-               /> 
+            <i id='addSign' class='fas fa-plus fa-lg'></i>
            </button>
          </div>";
          echo" <div id='addBtn' class='wrapper2'>
@@ -494,10 +492,7 @@ if (mysqli_num_rows($res)>0) {
         echo "
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar'){
-          echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-          <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
-<a class='dropdown-item' href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag<i class='fas fa-dollar-sign sa'></i> </a>      
-</div></a></td>";}
+          echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
           else{ echo" ";}
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
@@ -574,11 +569,7 @@ if (mysqli_num_rows($res)>0) {
         echo "
         <tr>";
         if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
-          echo" <td> <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-          <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
-<a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag <i class='fas fa-dollar-sign sa'></i> </a>
-<a class='dropdown-item' onclick=EditRow($id) href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >kwitantie<i class='fas fa-receipt sa'></i></a>      
-</div></td>";}
+          echo" <td> <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
           else{ echo"";}
                echo "<td>$a</td>          
                 <td>$mat</td>
