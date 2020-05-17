@@ -204,7 +204,7 @@ if (mysqli_num_rows($res)>0) {
 
                      if($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' ) {
                       ?>
-          <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
+          <button class="circle" id="modalActivate" type="button" onclick=ResetForm()  class="btn btn-danger" data-toggle="modal"
             data-target="#exampleModalPreview">
             <img id="addSign"
               src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -221,6 +221,7 @@ if (mysqli_num_rows($res)>0) {
         <!-- CARDS -->
         <div class='container-fluid cont'>
           <div class='card-body'>
+          
             <div class='row' id="data">
               <?php
 $id=$_GET["id"];
@@ -279,7 +280,7 @@ left join taak on  bestedingen.TaakID = taak.ID
         </tr>
         <tr >
         <th id='$idt'>Eind Datum: </th>
-           <td data-target='eindd'> $eindd</td>
+           <td id='naam'> $eindd</td>
         </tr>
         <tr >
         <th>Richting: </th>
@@ -326,11 +327,33 @@ left join taak on  bestedingen.TaakID = taak.ID
 
       </div>
 
+  <!-- Modal -->
+<div class="modal fade top" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Taak</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action=""  name="form" method="POST" style="width:60vw; margin:0 auto">
+      <div class="modal-body" id="form-container">
+       
+      </div>
+     
+    
+    </div>
+    
+  </div>
+  
+</div>
+
        <!-- Modal -->
        <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content"> <?php
+            <div class="modal-content" > <?php
      
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
            ?>
@@ -349,10 +372,11 @@ left join taak on  bestedingen.TaakID = taak.ID
               </div>
               <div class="modal-body">
 
-                <form action="" id="submit" name="form" method="POST" style="width:60vw; margin:0 auto">
+                <form action="" id="" name="form" method="POST" style="width:60vw; margin:0 auto">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
+                      <input type="hidden" name="hid" id="hid">
                         <label for="pwd">Taak Naam:</label>
                         <input type="text" id="naam" class="form-control" name="taak-naam" placeholder="" value='' required>
                       </div>
@@ -388,9 +412,6 @@ left join taak on  bestedingen.TaakID = taak.ID
                             }
                      ?>
                         </select>
-                        <script>
-                          $('.select2').select2();
-                        </script>
                       </div>
                     </div>
                   </div>
@@ -415,7 +436,7 @@ left join taak on  bestedingen.TaakID = taak.ID
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
@@ -450,7 +471,8 @@ left join taak on  bestedingen.TaakID = taak.ID
                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $idr,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
                           mysqli_stmt_execute($stmt);
                           echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
-                         }else{
+                         }
+                         else{
                              mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt, $taaknaam, $omschrijving, $begind, $eindd, $kosten);
                              mysqli_stmt_execute($stmt);
                              echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
@@ -460,6 +482,7 @@ left join taak on  bestedingen.TaakID = taak.ID
                    }
                  
                }
+                     
 ?>
 
      
@@ -511,14 +534,54 @@ left join taak on  bestedingen.TaakID = taak.ID
 <script>
 
 function EditTaak(e){
-alert(e);
-// $('#exampleModalPreview').modal('toggle');
+// alert(e);
+var id=e;
+// alert(e);
+$.ajax({
+type:'post',
+url:'Edit-Taak.php',
+data:{
+  "x":1,
+  "id":id,
+},
+dataType:"text",
+success:function(response){
+  $('#form-container').html(response);
+  $('#exampleModal').modal('toggle');
+}
+});
 
+// $('#exampleModalPreview').modal('toggle');
 }
 
+function edit(e){
 
+  var name = $('#naam1').val();
+  var bdatum = $('#bdatum1').val();
+  var edatum = $('#edatum1').val();
+  var kosten = $('#kosten1').val();
+  var omschrijving = $('#omschrijving1').val();
+  var richting = $('#richting1').val();
+
+  $.ajax({
+      url: 'Edit-Taak.php',
+      type: 'POST',
+      data: {
+      	'update': 1,
+      	'id': e,
+      	'name': name,
+      	'bdatum': bdatum,
+      	'edatum': edatum,
+      	'kosten': kosten,
+      	'omschrijving': omschrijving,
+      	'richting': richting,
+      
+      },
+      success: function(response){
+      	location.reload();
+      }
+  	});		
+}
 </script>
-
-
 </body>
 </html>

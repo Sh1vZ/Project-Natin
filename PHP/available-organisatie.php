@@ -3,7 +3,7 @@ include "dbConn.php";
 
 if(!empty($_POST["organisatie"])) {
     $a=$_POST["organisatie"];
-  $query = "SELECT * FROM organisatie WHERE ID ='" . $_POST["organisatie"] . "'";
+  $query = "SELECT * FROM organisatie WHERE ID ='$a'";
   $result = mysqli_query($conn, $query);
   $user_count = mysqli_num_rows($result);
   if($user_count>0) {

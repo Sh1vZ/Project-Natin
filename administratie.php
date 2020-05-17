@@ -208,9 +208,7 @@ session_start();
         </div> -->
         
 
-        
-
-
+  
         <!-- Modal -->
         <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
