@@ -444,17 +444,21 @@ if($result){
               <table class='table data1 table-hover table-striped'>
                 <thead>
                   <tr id='firstrow'>
-                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
-                                                                    else{ echo" ";}?>
                     <th scope='col'>#</th>
                     <th scope='col'>Diensten</th>
                     <th scope='col'>Organisatie</th>
                     <th scope='col'>Facatuurtype</th>
                     <?php
-                          if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
+                          if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { 
+                            echo"<th scope='col'>Bedrag</th>";
+                            echo"<th scope='col'>acties</th>";
+                          
+                          
+                          }
+                        
                          ?>
 
-                    <!-- <th scope='col'>Actions</th> -->
+              
                   </tr>
                 </thead>
 
@@ -484,31 +488,26 @@ if (mysqli_num_rows($res)>0) {
       $idt=$_GET["idt"];
      
      
-        // $leider=$row[""];
-        // $taak=$row[""];
-        
         $a=$i++;
      
         echo "
         <tr>";
-        if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar'){
-          echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
-          else{ echo" ";}
+        
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
                 <td>$facu</td>";
                 if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                  echo"<td>$bedragr</td>"; } 
+                  echo"<td>$bedragr</td>";
+                  echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
+                  
+                  
+                   } 
                 echo" </tr>"; 
                    
       
                   }
 
-              
-    
-} else {
-   
 }
 
 ?>
@@ -526,27 +525,23 @@ if (mysqli_num_rows($res)>0) {
               <table class='table data1 table-hover table-striped'>
                 <thead>
                   <tr id='firstrow'>
-                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
-                                                                    else{ echo" ";}?>
                     <th scope='col'>#</th>
                     <th scope='col'>Materialen</th>
                     <th scope='col'>Facatuurtype</th>
-                    <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo"<th scope='col'>Bedrag</th>";}else{ echo" ";}
-                           if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo" <th scope='col'>Kwitantie</th>"; } else{ echo"";}?>
+                    <?php 
+                    if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
+                           echo"<th scope='col'>Bedrag</th>";
+                           echo" <th scope='col'>Acties</th>";
+                          }
+                          
+                           ?>
 
-
-                    <!-- <th scope='col'>Actions</th> -->
                   </tr>
                 </thead>
 
                 <?php
                       $idt=$_GET["idt"];
-                      // $bedragr=$row["Bedrag"];
-      
-     
-                                   
+                            
 $stmt="SELECT Materialen,Factuurtype, bID, Bedrag from bestedingen where TaakID =$idt and Materialen IS NOT NULL";
 $res=mysqli_query($conn, $stmt);
 
@@ -561,30 +556,23 @@ if (mysqli_num_rows($res)>0) {
       $id=$_GET["id"];
       $idt=$_GET["idt"];
      
-        // $leider=$row[""];
-        // $taak=$row[""];
-        
+     
         $a=$i++;
      
         echo "
         <tr>";
-        if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
-          echo" <td> <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";}
-          else{ echo"";}
+        
                echo "<td>$a</td>          
                 <td>$mat</td>
                 <td>$facu</td>
                 "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
                   echo"<td>$bedragr</td>";
-                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a></td>";
-                   } else{ echo" ";}
-               
-               
+                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a>  
+                        <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
+                }
                 echo" </tr>"; 
     
 } } 
-
-
 
 ?>
               </table>

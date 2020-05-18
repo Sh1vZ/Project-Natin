@@ -3,7 +3,7 @@ include "dbConn.php";
 
 if (isset($_POST["x"])) {
     $id=$_POST['id'];
-    $sql="SELECT taak.Naam, taak.Omschrijving, taak.BeginDatum, taak.EindDatum, richting.Richting, taak.GeschatteKosten,taak.ID
+    $sql="SELECT taak.Naam, taak.Omschrijving, taak.BeginDatum, taak.EindDatum, richting.Richting,richting.ID as IDR, taak.GeschatteKosten,taak.ID
 from taak
 left join richting on taak.RichtingID = richting.ID WHERE taak.ID=$id";
     $res=mysqli_query($conn, $sql);
@@ -14,6 +14,7 @@ left join richting on taak.RichtingID = richting.ID WHERE taak.ID=$id";
             $begind=$row["BeginDatum"];
             $eindd=$row["EindDatum"];
             $idt=$row["ID"];
+            $idr=$row["IDR"];
             $kosten=$row["GeschatteKosten"];
             $richt=$row["Richting"];
             ?>
@@ -49,7 +50,7 @@ left join richting on taak.RichtingID = richting.ID WHERE taak.ID=$id";
       <div class="form-group">
         <label for="pwd">Richting:</label>
         <select class="form-control fstdropdown-select" id="richting1" name="richting">
-          <option value="<?php echo $idt?>"" disabled selected><?php echo $richt ?></option>
+          <option value="<?php echo $idr?>"  selected><?php echo $richt ?></option>
                           <?php
                              $sql = "SELECT * FROM richting where Richting != 'Other' AND Richting !='$richt'";
                              $result = mysqli_query($conn, $sql);

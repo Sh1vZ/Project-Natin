@@ -155,7 +155,7 @@ session_start();
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
         <div id="addBtn" class="wrapper">
-          <button class="circle button" id="modalActivate" type="button"  data-toggle="modal"
+          <button class="circle button" id="modalActivate" type="button" onclick=foo()  data-toggle="modal"
             data-target="#exampleModalPreview">
             <i id="addSign" class="fas fa-plus fa-lg"></i>
 
@@ -220,7 +220,7 @@ session_start();
                 </button>
               </div>
               <div class="modal-body">
-                <form action="./PHP/registratie-projecten.php" method="POST" style="width:60vw; margin:0 auto">
+                <form action="./PHP/registratie-projecten.php" method="POST" id="form-admin" style="width:60vw; margin:0 auto">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -406,6 +406,14 @@ $(document).ready(function() {
     $('.data1').DataTable({
 });
 });
+
+
+function foo(){
+    $('#form-admin')[0].reset();
+    $('#ac').html(" ");
+    
+}
+
 
 function EditRow(e){
 var naam= $('#'+e).children('td[data-target=naam]').text();

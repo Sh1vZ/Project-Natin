@@ -223,7 +223,7 @@ session_start();
                                                             class="form-control" id="richting" name="richting">
                                                         <datalist id="richting1" style="width: 100px;">
                                                             <?php
-                                                 $sql = "SELECT * FROM richting";
+                                                 $sql = "SELECT * FROM richting where Richting != 'Other'";
                                                  $result = mysqli_query($conn, $sql);
                                                  while ($row = mysqli_fetch_assoc($result)) {
                                                      echo "<option value='".$row['ID'] ." " . "($row[Richting])'>" . $row['Richting'] . "</option>";
@@ -479,8 +479,8 @@ function foo(){
     $('#ag').removeClass('disabled');
     $('#stud')[0].reset();
     $('#stud1')[0].reset();
-    $('#organisatie').html("");
-    $('#richting').html("");
+    $('#organisatie2').html(" ");
+    $('#richting').html(" ");
 }
 
 function Org(){
