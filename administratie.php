@@ -47,13 +47,13 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="home.php">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="">
-        <i class="fas fa-project-diagram"></i>
+        <i class="fas fa-file-medical"></i>
         <?php
         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
@@ -71,7 +71,7 @@ session_start();
            ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-user-edit"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php
@@ -127,17 +127,17 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?> </span>
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
               </div>
@@ -157,9 +157,8 @@ session_start();
         <div id="addBtn" class="wrapper">
           <button class="circle button" id="modalActivate" type="button"  data-toggle="modal"
             data-target="#exampleModalPreview">
-            <img id="addSign"
-              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-              alt="" />
+            <i id="addSign" class="fas fa-plus fa-lg"></i>
+
           </button>
         </div>
       <?php
@@ -179,7 +178,7 @@ session_start();
               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
               <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
               </div>
             </div>
           </div>
@@ -273,7 +272,7 @@ session_start();
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" id="edite" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="edite" name="submit" class="btn btn-success">Submit</button>
                 </form>
               </div>
             </div>
@@ -295,9 +294,9 @@ session_start();
                        Projecten</h5></a>
            <?php } ?>
               <div class='table-responsive-xl'>
-                <table id="" class='table table-hover data1'>
+                <table id="" class='table table-hover table-striped data1'>
                   <thead>
-                    <tr>
+                    <tr id="firstrow" class='tableRows'>
                       <th>#</th>
                       <th>Projectnaam</th>
                       <th style="width:30%">Project Omschrijving</th>
@@ -342,7 +341,7 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='leider'>$anaam $vnaam</td>
                 <td>$status</td>
                 <td class='dropleft'> 
-                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h ' ></i></a>
+                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
     <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
     <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
@@ -374,7 +373,7 @@ if (mysqli_num_rows($res)>0) {
       <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019</span>
+            <span>Copyright &copy; 2019-2020 Natin-AFA. Designed & Developed with ❤</span>
           </div>
         </div>
       </footer>

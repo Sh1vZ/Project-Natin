@@ -42,13 +42,13 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="../home.php">
-          <i class="fas fa-tasks"></i>
+          <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="../administratie.php">
-          <i class="fas fa-project-diagram"></i>
+          <i class="fas fa-file-medical"></i>
           <?php
       
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){
@@ -67,7 +67,7 @@ session_start();
         if ($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder'){ ?>
       <li class="nav-item">
         <a class="nav-link" href="../administratie-personen.php">
-          <i class="fas fa-user-friends"></i>
+          <i class="fas fa-user-plus"></i>
           <span>Registreer Personen</span></a>
       </li>
       <?php
@@ -121,17 +121,17 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['name']?></span>
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profiel
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Uitloggen
                 </a>
               </div>
@@ -206,9 +206,7 @@ if (mysqli_num_rows($res)>0) {
                       ?>
           <button class="circle" id="modalActivate" type="button" onclick=ResetForm()  class="btn btn-danger" data-toggle="modal"
             data-target="#exampleModalPreview">
-            <img id="addSign"
-              src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-              alt="" />
+            <i id="addSign" class="fas fa-plus fa-lg"></i>
           </button>
           <?php
                        }
@@ -261,8 +259,8 @@ left join taak on  bestedingen.TaakID = taak.ID
     <div class='additional'>
       <div class='user-card'>";
       // if($status=="Niet Compleet"){
-        echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon'><i class='fas fa-edit'></i></button></a>
-              <a class='link' href='#'><button class='icon5' onclick=EditTaak($idt) data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>   
+        echo "<a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit'></i></button></a>
+              <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>   
         ";
 
       // }else{
@@ -494,7 +492,7 @@ left join taak on  bestedingen.TaakID = taak.ID
   <footer class="sticky-footer bg-gradient-primary">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Copyright &copy; 2019</span>
+        <span>Copyright &copy; 2019-2020 Natin-AFA. Designed & Developed with ❤</span>
       </div>
     </div>
   </footer>
@@ -521,7 +519,7 @@ left join taak on  bestedingen.TaakID = taak.ID
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="./logout.php">Uitloggen</a>
+          <a class="btn btn-success" href="./logout.php">Logout</a>
         </div>
       </div>
     </div>
@@ -537,6 +535,7 @@ function EditTaak(e){
 // alert(e);
 var id=e;
 // alert(e);
+
 $.ajax({
 type:'post',
 url:'Edit-Taak.php',

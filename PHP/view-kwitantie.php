@@ -1,5 +1,5 @@
 <?php
-require_once "dbConn.php";
+include "dbConn.php";
 session_start();
 ?>
 
@@ -36,7 +36,7 @@ session_start();
 
       <div id="addBtn" class="wrapper1">
         <button onclick="goBack()" class="circle button">
-          <i class="fas fa-chevron-left icon2"></i>
+          <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
       <script>
@@ -94,17 +94,17 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?> </span>
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
               </div>
@@ -191,9 +191,7 @@ if (mysqli_num_rows($res)>0) {
             <div id="addBtn" class="wrapper">
               <button class="circle" id="modalActivate" type="button" class="btn btn-danger" data-toggle="modal"
                 data-target="#exampleModalPreview">
-                <img id="addSign"
-                  src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-                  alt="" />
+                <i id="addSign" class="fas fa-plus fa-lg"></i>
               </button>
             </div>
             <!-- Modal -->
@@ -239,7 +237,7 @@ if (mysqli_num_rows($res)>0) {
                       </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-primary">Submit</button>
+                    <button type="submit" onclick="submitForm()" name="submit1" class="btn btn-success">Submit</button>
                     </form>
                   </div>
                 </div>
@@ -315,7 +313,7 @@ function submitForm() {
       <footer class="sticky-footer bg-gradient-primary">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2019</span>
+            <span>Copyright &copy; 2019-2020 Natin-AFA. Designed & Developed with ❤</span>
           </div>
         </div>
       </footer>
@@ -342,7 +340,7 @@ function submitForm() {
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="./logout.php">Uitloggen</a>
+          <a class="btn btn-success" href="./logout.php">Logout</a>
         </div>
       </div>
     </div>

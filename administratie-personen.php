@@ -47,18 +47,18 @@ session_start();
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
         <a class="nav-link" href="home.php">
-        <i class="fas fa-tasks"></i>
+        <i class="fas fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider my-0">
       <li class="nav-item ">
         <a class="nav-link" href="administratie.php">
-        <i class="fas fa-project-diagram"></i>
+        <i class="fas fa-file-medical"></i>
           <span>Registreer Projecten</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-user-edit"></i>
           <span>Registreer Personen</span></a>
       </li>
       </li>
@@ -99,7 +99,7 @@ session_start();
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-success" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
@@ -113,18 +113,18 @@ session_start();
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?>
                                 </span>
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             </div>
@@ -162,7 +162,7 @@ session_start();
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="./PHP/logout.php">Logout</a>
+                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
                             </div>
                         </div>
                     </div>
@@ -270,7 +270,7 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -352,7 +352,7 @@ session_start();
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -369,9 +369,9 @@ session_start();
                         <div class='card-body'>
                         <h1 class="h3 mb-4 text-gray-800 center">Registreer Personen</h1>
                             <div class='table-responsive-xl'>
-                                <table class='table table-hover data1'>
+                                <table class='table table-striped table-hover data1'>
                                     <thead>
-                                        <tr>
+                                        <tr id="firstrow">
                                             <th scope='col'>#</th>
                                             <th scope='col'>Achternaam</th>
                                             <th scope='col'>Voornaam</th>
@@ -417,7 +417,7 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='richting'>$richting</td>
                 <td data-target='functie'>$fucntie</td>
                 <td data-target='telnum'>$telnum</td>
-                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa'></i></a> </td>
+                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa1'></i></a> </td>
                   </tr>
                   
                 ";

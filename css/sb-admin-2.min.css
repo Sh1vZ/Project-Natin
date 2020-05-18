@@ -17,7 +17,7 @@
     --red: #e74a3b;
     --orange: #fd7e14;
     --yellow: #f6c23e;
-    --green: #1cc88a;
+    --green: #28a745;
     --teal: #20c9a6;
     --cyan: #36b9cc;
     --white: #fff;
@@ -174,15 +174,20 @@ sub {
 sup {
     top: -.5em
 }
+th {
+    color: rgb(255, 255, 255)
+  }
 
 a {
-    color: #4e73df;
+    color: rgb(0,100,0);
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
     background-color: transparent
 }
 
 a:hover {
-    color: #224abe;
+    color: rgb(4, 131, 4);
     text-decoration: underline
 }
 
@@ -402,10 +407,14 @@ h6 {
 
 .h1,
 h1 {
-    font-size: 2.5rem
+    font-size: 2.5rem;
+    padding: 20px;
+    font-family: roboto-regular;
+    src: url('../font/Roboto-Regular.ttf');
+    text-transform: uppercase;
+    word-wrap: break-word;
 }
 
-.h2,
 h2 {
     font-size: 2rem
 }
@@ -1629,6 +1638,22 @@ pre code {
     color: #858796
 }
 
+tr#firstrow {
+    background-color: rgb(84,162,84);
+    border-top-left-radius:.35rem;
+    border-top-right-radius:.35rem;
+    text-transform: uppercase;
+}
+table.dataTable{
+    border-top-left-radius: .35rem;
+    border-top-right-radius: .35rem;
+    overflow: hidden;
+}
+
+/* tr:nth-of-type(even){
+    background-color: #f3f3f3;
+} */
+
 .table td,
 .table th {
     padding: .75rem;
@@ -1981,7 +2006,7 @@ pre code {
     color: #6e707e;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #d1d3e2;
+    border: 1px solid #858796;
     border-radius: .35rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
@@ -2644,14 +2669,14 @@ fieldset:disabled a.btn {
 
 .btn-success {
     color: #fff;
-    background-color: #1cc88a;
-    border-color: #1cc88a
+    background-color: #28a745;
+    border-color: #28a745
 }
 
 .btn-success:hover {
     color: #fff;
-    background-color: #17a673;
-    border-color: #169b6b
+    background-color: #218838;
+    border-color: #218838
 }
 
 .btn-success.focus,
@@ -3160,12 +3185,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #4e73df;
+    color: rgb(135, 169, 107);
     text-decoration: none
 }
 
 .btn-link:hover {
-    color: #224abe;
+    color: rgb(135, 169, 107);
     text-decoration: underline
 }
 
@@ -3472,7 +3497,7 @@ input[type=submit].btn-block {
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #4e73df
+    background-color: rgb(135, 169, 107)
 }
 
 .dropdown-item.disabled,
@@ -3971,7 +3996,7 @@ input[type=submit].btn-block {
     vertical-align: middle;
     background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%235a5c69' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
     background-color: #fff;
-    border: 1px solid #d1d3e2;
+    border: 1px solid #858796;
     border-radius: .35rem;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -4329,7 +4354,7 @@ input[type=submit].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #4e73df
+    background-color: rgb(135, 169, 107)
 }
 
 .nav-fill .nav-item {
@@ -10908,11 +10933,19 @@ a:focus {
 }
 
 .text-gray-800 {
-    color: #5a5c69 !important
+    color: #858796;
+    padding-top: 40px;
+    font-family: "Times New Roman";
+    font-weight: 700;
+    text-transform: uppercase !important
 }
 
 .text-gray-900 {
-    color: #3a3b45 !important
+    color: #858796;
+    padding: 20px;
+    font-family: "Times New Roman";
+    font-weight: 700;
+    text-transform: uppercase !important
 }
 
 .icon-circle {
@@ -11290,6 +11323,7 @@ a:focus {
     height: 2.5rem;
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: 1rem;
     cursor: pointer
 }
 
@@ -11322,9 +11356,9 @@ a:focus {
 .sidebar .sidebar-brand {
     height: 4.375rem;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.7rem;
     font-weight: 800;
-    padding: 1.5rem 1rem;
+    padding: 60px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: .05rem;

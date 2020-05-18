@@ -45,7 +45,7 @@ session_start();
 
       <div id="addBtn" class="wrapper1">
         <button onclick="goBack()" class="circle button">
-          <i class="fas fa-chevron-left icon2"></i>
+          <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
       <script>
@@ -103,17 +103,17 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?> </span>
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
               </div>
@@ -139,15 +139,13 @@ session_start();
            echo"  <div id='addBtn' class='wrapper'>
            <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
              data-target='#exampleModalPreview'>
-             <img id='addSign'
-               src='https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png'
-               />
+            <i id='addSign' class='fas fa-plus fa-lg'></i>
            </button>
          </div>";
          echo" <div id='addBtn' class='wrapper2'>
-         <button class='circle1 button' id='modalActivate' type='button' data-toggle='modal'
+         <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
            data-target='#finishModal'>
-           <i class='fas fa-check fa-2x text-white' id='addSign'></i>
+           <i class='fas fa-check fa-lg' id='addSign'></i>
          </button>
        </div>";
          } else{
@@ -175,7 +173,7 @@ session_start();
               <form action="" method="POST">
                 <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  <button type="submit" name="submit-finish" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="submit-finish" class="btn btn-success">Submit</button>
               </form>
             </div>
           </div>
@@ -197,7 +195,7 @@ session_start();
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="logout.php">Logout</a>
+              <a class="btn btn-success" href="logout.php">Logout</a>
             </div>
           </div>
         </div>
@@ -212,7 +210,7 @@ session_start();
               </button>
             </div>
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -223,7 +221,7 @@ session_start();
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submitBedrag" class="btn btn-primary" chk=<?php $idt ?>>Submit</button>
+                <button type="submit" name="submitBedrag" class="btn btn-success" chk=<?php $idt ?>>Submit</button>
 
               </div>
             </div>
@@ -277,7 +275,7 @@ session_start();
         <div class="tab-content">
           <div class="tab-pane active " id="details">
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -316,14 +314,14 @@ session_start();
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit" class="btn btn-success">Submit</button>
               </form>
             </div>
           </div>
           <!-- ORGANISATIE -->
           <div class="tab-pane fade" id="access-security">
             <div class="modal-body">
-              <form action="" method="POST" style="width:; margin:0 auto">
+              <form action="" method="POST" style="margin:0 auto">
 
                 <div class="row">
                   <div class="col-md-12">
@@ -346,7 +344,7 @@ session_start();
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" name="submit-materialen" class="btn btn-primary">Submit</button>
+              <button type="submit" name="submit-materialen" class="btn btn-success">Submit</button>
               </form>
             </div>
           </div>
@@ -443,9 +441,9 @@ if($result){
           <div class="card-body">
             <h1 class="h4 mb-2 text-gray-800 center">Diensten</h1>
             <div class='table-responsive-xl'>
-              <table class='table data1 table-hover'>
+              <table class='table data1 table-hover table-striped'>
                 <thead>
-                  <tr>
+                  <tr id='firstrow'>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
                     <th scope='col'>#</th>
@@ -525,9 +523,9 @@ if (mysqli_num_rows($res)>0) {
           <div class='card-body'>
             <h1 class="h4 mb-2 text-gray-800 center">Materialen</h1>
             <div class='table-responsive-xl'>
-              <table class='table data1 table-hover'>
+              <table class='table data1 table-hover table-striped'>
                 <thead>
-                  <tr>
+                  <tr id='firstrow'>
                     <?php if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { echo"<th scope='col'>Edit</th>";}
                                                                     else{ echo" ";}?>
                     <th scope='col'>#</th>
@@ -545,7 +543,7 @@ if (mysqli_num_rows($res)>0) {
 
                 <?php
                       $idt=$_GET["idt"];
-                      $bedragr=$row["Bedrag"];
+                      // $bedragr=$row["Bedrag"];
       
      
                                    
@@ -608,7 +606,7 @@ if (mysqli_num_rows($res)>0) {
   <footer class="sticky-footer bg-gradient-primary">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Copyright &copy; 2019</span>
+        <span>Copyright &copy; 2019-2020 Natin-AFA. Designed & Developed with ❤</span>
       </div>
     </div>
   </footer>
