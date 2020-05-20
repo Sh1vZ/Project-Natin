@@ -339,7 +339,7 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='begind'>$begind</td>
                 <td data-target='eindd'>$eindd</td>
                 <td data-target='leider'>$anaam $vnaam</td>
-                <td>$status</td>
+                <td class='".(($status=="OPEN")?"text-success":"text-danger")." font-weight-bold'>$status</td>
                 <td class='dropleft'> 
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>

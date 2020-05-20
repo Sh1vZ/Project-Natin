@@ -499,7 +499,9 @@ if (mysqli_num_rows($res)>0) {
                 <td>$facu</td>";
                 if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
                   echo"<td>$bedragr</td>";
-                  echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
+                  echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                  <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+      <a class='dropdown-item' onclick=EditRow($id) href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
                   
                   
                    } 
@@ -567,8 +569,10 @@ if (mysqli_num_rows($res)>0) {
                 <td>$facu</td>
                 "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
                   echo"<td>$bedragr</td>";
-                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a>  
-                        <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
+                  echo" <td> <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                  <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+      <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i> </a>
+      <a class='dropdown-item' onclick=EditRow($id) href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
                 }
                 echo" </tr>"; 
     
