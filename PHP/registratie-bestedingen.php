@@ -142,7 +142,7 @@ session_start();
          if($status=="Niet Compleet"){
            echo"<h1 class='h3 mb-4 text-gray-800'>Registreer Materialen / Diensten</h1>";
            echo"  <div id='addBtn' class='wrapper'>
-           <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
+           <button class='circle button' onclick=foo() id='modalActivate' type='button' data-toggle='modal'
              data-target='#exampleModalPreview'>
             <i id='addSign' class='fas fa-plus fa-lg'></i>
            </button>
@@ -276,14 +276,15 @@ session_start();
                     </button>
                 </div>
                 <ul class="nav nav-tabs" id="tabContent">
-                    <li class="active"><a class="active" href="#details" data-toggle="tab">Registreer Diensten </a></li>
-                    <li><a href="#access-security" data-toggle="tab">Registreer Materialen</a></li>
+                    <li class="active"><a class="active" id='an' href="#details" data-toggle="tab">Registreer Diensten
+                        </a></li>
+                    <li><a href="#access-security" id='ag' data-toggle="tab">Registreer Materialen</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active " id="details">
                         <div class="modal-body">
-                            <form action="" method="POST" style="margin:0 auto">
+                            <form action="" method="POST" id='dien' style="width:60vw; margin:0 auto">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -298,11 +299,7 @@ session_start();
                             }
                      ?>
                                             </select>
-                                            <script>
-                                            $(document).ready(function() {
-                                                $('.selectpicker').selectpicker();
-                                            })
-                                            </script>
+
                                         </div>
                                     </div>
                                 </div>
@@ -328,8 +325,8 @@ session_start();
                     </div>
                     <!-- ORGANISATIE -->
                     <div class="tab-pane fade" id="access-security">
-                        <div class="modal-body">
-                            <form action="" method="POST" style="margin:0 auto">
+                        <div class="modal-body" >
+                            <form action="" method="POST" id='mat' style="width:60vw; margin:0 auto">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -342,13 +339,15 @@ session_start();
                                 <div class="row">
                                     <div class="col-md-12 mb-2">
                                         <label for="pwd">Aantal:</label>
-                                        <input class="form-control" type="number" name='aantal' placeholder='Aantal' in="0" value="" step="0.1">
+                                        <input class="form-control" type="number" name='aantal' placeholder='Aantal'
+                                            in="0" value="" step="0.1">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-2">
                                         <label for="pwd">Prijs:</label>
-                                        <input class="form-control" type="number" name='prijs' placeholder='Prijs $' in="0" value="" step="0.1">
+                                        <input class="form-control" type="number" name='prijs' placeholder='Prijs $'
+                                            in="0" value="" step="0.1">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -376,12 +375,31 @@ session_start();
 
     <!-- Modal -->
 
+    <!-- Modal -->
+    <div class="modal fade top" id="exampleModalPreview1" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Edit </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                        <div class="modal-body"id="detail">
+                         
+                                           
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Modal -->
+
+
 
 
     <?php
-
-
-
 
 if (isset($_POST["submit"])) {
   $diensten=$_POST["diensten"];
@@ -483,10 +501,7 @@ if($result){
                                     </tr>
                                 </thead>
 
-                                <?php
-
-                      
-                                   
+                                <?php                                  
 $stmt="SELECT taak.Naam, bestedingen.Materialen,bestedingen.Bedrag, bestedingen.bID, bestedingen.DienstenID, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype
 from bestedingen 
 left join taak on bestedingen.TaakID = taak.ID
@@ -561,8 +576,8 @@ if (mysqli_num_rows($res)>0) {
                                         <th scope='col'>Aantal</th>
                                         <th scope='col'>Prijs</th>
                                         <th scope='col'>Bedrag</th>
-                                        <th scope='col'>Acties</th>                 
-                                  </tr>
+                                        <th scope='col'>Acties</th>
+                                    </tr>
                                 </thead>
 
                                 <?php
@@ -580,8 +595,6 @@ if (mysqli_num_rows($res)>0) {
       $prijs=$row["Prijs"];
       $aant=$row["Aantal"];
       $idb=$row["bID"];
-      $idb=$row["bID"];
-      $id=$_GET["id"];
       $idt=$_GET["idt"];
      
      
@@ -591,20 +604,20 @@ if (mysqli_num_rows($res)>0) {
         <tr>";
         
                echo "<td>$a</td>          
-                <td>$mat</td>
-                <td>$facu</td> "; 
+                <td data-target='mat'>$mat</td>
+                <td data-target='fac'>$facu</td> "; 
                 echo"
-                <td>$aant</td>
-                <td>$prijs</td>
+                <td data-target='aant'>$aant</td>
+                <td data-target='prijs'>$prijs</td>
                 <td>$bedragr</td>
                 ";
                 echo"<td>
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
              <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>
-            <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
-            <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
+            <a class='dropdown-item'  href='#' onclick=EditRow($idb) data-role='update' data-id='$idb' >Edit<i class='fas fa-edit sa'></i></a>      
+            <a class='dropdown-item' href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
             <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i> </a>
-            <a class='dropdown-item' onclick=EditRow($id) href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
+            <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
              </div>
                 </td>
                 
@@ -652,7 +665,7 @@ if (mysqli_num_rows($res)>0) {
     <!-- Custom scripts for all pages-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -663,7 +676,39 @@ if (mysqli_num_rows($res)>0) {
         $('.data1').DataTable({
 
         });
+
+
+
+
     });
+
+
+    function foo() {
+        $('#an').removeClass('disabled');
+        $('#ag').removeClass('disabled');
+        $('#mat')[0].reset();
+        $('#dien')[0].reset();
+    }
+
+    function EditRow(e) {
+
+
+        $.ajax({
+            type: 'post',
+            url: 'Edit-Bestedingen.php',
+            data: {
+                "get": 1,
+                "id": e,
+            },
+            dataType: "text",
+            success: function(response) {
+                $('#detail').html(response);
+                $('#exampleModalPreview1').modal('toggle');
+            }
+        });
+
+    }
+
     </script>
 </body>
 

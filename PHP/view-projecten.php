@@ -338,14 +338,10 @@ left join taak on  bestedingen.TaakID = taak.ID
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="" name="form" method="POST" style="width:60vw; margin:0 auto">
                             <div class="modal-body" id="form-container">
 
                             </div>
-
-
                     </div>
-
                 </div>
 
             </div>
@@ -427,11 +423,7 @@ left join taak on  bestedingen.TaakID = taak.ID
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
-                    </div>
-                    </form>
+                            
                 </div>
             </div>
         </div>
