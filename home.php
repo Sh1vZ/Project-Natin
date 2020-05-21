@@ -221,11 +221,11 @@ if (mysqli_num_rows($res)>0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Projecten </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $aant ?>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aant ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-primary"></i>
+                                            <i id="dashboardIcon" class="fas fa-calendar fa-3x text-primary"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -240,11 +240,11 @@ if (mysqli_num_rows($res)>0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Personen</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $aantp ?>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantp ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-success"></i>
+                                            <i id="dashboardIcon" class="fas fa-dollar-sign fa-3x text-success"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -256,19 +256,14 @@ if (mysqli_num_rows($res)>0) {
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Taken
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        <?php echo $aantt ?></div>
-                                                </div>
-
+                                    <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Taken</div>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantt ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-info"></i>
+                                            <i id="dashboardIcon" class="fas fa-clipboard-list fa-3x text-info"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -287,7 +282,7 @@ if (mysqli_num_rows($res)>0) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Taken per Richting</h6>
+                                    <h5 class="m-0 font-weight-bold text-success">Taken per Richting</h5>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -304,7 +299,7 @@ if (mysqli_num_rows($res)>0) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Overview</h6>
+                                    <h5 class="m-0 font-weight-bold text-success">Overview</h5>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
