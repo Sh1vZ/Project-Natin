@@ -179,7 +179,7 @@ th {
   }
 
 a {
-    color: rgb(0,100,0);
+    color: rgb(84,162,84);
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 800;
@@ -10488,9 +10488,9 @@ a.text-secondary:hover {
     color: #60616f !important
 }
 
-.text-success {
+/* .text-success {
     color: #1cc88a !important
-}
+} */
 
 a.text-success:focus,
 a.text-success:hover {
@@ -10937,6 +10937,7 @@ a:focus {
     padding-top: 40px;
     font-family: "Times New Roman";
     font-weight: 700;
+    text-align: center;
     text-transform: uppercase !important
 }
 

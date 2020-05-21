@@ -85,7 +85,7 @@ left join richting on taak.RichtingID = richting.ID WHERE taak.ID=$id";
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" name="Edit-Taak" onclick=edit(<?php echo"$id" ?>) class="btn btn-primary">Save
+        <button type="button" name="Edit-Taak" onclick=edit(<?php echo"$id" ?>) class="btn btn-success">Save
           changes</button>
       </div>
     </div>

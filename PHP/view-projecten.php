@@ -261,8 +261,8 @@ left join taak on  bestedingen.TaakID = taak.ID
     <div class='additional'>
       <div class='user-card'>";
       // if($status=="Niet Compleet"){
-        echo "<a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit'></i></button></a>
-              <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>   
+        echo "<a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit' data-toggle='tooltip' data-placement='bottom' title='Edit'></i></button></a>
+              <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye' data-toggle='tooltip' data-placement='bottom' title='View'></i></button></a>   
         ";
 
       // }else{
@@ -520,33 +520,36 @@ left join taak on  bestedingen.TaakID = taak.ID
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-    <script>
-    function EditTaak(e) {
-        // alert(e);
-        var id = e;
-        // alert(e);
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
+  <script src="../js/tooltip.js"></script>
+<script>
 
-        $.ajax({
-            type: 'post',
-            url: 'Edit-Taak.php',
-            data: {
-                "x": 1,
-                "id": id,
-            },
-            dataType: "text",
-            success: function(response) {
-                $('#form-container').html(response);
-                $('#exampleModal').modal('toggle');
-            }
-        });
+function EditTaak(e){
+// alert(e);
+var id=e;
+// alert(e);
 
-        // $('#exampleModalPreview').modal('toggle');
-    }
+$.ajax({
+type:'post',
+url:'Edit-Taak.php',
+data:{
+  "x":1,
+  "id":id,
+},
+dataType:"text",
+success:function(response){
+  $('#form-container').html(response);
+  $('#exampleModal').modal('toggle');
+}
+});
+
+// $('#exampleModalPreview').modal('toggle');
+}
 
     function edit(e) {
 

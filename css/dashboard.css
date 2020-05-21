@@ -233,7 +233,7 @@ button {
   height: 60px;
   width: 60px;
   display: flex;
-  background:rgb(4, 131, 4);
+  background:rgb(31, 145, 31);
   /* background: linear-gradient(to top, #0fd850 0%, #f9f047 100%); */
   transition: 0.2s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
@@ -351,8 +351,8 @@ li .active {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: rgb(4, 131, 4);
-  border-color: rgb(4, 131, 4);
+  background-color: rgb(71, 158, 71);
+  border-color: rgb(71, 158, 71);
 }
 
 .a {
