@@ -70,6 +70,10 @@ section {
     display: block
 }
 
+#dashboardIcon{
+    padding-right: 30px;
+}
+
 body {
     margin: 0;
     font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -10897,7 +10901,7 @@ a:focus {
 }
 
 .text-xs {
-    font-size: 0.8rem
+    font-size: 1.5rem
 }
 
 .text-lg {
@@ -10938,6 +10942,13 @@ a:focus {
     font-family: "Times New Roman";
     font-weight: 700;
     text-align: center;
+    text-transform: uppercase !important
+}
+
+.dashboardText{
+    color: #858796;
+    font-family: "Times New Roman";
+    font-weight: 700;
     text-transform: uppercase !important
 }
 

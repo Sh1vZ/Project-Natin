@@ -259,8 +259,10 @@ left join taak on  bestedingen.TaakID = taak.ID
     <div class='additional'>
       <div class='user-card'>";
       // if($status=="Niet Compleet"){
-        echo "<a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit' data-toggle='tooltip' data-placement='bottom' title='Edit'></i></button></a>
-              <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye' data-toggle='tooltip' data-placement='bottom' title='View'></i></button></a>   
+        echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye' data-toggle='tooltip' data-placement='top' title='View'></i></button></a>
+              <a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit' data-toggle='tooltip' data-placement='top' title='Edit'></i></button></a>
+              <a class='link' href='#'><button class='icon6' onclick=EditTaak($idt)><i class='fas fa-trash-alt' data-toggle='tooltip' data-placement='top' title='Delete'></i></button></a>
+               
         ";
 
       // }else{
