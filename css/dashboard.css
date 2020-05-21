@@ -359,7 +359,11 @@ li .active {
   transition: 0s !important;
   animation-name: fade-in;
   animation-duration: 0.5s;
+  position: relative;
+  z-index: 99999;
 }
+
+
 
 .sa {
   float: right;

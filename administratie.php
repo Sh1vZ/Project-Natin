@@ -340,11 +340,12 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='eindd'>$eindd</td>
                 <td data-target='leider'>$anaam $vnaam</td>
                 <td>$status</td>
-                <td class='dropleft'> 
+                <td> 
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-                <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
     <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
     <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
     </div>
                 </td> 
                   </tr>
