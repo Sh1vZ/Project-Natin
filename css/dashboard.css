@@ -233,7 +233,7 @@ button {
   height: 60px;
   width: 60px;
   display: flex;
-  background:rgb(4, 131, 4);
+  background:rgb(31, 145, 31);
   /* background: linear-gradient(to top, #0fd850 0%, #f9f047 100%); */
   transition: 0.2s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
@@ -307,19 +307,27 @@ li .active {
 
 .icon {
   float: left;
-  padding-top: 12px;
-  padding-left: 20px;
+  padding-top: 17px;
+  padding-left: 18px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
+  background: none;
+}
+.icon6 {
+  float: left;
+  padding-top: 17px;
+  padding-left: 18px;
+  color: white;
+  font-size: 18px;
   background: none;
 }
 
 .icon5 {
-  float: right;
-  padding-top: 12px;
-  padding-right: 20px;
+  float: left;
+  padding-top: 17px;
+  padding-left: 20px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   background: none;
 }
 
@@ -351,8 +359,8 @@ li .active {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: rgb(4, 131, 4);
-  border-color: rgb(4, 131, 4);
+  background-color: rgb(71, 158, 71);
+  border-color: rgb(71, 158, 71);
 }
 
 <<<<<<< Updated upstream
