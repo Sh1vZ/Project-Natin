@@ -449,13 +449,10 @@ if($result){
                     <th scope='col'>Organisatie</th>
                     <th scope='col'>Facatuurtype</th>
                     <?php
-                          if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { 
-                            echo"<th scope='col'>Bedrag</th>";
-                            echo"<th scope='col'>acties</th>";
-                          
-                          
-                          }
                         
+                          
+                          
+                
                          ?>
 
               
@@ -492,17 +489,12 @@ if (mysqli_num_rows($res)>0) {
      
         echo "
         <tr>";
-        
+          
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
                 <td>$facu</td>";
-                if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                  echo"<td>$bedragr</td>";
-                  echo" <td> <a href='bedrag.php?idd=$idd&idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
-                  
-                  
-                   } 
+                
                 echo" </tr>"; 
                    
       
@@ -529,10 +521,7 @@ if (mysqli_num_rows($res)>0) {
                     <th scope='col'>Materialen</th>
                     <th scope='col'>Facatuurtype</th>
                     <?php 
-                    if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                           echo"<th scope='col'>Bedrag</th>";
-                           echo" <th scope='col'>Acties</th>";
-                          }
+                  
                           
                            ?>
 
@@ -561,15 +550,13 @@ if (mysqli_num_rows($res)>0) {
      
         echo "
         <tr>";
-        
+
+
                echo "<td>$a</td>          
                 <td>$mat</td>
                 <td>$facu</td>
-                "; if($_SESSION['role'] == 'Financieel' and $facu == 'Verekenbaar'or $_SESSION['role'] == 'Beheerder' and $facu == 'Verekenbaar') {
-                  echo"<td>$bedragr</td>";
-                  echo" <td> <a href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>kwitantie</a>  
-                        <a href='bedrag.php?idb=$idb&id=$id&idt=$idt'>Zet bedrag</a></td>";
-                }
+              <td>  <a class='link' href='view-kwitantie.php?idb=$idb&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>  </td>
+                "; 
                 echo" </tr>"; 
     
 } } 

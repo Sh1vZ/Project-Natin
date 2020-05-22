@@ -48,8 +48,8 @@
                          
 
                           <div class="modal-footer">
-                    <button type="submit" name="Close" class="btn btn-secondary" >Close</button>
-                    <button type="submit" name="submitBedrag" class="btn btn-success">Submit</button>
+                    <button type="submit" name="Close" class="btn btn-secondary" >Sluiten</button>
+                    <button type="submit" name="submitBedrag" class="btn btn-success">Opslaan</button>
                    
                   </div>
                 </div>

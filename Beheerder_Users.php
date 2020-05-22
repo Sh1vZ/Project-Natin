@@ -31,37 +31,71 @@ session_start();
 ?>
 
 <body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon ">
-         <img src="./img/natin.png" alt="" style="width:60px;">
-        </div>
-        <div class="sidebar-brand-text mx-3">AFA</div>
-      </a>
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
-        <a class="nav-link" href="Beheerder_Dashboard.php">
-        <i class="fas fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-      <hr class="sidebar-divider my-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="">
-        <i class="fas fa-user-plus"></i>
-          <span>Users</span></a>
-      </li>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon ">
+                    <img src="./img/natin.png" alt="" style="width:60px;">
+                </div>
+                <div class="sidebar-brand-text mx-3">AFA</div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="home.php">
+                    <i class="fas fa-tasks"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item ">
+                <a class="nav-link" href="administratie.php">
+                    <i class="fas fa-tasks"></i>
+                    <?php
+        include "PHP/dbConn.php";
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+           ?>
+     
+          <span>Registreer Projecten</span></a>
+      
+      <?php
+        }else{
+        ?>
+                    <span>Projecten</span></a>
+        <?php } ?>
+            </li>
+            <?php
+        include "PHP/dbConn.php";
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+           ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
         <i class="fas fa-user-edit"></i>
           <span>Registreer Personen</span></a>
       </li>
-      </li>
+      <?php
+        }
+        ?>
+
+
+ <?php
+        if ( $_SESSION['role'] == 'Beheerder'){
+           ?>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="Beheerder_Users.php">
+                    <i class="fas fa-tasks"></i>
+                    <span>Gebruikers</span></a>
+            </li>
+            <?php
+        }
+        ?>
+            </li>
+           
+
 
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -126,14 +160,10 @@ session_start();
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <div class="dropdown-divider"></div>
+              
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Uitloggen
                 </a>
               </div>
             </li>
@@ -161,15 +191,15 @@ session_start();
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
-              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-body">Klik op "Uitloggen" als u gereed bent.</div>
               <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                <a class="btn btn-success" href="./PHP/logout.php">Uitloggen</a>
               </div>
             </div>
           </div>
@@ -264,7 +294,7 @@ session_start();
                       <th style="width:30%">Rollen</th>
                       <th>Telnummer</th>
                       <th>Email</th>
-                      <th>Passwoord</th>
+                      <th>Password</th>
                     </tr>
                   </thead>
                   <tbody>          

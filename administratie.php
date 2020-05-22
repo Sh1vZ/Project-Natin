@@ -55,7 +55,7 @@ session_start();
         <a class="nav-link" href="">
         <i class="fas fa-file-medical"></i>
         <?php
-        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+        if ($_SESSION['role'] == 'Administratie'){
            ?>
      
           <span>Registreer Projecten</span></a>
@@ -67,7 +67,7 @@ session_start();
         <?php } ?>
       </li>
       <?php
-        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+        if ($_SESSION['role'] == 'Administratie'){
            ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
@@ -75,9 +75,28 @@ session_start();
           <span>Registreer Personen</span></a>
       </li>
       <?php
+        } elseif( $_SESSION['role'] == 'Beheerder'){
+        ?>
+         <li class="nav-item">
+        <a class="nav-link" href="administratie-personen.php">
+        <i class="fas fa-user-edit"></i>
+          <span> Personen</span></a>
+      </li>
+        <?php } ?>
+      </li>
+
+      <?php
+        if ( $_SESSION['role'] == 'Beheerder'){
+           ?>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="Beheerder_Users.php">
+                    <i class="fas fa-tasks"></i>
+                    <span>Gebruikers</span></a>
+            </li>
+            <?php
         }
         ?>
-      </li>
 
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -111,7 +130,7 @@ session_start();
                 aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Zoek naar..."
                       aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
@@ -132,14 +151,14 @@ session_start();
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
-                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profiel
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Uitloggen
+                                </a>
               </div>
             </li>
           </ul>
@@ -164,25 +183,7 @@ session_start();
       <?php
       }
       ?>
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-              <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
-              </div>
-            </div>
-          </div>
-        </div>
+     
 
         <!-- Confirm-Delete Modal
         <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -205,6 +206,27 @@ session_start();
             </div>
           </div>
         </div> -->
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="./PHP/logout.php">Uitloggen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         
 
   
@@ -271,8 +293,8 @@ session_start();
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" id="edite" name="submit" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                <button type="submit" id="edite" name="submit" class="btn btn-success">Opslaan</button>
                 </form>
               </div>
             </div>
@@ -304,7 +326,7 @@ session_start();
                       <th>Eind Datum</th>
                       <th>Project Leider</th>
                       <th>Project Status</th>
-                      <th>Acties</th>
+                      <th>Meer opties</th>
                     </tr>
                   </thead>
                   <tbody>          
@@ -343,8 +365,8 @@ if (mysqli_num_rows($res)>0) {
                 <td class='dropleft'> 
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
-    <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
-    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
+    <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'> Taken bekijken <i class='fas fa-eye sa'></i> </a>
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Bewerken<i class='fas fa-edit sa'></i></a>      
     </div>
                 </td> 
                   </tr>

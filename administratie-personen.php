@@ -17,11 +17,14 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/dashboard.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="./vendor/dropdown/fstdropdown.js"></script>
 
 
 </head>
@@ -63,6 +66,18 @@ session_start();
       </li>
       </li>
 
+      <?php
+        if ( $_SESSION['role'] == 'Beheerder'){
+           ?>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="Beheerder_Users.php">
+                    <i class="fas fa-tasks"></i>
+                    <span>Gebruikers</span></a>
+            </li>
+            <?php
+        }
+        ?>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -118,14 +133,9 @@ session_start();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Uitloggen
                                 </a>
                             </div>
                         </li>
@@ -147,26 +157,26 @@ session_start();
                     </button>
                 </div>
 
-                <!-- Logout Modal-->
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="./PHP/logout.php">Uitloggen</a>
                             </div>
                         </div>
                     </div>
                 </div>
+        
 
                 <!-- Modal -->
                 <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
@@ -269,8 +279,8 @@ session_start();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-success">Submit</button>
+                                            data-dismiss="modal">Sluiten</button>
+                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-success">Opslaan</button>
                                         </form>
                                     </div>
                                 </div>
@@ -351,8 +361,8 @@ session_start();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-success">Submit</button>
+                                            data-dismiss="modal">Sluiten</button>
+                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-success">Opslaan</button>
                                         </form>
                                     </div>
                                 </div>
@@ -379,7 +389,7 @@ session_start();
                                             <th scope='col'>Richting</th>
                                             <th scope='col'>Functie</th>
                                             <th scope='col'>Telefoon Nummer</th>
-                                            <th scope='col'>Acties</th>
+                                            <th scope='col'>Meer opties</th>
                                             <!-- <th scope='col'>Actions</th> -->
                                         </tr>
                                     </thead>
@@ -417,17 +427,24 @@ if (mysqli_num_rows($res)>0) {
                 <td data-target='richting'>$richting</td>
                 <td data-target='functie'>$fucntie</td>
                 <td data-target='telnum'>$telnum</td>
-                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa1'></i></a> </td>
-                  </tr>
-                  
-                ";
-    }
-} else {
-    
+                <td class='dropleft'> 
+                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    <a class='dropdown-item' href='./PHP/view-taken.php?id=$id'> Taken bekijken <i class='fas fa-eye sa'></i> </a>
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Bewerken<i class='fas fa-edit sa'></i></a>      
+    </div>
+    </td> 
+    </tr>
+   ";
 }
 
-?>
-                                </table>
+
+} else {
+
+}
+?> 
+                            </tbody>   
+                            </table>
                             </div>
                         </div>
                     </div>

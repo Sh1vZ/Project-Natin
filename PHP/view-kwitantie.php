@@ -163,14 +163,10 @@ if (mysqli_num_rows($res)>0) {
       $foto = $row["Foto"];
     
      
-        echo "
-                 <tr>
-                <td>$taaknaam</td>
-                <td>$InlDatum</td>
-                <td> $foto</td>
-                  </tr>
-                  
-                ";
+        echo " $taaknaam                  
+        ";
+        echo "  $InlDatum";
+        echo '<img id="screen" src="data:image/jpg;base64,".base64_encode($foto)/>';
     }
         
                      

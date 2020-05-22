@@ -138,11 +138,6 @@ session_start();
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profiel
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                   Uitloggen
@@ -157,74 +152,40 @@ session_start();
           <!-- Page Heading -->
           <?php
 $id=$_GET["id"];
-$sql="SELECT project.Naam, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam,project.Status
-from project 
-left join personen on project.ProjectleiderID = personen.ID where project.ID=$id";
+$sql="SELECT bestedingen.DienstenID, bestedingen.TaakID,personen.Achternaam, personen.Voornaam
+From bestedingen
+left join personen on bestedingen.DienstenID = personen.ID
+left join taak on bestedingen.TaakID = taak.ID
+left join project on taak.ProjectID = project.ID
+where personen.ID=$id";
 $res=mysqli_query($conn, $sql);
 if (mysqli_num_rows($res)>0) {
     while ($row=mysqli_fetch_assoc($res)) {
-        $naam=$row['Naam'];
-        $omschr=$row["Omschrijving"];
-        $begind=$row["BeginDatum"];
-        $eindd=$row["EindDatum"];
-        $status=$row["Status"];
         $anaam=$row["Achternaam"];
         $vnaam=$row["Voornaam"];
         // echo "<h3 class='card-title center'>$naam</h5>";
       
-       
-    }
-}
+    }    
 ?>
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $naam ?></h6>
+              <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $anaam, " ", $vnaam ?></h6>
             </div>
-            <div class="card-body">
+            
               <?php
-                echo"<p class='card-text'> $omschr</p>";
- echo"  <table>
- <tr>
- <td>Begin Datum: </td>
-     <td>$begind</td>
- </tr>
- <tr>
- <td>Eind Datum: </td>
-    <td>$eindd</td>
- </tr>
- <tr>
- <td>Project Leider: </td>
-    <td> $vnaam $anaam </td>
- </tr>
- <tr>
- <td>Status: </td>
-    <td>$status</td>
- </tr>
-</table>";
 
 
+    } else { echo" <div class='card shadow mb-4'>
+      <div class='card-header py-3'>
+        <h3 class='m-0 font-weight-bold text-gray-900 center'>Deze persoon heeft nog geen taken verricht </h6>
+      </div>";
+      }
 ?>
             </div>
           </div>
 
         </div>
 
-
-
-        <div id="addBtn" class="wrapper">
-          <?php
-                      include "dbConn.php";
-
-                     if($_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' ) {
-                      ?>
-          <button class="circle" id="modalActivate" type="button" onclick=ResetForm()  class="btn btn-danger" data-toggle="modal"
-            data-target="#exampleModalPreview">
-            <i id="addSign" class="fas fa-plus fa-lg"></i>
-          </button>
-          <?php
-                       }
-                       ?>
-        </div>
 
        
 
@@ -236,103 +197,70 @@ if (mysqli_num_rows($res)>0) {
             <div class='row' id="data">
               <?php
 $id=$_GET["id"];
-$sql="SELECT taak.Naam , taak.Omschrijving, taak.BeginDatum, taak.EindDatum, richting.Richting, taak.Status,taak.ID,taak.GeschatteKosten
-from taak
-left join richting on taak.RichtingID = richting.ID where taak.ProjectID=$id";
+$sql="SELECT bestedingen.DienstenID, bestedingen.TaakID, taak.Naam,taak.Omschrijving, taak.BeginDatum, taak.EindDatum, taak.ProjectID,personen.Achternaam, personen.Voornaam , taak.Status
+From bestedingen
+left join personen on bestedingen.DienstenID = personen.ID
+left join taak on bestedingen.TaakID = taak.ID
+left join project on taak.ProjectID = project.ID
+where DienstenID=$id
+order by Status DeSC";
 $res=mysqli_query($conn,$sql);
 if (mysqli_num_rows($res)>0) {
     while ($row = mysqli_fetch_assoc($res)) {
-        $naam=$row["Naam"];
-        $omschrijving=$row["Omschrijving"];
+        
+      $naam=$row['Naam'];
         $begind=$row["BeginDatum"];
         $eindd=$row["EindDatum"];
         $status=$row["Status"];
-        $idt=$row["ID"];
-        $kosten=$row["GeschatteKosten"];
-        $richt=$row["Richting"];
-        $som= "SELECT SUM(bedrag)as Som From bestedingen WHERE taakID = $idt";
-        $res2=mysqli_query($conn,$som);
-        $row2 = mysqli_fetch_assoc($res2);
-        $Wbedrag=$row2["Som"];
-  
-                     
-        $sql1="SELECT taak.ID , COUNT(bestedingen.TaakID) as aant
-FROM bestedingen
-left join taak on  bestedingen.TaakID = taak.ID
- WHERE TaakID =$idt";
- $res1=mysqli_query($conn,$sql1);
- $row1 = mysqli_fetch_assoc($res1);
- $aant=$row1["aant"];
-
- if (  $_SESSION['role'] == 'Administratie'or $_SESSION['role'] == 'Beheerder' or $_SESSION['role'] == 'Financieel' and $status=='Compleet'){
- 
-        echo"  
+        $omschrijving=$row["Omschrijving"];
+              
+      ?>
+     
 <div class='col-md-6'>
 <div class='card1 green'>
     <div class='additional'>
-      <div class='user-card'>";
-      // if($status=="Niet Compleet"){
-        echo "<a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit'></i></button></a>
-              <a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye'></i></button></a>   
-        ";
-
-      // }else{
-
-      echo"
+      <div class='user-card'>
       <i class='fas fa-file-signature icon1'></i>
       </div>
       <div class='more-info'>
-        <h1>$naam</h1>
+        <?php if ($status == "Niet Compleet"){ ?>
+        <h1 style="color:darkgoldenrod;"> <?php echo " $naam ";?></h1>
+        <?php }else { ?>
+          <h1> <?php echo " $naam ";?></h1>
+        <?php } ?>
         <div class='morefo'>
         <table>
         <tr>
         <th id=''>Begin Datum: </th>
-            <td data-target='begind'>$begind</td>
+            <td data-target='begind'><?php echo "$begind";?></td>
         </tr>
         <tr >
-        <th id='$idt'>Eind Datum: </th>
-           <td id='naam'> $eindd</td>
+        <th>Eind Datum: </th>
+           <td id='naam'><?php echo " $eindd";?></td>
         </tr>
-        <tr >
-        <th>Richting: </th>
-           <td> $richt</td>
-        </tr>  
-        <tr>
-        <th>Aantal Bestedingen: </th>
-           <td> $aant</td>
-        </tr>  
-        <tr >
-        <th>GeschatteKosten: </th>
-           <td> SRD $kosten</td>
-        </tr> ";
-      
-                     if($_SESSION['role'] == 'Financieel'or $_SESSION['role'] == 'Beheerder') {
-                     echo" <tr>
-                      <td>Werkelijke kosten: </td>
-                         <td>SRD $Wbedrag</td>
-                      </tr> ";
-                     }
-  echo"
         <tr>
         <th>Status: </th>
-           <td> $status</td>
+           <td><?php echo " $status ";?></td>
         </tr>  
     </table>
         </div>
       </div>
     </div>
     <div class='general'>
-      <h1>$naam</h1>
-      <p class= 'txt'> $omschrijving </p>
+    <?php if ($status == "Niet Compleet"){ ?>
+        <h1 style="color:darkgoldenrod;"> <?php echo " $naam ";?></h1>
+        <?php }else { ?>
+          <h1> <?php echo " $naam ";?></h1>
+        <?php } ?>
+
+        <p class='txt'><?php echo " $omschrijving ";?> </p>
       <span class='more'>Hover voor meer info</span>
     </div>
-  </div>
-</div> 
-";
-    }}
+</div>
+</div>
 
-?>
-              <?php }?> </div>
+<?php }} ?>
+             </div>
           </div>
         </div>
 
@@ -414,7 +342,7 @@ left join taak on  bestedingen.TaakID = taak.ID
                       <div class="form-group">
                         <label for="pwd">Richting:</label>
                         <select class="form-control fstdropdown-select" id="richting" name="richting">
-                          <option value="" disabled selected>Kies richting</option>
+                          <option value="" disabled selected>Select your option</option>
                           <?php
                              $sql = "SELECT * FROM richting where Richting != 'Other'";
                              $result = mysqli_query($conn, $sql);
@@ -446,8 +374,8 @@ left join taak on  bestedingen.TaakID = taak.ID
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
-                <button type="submit" name="submit1" class="btn btn-primary">Opslaan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submit1" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
@@ -520,25 +448,23 @@ left join taak on  bestedingen.TaakID = taak.ID
   </a>
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
-                                <a class="btn btn-primary" href="logout.php">Uitloggen</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-success" href="./logout.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

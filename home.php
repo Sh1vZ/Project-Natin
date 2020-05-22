@@ -12,6 +12,8 @@
     <title>Natin-AFA</title>
 
     <!-- Custom fonts for this template-->
+     
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -27,7 +29,7 @@
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./vendor/dropdown/fstdropdown.css">
     <script src="./vendor/dropdown/fstdropdown.js"></script>
-</head>
+
 <?php
 include "./PHP/dbConn.php";
 session_start();
@@ -43,7 +45,7 @@ session_start();
                 <div class="sidebar-brand-icon ">
                     <img src="./img/natin.png" alt="" style="width:60px;">
                 </div>
-                <div class="sidebar-brand-text mx-3">AFA</div>
+                <div class="sidebar-brand-text mx-3"> AFA </div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -72,7 +74,7 @@ session_start();
             </li>
             <?php
         include "PHP/dbConn.php";
-        if ($_SESSION['role'] == 'Administratie'){
+        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
            ?>
       <li class="nav-item">
         <a class="nav-link" href="administratie-personen.php">
@@ -82,8 +84,22 @@ session_start();
       <?php
         }
         ?>
-            </li>
 
+
+ <?php
+        if ( $_SESSION['role'] == 'Beheerder'){
+           ?>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="Beheerder_Users.php">
+                    <i class="fas fa-tasks"></i>
+                    <span>Gebruikers</span></a>
+            </li>
+            <?php
+        }
+        ?>
+            </li>
+           
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -138,14 +154,10 @@ session_start();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
+                            
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Uitloggen
                                 </a>
                             </div>
                         </li>
@@ -166,20 +178,21 @@ session_start();
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="./PHP/logout.php">Uitloggen</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="container-fluid">
                     <!-- Content Row -->
@@ -276,6 +289,8 @@ if (mysqli_num_rows($res)>0) {
                         </div>
 
 
+                        
+
                     </div>
 
                     <!-- Content Row -->
@@ -287,35 +302,69 @@ if (mysqli_num_rows($res)>0) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Taken per Richting</h6>
+                                    <button class="m-0 font-weight-bold text-primary" onclick="showGraph()">Taken per Richting</button>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
+                                    
+                        
                                     <canvas id="graphCanvas" style="display: block; width: 1037px; height: 320px;"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                       
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+        
+
+                        <?php
+      
+      if ($_SESSION['role'] == 'Financieel'or $_SESSION['role'] == 'Beheerder'){ ?>
+
+
+<div class="col-xl-8 col-lg-7">
+ <div class="card shadow mb-4">
+<!-- Card Header - Dropdown -->
+ <div
+ class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+<button class="m-0 font-weight-bold text-primary" onclick="showGraph2()">Bestedingen per maand</button>
+</div>
+                                <!-- Card Body -->
+ <div class="card-body">
+ <div class="chart-area">                
+
+                     
+ <canvas id="graphCanvas2" style="display: block; width: 1037px; height: 320px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+                    </div>
+
+                              <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Overview</h6>
+                                    <button class="m-0 font-weight-bold text-primary" onclick="showGraph3()">Bestedingen per jaar</button>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                    <div class="chart-area">
+                                    <canvas id="graphCanvas3" style="display: block; width: 1037px; height: 320px;"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+</div>
                     </div>
 
+                        <?php } ?>
+                          
+                       
+                    
                     <!-- Content Row -->
                 </div>
 
@@ -408,6 +457,108 @@ if (mysqli_num_rows($res)>0) {
             }
         }
         </script>
+
+<script>
+        $(document).ready(function () {
+            showGraph2();
+        });
+
+
+        function showGraph2()
+        {
+            {
+                $.post("./PHP/overview2.php",
+                function (data)
+                {
+                    // console.log(data);
+                    var marks = [];
+                    var datum = [];
+
+                    for (var i in data) {
+                        marks.push(data[i].bedrag);
+                        datum.push(data[i].eind);
+                    }
+
+                    var chartdata = {
+                        labels: datum,
+                        datasets: [
+                            {
+                                label: 'Bestedingen',
+                                backgroundColor: '#1cc88a',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#137552',
+                                hoverBorderColor: '#666666',
+                                data: marks
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas2");
+
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'line',
+                        data: chartdata,
+                        animation:{
+                        animateScale:true
+                        }
+                    });
+                });
+            }
+        }
+        </script>
+
+
+<script>
+        $(document).ready(function () {
+            showGraph3();
+        });
+
+
+        function showGraph3()
+        {
+            {
+                $.post("./PHP/overview3.php",
+                function (data)
+                {
+                    // console.log(data);
+                    var marks = [];
+                    var datum = [];
+
+                    for (var i in data) {
+                        marks.push(data[i].bedrag);
+                        datum.push(data[i].eind);
+                    }
+
+                    var chartdata = {
+                        labels: datum,
+                        datasets: [
+                            {
+                                label: 'Bestedingen',
+                                backgroundColor: '#1cc88a',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#137552',
+                                hoverBorderColor: '#666666',
+                                data: marks
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas3");
+
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'bar',
+                        data: chartdata,
+                        animation:{
+                        animateScale:true
+                        }
+                    });
+                });
+            }
+        }
+        </script>
+        
+        
+        
         
 </body>
 
