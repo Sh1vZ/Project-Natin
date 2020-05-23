@@ -361,7 +361,7 @@ if (mysqli_num_rows($res) > 0) {
                     <!-- Content Row -->
                 </div>
 
-
+      </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
