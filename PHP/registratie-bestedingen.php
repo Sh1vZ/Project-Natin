@@ -33,6 +33,7 @@
 <?php
 include "dbConn.php";
 session_start();
+$id=$_GET["id"];
 ?>
 
 <body id="page-top">
@@ -46,14 +47,12 @@ session_start();
             </li>
 
             <div id="addBtn" class="wrapper1">
-                <button onclick="goBack()" class="circle button">
+                <button onclick="goBack(<?=$id?>)" class="circle button">
                     <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
                 </button>
             </div>
             <script>
-            function goBack() {
-                window.location = 'view-projecten.php?id=<?php $id=$_GET["id"]; echo"$id";?>';
-            }
+
             </script>
 
 
@@ -230,7 +229,6 @@ session_start();
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" name="submitBedrag" class="btn btn-success"
                                     chk=<?php $idt ?>>Submit</button>
-
                             </div>
                         </div>
                     </div>
@@ -325,7 +323,7 @@ session_start();
                     </div>
                     <!-- ORGANISATIE -->
                     <div class="tab-pane fade" id="access-security">
-                        <div class="modal-body" >
+                        <div class="modal-body">
                             <form action="" method="POST" id='mat' style="width:60vw; margin:0 auto">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -386,15 +384,18 @@ session_start();
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                        <div class="modal-body"id="detail">
-                         
-                                           
-                    </div>
+                <div class="modal-body" id="detail">
+
+
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- Modal -->
+
+
+    
 
 
 
@@ -538,14 +539,13 @@ if (mysqli_num_rows($res)>0) {
                   echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                   <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
       <a class='dropdown-item' onclick=EditRow($id) href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
-                  
-                  
+
                    } 
                    echo"<td>
                    <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Edit<i class='fas fa-edit sa'></i></a>      
-    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
+    <a class='dropdown-item' onclick=EditRowDienst($idb) href='#'>Edit<i class='fas fa-edit sa'></i></a>      
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update'>Delete<i class='fas fa-trash-alt sa'></i></a>      
     </div>
                    
                    
@@ -614,7 +614,7 @@ if (mysqli_num_rows($res)>0) {
                 echo"<td>
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
              <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>
-            <a class='dropdown-item'  href='#' onclick=EditRow($idb) data-role='update' data-id='$idb' >Edit<i class='fas fa-edit sa'></i></a>      
+            <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Edit<i class='fas fa-edit sa'></i></a>      
             <a class='dropdown-item' href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
             <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i> </a>
             <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
@@ -664,6 +664,7 @@ if (mysqli_num_rows($res)>0) {
 
     <!-- Custom scripts for all pages-->
     <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../js/functions.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -671,45 +672,7 @@ if (mysqli_num_rows($res)>0) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('.data1').DataTable({
 
-        });
-
-
-
-
-    });
-
-
-    function foo() {
-        $('#an').removeClass('disabled');
-        $('#ag').removeClass('disabled');
-        $('#mat')[0].reset();
-        $('#dien')[0].reset();
-    }
-
-    function EditRow(e) {
-
-
-        $.ajax({
-            type: 'post',
-            url: 'Edit-Bestedingen.php',
-            data: {
-                "get": 1,
-                "id": e,
-            },
-            dataType: "text",
-            success: function(response) {
-                $('#detail').html(response);
-                $('#exampleModalPreview1').modal('toggle');
-            }
-        });
-
-    }
-
-    </script>
 </body>
 
 </html>

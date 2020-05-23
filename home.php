@@ -21,7 +21,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/dashboard.css">
@@ -56,32 +56,32 @@ session_start();
             <hr class="sidebar-divider my-0">
             <li class="nav-item ">
                 <a class="nav-link" href="administratie.php">
-                <i class="fas fa-file-medical"></i>
+                    <i class="fas fa-file-medical"></i>
                     <?php
-        include "PHP/dbConn.php";
-        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
-           ?>
-     
-          <span>Registreer Projecten</span></a>
-      
-      <?php
-        }else{
-        ?>
-                    <span>Projecten</span></a>
-        <?php } ?>
+include "PHP/dbConn.php";
+if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
+    ?>
+
+                    <span>Registreer Projecten</span></a>
+
+                <?php
+} else {
+    ?>
+                <span>Projecten</span></a>
+                <?php }?>
             </li>
             <?php
-        include "PHP/dbConn.php";
-        if ($_SESSION['role'] == 'Administratie'){
-           ?>
-      <li class="nav-item">
-        <a class="nav-link" href="administratie-personen.php">
-        <i class="fas fa-user-edit"></i>
-          <span>Registreer Personen</span></a>
-      </li>
-      <?php
-        }
-        ?>
+include "PHP/dbConn.php";
+if ($_SESSION['role'] == 'Administratie') {
+    ?>
+            <li class="nav-item">
+                <a class="nav-link" href="administratie-personen.php">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Registreer Personen</span></a>
+            </li>
+            <?php
+}
+?>
             </li>
 
 
@@ -101,7 +101,7 @@ session_start();
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                  
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -131,7 +131,7 @@ session_start();
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name']?>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name'];?>
                                 </span>
                                 <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
@@ -186,29 +186,27 @@ session_start();
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
                         <?php
-$stmt="SELECT COUNT(ID) as aantal from project";
-$res=mysqli_query($conn, $stmt);
-if (mysqli_num_rows($res)>0) {
-    while ($row=mysqli_fetch_assoc($res)) {
-        $aant=$row['aantal'];
+$stmt = "SELECT COUNT(ID) as aantal from project";
+$res  = mysqli_query($conn, $stmt);
+if (mysqli_num_rows($res) > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $aant = $row['aantal'];
     }
 }
 
-
-$stmt2="SELECT COUNT(ID) as aantal from taak";
-$res=mysqli_query($conn, $stmt2);
-if (mysqli_num_rows($res)>0) {
-    while ($row=mysqli_fetch_assoc($res)) {
-        $aantt=$row['aantal'];
+$stmt2 = "SELECT COUNT(ID) as aantal from taak";
+$res   = mysqli_query($conn, $stmt2);
+if (mysqli_num_rows($res) > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $aantt = $row['aantal'];
     }
 }
 
-
-$stmt3="SELECT COUNT(ID) as aantal from personen";
-$res=mysqli_query($conn, $stmt3);
-if (mysqli_num_rows($res)>0) {
-    while ($row=mysqli_fetch_assoc($res)) {
-        $aantp=$row['aantal'];
+$stmt3 = "SELECT COUNT(ID) as aantal from personen";
+$res   = mysqli_query($conn, $stmt3);
+if (mysqli_num_rows($res) > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $aantp = $row['aantal'];
     }
 }
 
@@ -221,7 +219,7 @@ if (mysqli_num_rows($res)>0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Projecten </div>
-                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aant ?>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aant; ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -240,7 +238,7 @@ if (mysqli_num_rows($res)>0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Personen</div>
-                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantp ?>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantp; ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -256,10 +254,10 @@ if (mysqli_num_rows($res)>0) {
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
+                                        <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Taken</div>
-                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantt ?>
+                                            <div class="h2 mb-0 font-weight-bold dashboardText"><?php echo $aantt; ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -287,7 +285,8 @@ if (mysqli_num_rows($res)>0) {
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                    <canvas id="graphCanvas" style="display: block; width: 1037px; height: 320px;"></canvas>
+                                        <canvas id="graphCanvas"
+                                            style="display: block; width: 1037px; height: 320px;"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -342,10 +341,8 @@ if (mysqli_num_rows($res)>0) {
     <script src="vendor/jquery/jquery.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -355,20 +352,18 @@ if (mysqli_num_rows($res)>0) {
 
 
 
-      <script>
-        $(document).ready(function () {
-            showGraph();
-        });
+    <script>
+    $(document).ready(function() {
+        showGraph();
+    });
 
 
-        function showGraph()
+    function showGraph() {
         {
-            {
-                $.post("./PHP/overview.php",
-                function (data)
-                {
+            $.post("./PHP/overview.php",
+                function(data) {
                     // console.log(data);
-                     var name = [];
+                    var name = [];
                     var marks = [];
 
                     for (var i in data) {
@@ -378,16 +373,14 @@ if (mysqli_num_rows($res)>0) {
 
                     var chartdata = {
                         labels: name,
-                        datasets: [
-                            {
-                                label: 'Aantal Taken',
-                                backgroundColor: '#1cc88a',
-                                borderColor: '#46d5f1',
-                                hoverBackgroundColor: '#137552',
-                                hoverBorderColor: '#666666',
-                                data: marks
-                            }
-                        ]
+                        datasets: [{
+                            label: 'Aantal Taken',
+                            backgroundColor: '#1cc88a',
+                            borderColor: '#46d5f1',
+                            hoverBackgroundColor: '#137552',
+                            hoverBorderColor: '#666666',
+                            data: marks
+                        }]
                     };
 
                     var graphTarget = $("#graphCanvas");
@@ -395,15 +388,15 @@ if (mysqli_num_rows($res)>0) {
                     var barGraph = new Chart(graphTarget, {
                         type: 'bar',
                         data: chartdata,
-                        animation:{
-                        animateScale:true
+                        animation: {
+                            animateScale: true
                         }
                     });
                 });
-            }
         }
-        </script>
-        
+    }
+    </script>
+
 </body>
 
 </html>

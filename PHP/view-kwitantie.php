@@ -40,8 +40,8 @@ session_start();
       <script>
         function goBack() {
           window.location = 'registratie-bestedingen.php?id=<?php $id = $_GET["id"];
-                                                            echo "$id"; ?>&idt=<?php $idt = $_GET["idt"];
-                                                                                                    echo "$idt"; ?>';
+echo "$id";?>&idt=<?php $idt                                          = $_GET["idt"];
+echo "$idt";?>';
         }
       </script>
 
@@ -89,7 +89,7 @@ session_start();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['name'] ?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name'];?> </span>
                 <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
@@ -113,24 +113,23 @@ session_start();
         <div class="container-fluid">
           <!-- Page Heading -->
           <?php
-          $idb = $_GET["idb"];
-          $sql = "SELECT * FROM Bestedingen WHERE bID=$idb";
-          $res = mysqli_query($conn, $sql);
-          if (mysqli_num_rows($res) > 0) {
-            while ($row = mysqli_fetch_assoc($res)) {
-              $Mat = $row['Materialen'];
+$idb = $_GET["idb"];
+$sql = "SELECT * FROM Bestedingen WHERE bID=$idb";
+$res = mysqli_query($conn, $sql);
+if (mysqli_num_rows($res) > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $Mat = $row['Materialen'];
 
-              // echo "<h3 class='card-title center'>$naam</h5>";
+        // echo "<h3 class='card-title center'>$naam</h5>";
 
-
-            }
-          }
-          ?>
+    }
+}
+?>
 
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $Mat ?></h6>
+              <h3 class="m-0 font-weight-bold text-gray-900 center"><?php echo $Mat; ?></h6>
             </div>
 
           </div>
@@ -147,30 +146,29 @@ session_start();
                   </tr>
                 </thead>
                 <tbody>
-              
+
                   <?php
-                $idb = $_GET["idb"];
-                $sql = "SELECT * FROM kwitantie WHERE BestedingenID=$idb";
-                $res = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($res) > 0) {
-                  while ($row = mysqli_fetch_assoc($res)) {
-                    
-                    $taaknaam = $row["WerkelijkeBedrag"];
-                    $InlDatum = $row["IngeleverdDatum"];
-                    $foto = $row["Foto"];
-                    
-                    
-                    echo "
+$idb = $_GET["idb"];
+$sql = "SELECT * FROM kwitantie WHERE BestedingenID=$idb";
+$res = mysqli_query($conn, $sql);
+if (mysqli_num_rows($res) > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+
+        $taaknaam = $row["WerkelijkeBedrag"];
+        $InlDatum = $row["IngeleverdDatum"];
+        $foto     = $row["Foto"];
+
+        echo "
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
                     <td><img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></td>
                     </tr>
-                    
+
                     ";
-                  }
-                }
-                ?>
+    }
+}
+?>
               </tbody>
             </table>
           </form>
@@ -251,37 +249,36 @@ function submitForm() {
   // $('form[name="form"]').submit();
   // $('input[type="text"], textarea').val('');
   document.submit.reset();
-  
+
 }
  </script> -->
   </div>
   <?php
-  if (isset($_POST['submitKwitantie'])) {
+if (isset($_POST['submitKwitantie'])) {
 
-    $bedrag = $_POST['bedrag'];
+    $bedrag   = $_POST['bedrag'];
     $InlDatum = $_POST['Idatum'];
-    $foto = $_FILES["image"];
-    $idb = $_GET["idb"];
-    
-    $filename = $foto['name'];
-    $filetmp = $foto['tmp_name'];
+    $foto     = $_FILES["image"];
+    $idb      = $_GET["idb"];
 
-    $fileext = explode('.', $filename );
+    $filename = $foto['name'];
+    $filetmp  = $foto['tmp_name'];
+
+    $fileext   = explode('.', $filename);
     $filecheck = strtolower(end($fileext));
 
-    $fileextstored = array('png', 'jpg','jpeg');
+    $fileextstored = array('png', 'jpg', 'jpeg');
 
-    if(in_array($filecheck, $fileextstored)){
+    if (in_array($filecheck, $fileextstored)) {
 
-      $sql = "INSERT INTO kwitantie (BestedingenID, WerkelijkeBedrag , IngeleverdDatum , Foto) 
+        $sql = "INSERT INTO kwitantie (BestedingenID, WerkelijkeBedrag , IngeleverdDatum , Foto)
       VALUES ('$idb','$bedrag', '$InlDatum','file_get_contents($filetmp)')";
-      $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
     }
 
-  }
+}
 
-
-  ?>
+?>
 
 
   </div>

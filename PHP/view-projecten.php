@@ -23,6 +23,9 @@ session_start();
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../vendor/dropdown/fstdropdown.css">
     <script src="../vendor/dropdown/fstdropdown.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 </head>
 
 <body id="page-top">
@@ -263,7 +266,7 @@ left join taak on  bestedingen.TaakID = taak.ID
       // if($status=="Niet Compleet"){
         echo "<a class='link' href='registratie-bestedingen.php?id=$id&idt=$idt'><button class='icon5'  data-role='update' data-id='$idt'><i class='fas fa-eye' data-toggle='tooltip' data-placement='top' title='View'></i></button></a>
               <a class='link' href='#'><button class='icon' onclick=EditTaak($idt)><i class='fas fa-edit' data-toggle='tooltip' data-placement='top' title='Edit'></i></button></a>
-              <a class='link' href='#'><button class='icon6' onclick=EditTaak($idt)><i class='fas fa-trash-alt' data-toggle='tooltip' data-placement='top' title='Delete'></i></button></a>
+              <a class='link' href='#'><button class='icon6' onclick=DeleteTaak($idt)><i class='fas fa-trash-alt' data-toggle='tooltip' data-placement='top' title='Delete'></i></button></a>
                
         ";
 
@@ -340,9 +343,9 @@ left join taak on  bestedingen.TaakID = taak.ID
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div class="modal-body" id="form-container">
+                        <div class="modal-body" id="form-container">
 
-                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -352,86 +355,90 @@ left join taak on  bestedingen.TaakID = taak.ID
             <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content"> 
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Taken</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="" id="" name="form" method="POST" >
-                        <div class="modal-body">
-                            <div class="modal-body" style="width:60vw; margin:0 auto">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="pwd">Taak Naam:</label>
-                                            <input type="text" id="naam" class="form-control" name="taak-naam"
-                                                placeholder="" value='' required>
+                        <form action="" id="" name="form" method="POST">
+                            <div class="modal-body">
+                                <div class="modal-body" style="width:60vw; margin:0 auto">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pwd">Taak Naam:</label>
+                                                <input type="text" id="naam" class="form-control" name="taak-naam"
+                                                    placeholder="" value='' required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pwd">Begin Datum:</label>
-                                            <input type="date" id="bdatum" class="form-control" name="datum-begin"
-                                                placeholder="Begin Datum" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pwd">Begin Datum:</label>
+                                                <input type="date" id="bdatum" class="form-control" name="datum-begin"
+                                                    placeholder="Begin Datum" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="form-group">
+                                                <label for="pwd">Eind Datum:</label>
+                                                <input type="date" id="edatum" class="form-control" name="datum-eind"
+                                                    placeholder="Begin Datum" required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-2">
-                                        <div class="form-group">
-                                            <label for="pwd">Eind Datum:</label>
-                                            <input type="date" id="edatum" class="form-control" name="datum-eind"
-                                                placeholder="Begin Datum" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="pwd">Richting:</label>
-                                            <select class="form-control fstdropdown-select" id="richting"
-                                                name="richting">
-                                                <option value="" disabled selected>Select your option</option>
-                                                <?php
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pwd">Richting:</label>
+                                                <select class="form-control selectpicker" title="Kies Leider"
+                                                    data-live-search="true" id="richting"
+                                                    name="richting">
+                                                    <?php
                              $sql = "SELECT * FROM richting where Richting != 'Other'";
                              $result = mysqli_query($conn, $sql);
                               while ($row = mysqli_fetch_assoc($result)) {
                               echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
                             }
                      ?>
-                                            </select>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="pwd">Geschatte Kosten:</label>
-                                            <input type="number" class="form-control" id="kosten"
-                                                name="geschatte-kosten" placeholder="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pwd">Geschatte Kosten:</label>
+                                                <input type="number" class="form-control" id="kosten"
+                                                    name="geschatte-kosten" placeholder="">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-12 mb-2">
-                                        <div class="form-group">
-                                            <label for="pwd">Taak Omschrijving:</label>
-                                            <textarea class="form-control" id="omschrijving" name="omschrijving"
-                                                placeholder="Voer in..." rows="3"></textarea>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <label for="pwd">Taak Omschrijving:</label>
+                                                <textarea class="form-control" id="omschrijving" name="omschrijving"
+                                                    placeholder="Voer in..." rows="3"></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id='' name="submit1" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-                          </div>
-        <!-- Modal -->
-        <?php
+    </div>
+    <!-- Modal -->
+    <?php
                if (isset($_POST["submit1"])) {
                    $taaknaam=$_POST["taak-naam"];
                    $begind=$_POST["datum-begin"];
@@ -458,12 +465,16 @@ left join taak on  bestedingen.TaakID = taak.ID
                          if(empty($richt)){
                           mysqli_stmt_bind_param($stmt, "iissssi", $id, $idr,$taaknaam, $omschrijving, $begind, $eindd,$kosten);
                           mysqli_stmt_execute($stmt);
-                          echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                          echo"<script> 
+                          sessionStorage.setItem('Submit', true);
+                          window.location = 'view-projecten.php?id=$id'</script>";
                          }
                          else{
                              mysqli_stmt_bind_param($stmt, "iissssi", $id, $richt, $taaknaam, $omschrijving, $begind, $eindd, $kosten);
                              mysqli_stmt_execute($stmt);
-                             echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+                             echo"<script> 
+                             sessionStorage.setItem('Submit', true);
+                             window.location = 'view-projecten.php?id=$id'</script>";
                          }
                        }
                        mysqli_stmt_close($stmt);
@@ -514,66 +525,22 @@ left join taak on  bestedingen.TaakID = taak.ID
             </div>
         </div>
     </div>
-  </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom scripts for all pages-->
-  <script src="../js/sb-admin-2.min.js"></script>
-  <script src="../js/tooltip.js"></script>
-<script>
-
-function EditTaak(e){
-// alert(e);
-var id=e;
-// alert(e);
-
-$.ajax({
-type:'post',
-url:'Edit-Taak.php',
-data:{
-  "x":1,
-  "id":id,
-},
-dataType:"text",
-success:function(response){
-  $('#form-container').html(response);
-  $('#exampleModal').modal('toggle');
-}
-});
-
-// $('#exampleModalPreview').modal('toggle');
-}
-
-    function edit(e) {
-
-        var name = $('#naam1').val();
-        var bdatum = $('#bdatum1').val();
-        var edatum = $('#edatum1').val();
-        var kosten = $('#kosten1').val();
-        var omschrijving = $('#omschrijving1').val();
-        var richting = $('#richting1').val();
-
-        $.ajax({
-            url: 'Edit-Taak.php',
-            type: 'POST',
-            data: {
-                'update': 1,
-                'id': e,
-                'name': name,
-                'bdatum': bdatum,
-                'edatum': edatum,
-                'kosten': kosten,
-                'omschrijving': omschrijving,
-                'richting': richting,
-
-            },
-            success: function(response) {
-                location.reload();
-            }
-        });
-    }
-    </script>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../js/tooltip.js"></script>
+    <script src="../js/functions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="../vendor/bootbox.js"></script>
+   
 </body>
 
 </html>

@@ -1,16 +1,14 @@
 <?php
 include "dbConn.php";
 
-
 if (isset($_POST["submit"])) {
-    $projectnaam=$_POST["project-naam"];
-    $begind=$_POST["datum-begin"];
-    $eindd=$_POST["datum-eind"];
-    $omschrijving=$_POST["omschrijving"];
-    $leider=$_POST["project-leider"];
+    $projectnaam  = $_POST["project-naam"];
+    $begind       = $_POST["datum-begin"];
+    $eindd        = $_POST["datum-eind"];
+    $omschrijving = $_POST["omschrijving"];
+    $leider       = $_POST["project-leider"];
 
-
-    if (empty($projectnaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
+    if (empty($projectnaam) || empty($begind) || empty($eindd) || empty($omschrijving)) {
         header("Location:../administratie.php?error=emptyfields");
         exit();
     } else {
@@ -20,10 +18,11 @@ if (isset($_POST["submit"])) {
             header("Location:../administratie.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ssssi", $projectnaam, $omschrijving, $begind, $eindd,$leider);
+            mysqli_stmt_bind_param($stmt, "ssssi", $projectnaam, $omschrijving, $begind, $eindd, $leider);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie.php?signup=success");
+            header("Location:../administratie.php?msg=success");
             exit();
+            
         }
         
         mysqli_stmt_close($stmt);
@@ -31,16 +30,15 @@ if (isset($_POST["submit"])) {
     }
 }
 
-
 if (isset($_POST["edit"])) {
-    $projectnaam=$_POST["project-naam"];
-    $begind=$_POST["datum-begin"];
-    $eindd=$_POST["datum-eind"];
-    $omschrijving=$_POST["omschrijving"];
-    $leider=$_POST["project-leider"];
-    $id=$_POST['pid'];
+    $projectnaam  = $_POST["project-naam"];
+    $begind       = $_POST["datum-begin"];
+    $eindd        = $_POST["datum-eind"];
+    $omschrijving = $_POST["omschrijving"];
+    $leider       = $_POST["project-leider"];
+    $id           = $_POST['pid'];
 
-    if (empty($projectnaam) || empty($begind)|| empty($eindd)|| empty($omschrijving)) {
+    if (empty($projectnaam) || empty($begind) || empty($eindd) || empty($omschrijving)) {
         header("Location:../administratie.php?error=emptyfields");
         exit();
     } else {
@@ -50,13 +48,14 @@ if (isset($_POST["edit"])) {
             header("Location:../administratie.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ssssii", $projectnaam, $omschrijving, $begind, $eindd,$leider,$id);
+            mysqli_stmt_bind_param($stmt, "ssssii", $projectnaam, $omschrijving, $begind, $eindd, $leider, $id);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie.php?edit=success");
+            header("Location:../administratie.php?msg=success");
             exit();
         }
-        
+
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }
 }
+
