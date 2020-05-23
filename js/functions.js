@@ -44,6 +44,49 @@ function EditRowBesteding(e) {
 
 }
 
+
+function DeleteMateriaal(e){
+
+    bootbox.confirm({
+        message: "Bent U zeker dat u deze wilt verwijderen?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-danger'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-success'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                // AJAX Request
+                $.ajax({
+                    url: './Edit-Bestedingen.php',
+                    type: 'POST',
+                    data: {
+                        "Delete-Materialen": 1,
+                        "id": e,
+                    },
+                    success: function (response) {
+                        // Removing row from HTML Table
+                        if (response == 1) {
+                            localStorage.setItem("Delete", response.OperationStatus)
+                            location.reload();
+    
+                        } else {
+                            bootbox.alert('Record not deleted.');
+                        }
+    
+                    }
+                });
+            }
+        }
+    });
+}
+
+
 function EditRowDienst(e) {
     $.ajax({
         type: 'post',
@@ -82,10 +125,48 @@ function EditBesteding(e) {
 
         },
         success: function (response) {
+            localStorage.setItem("Update", response.OperationStatus)
             location.reload();
 
         }
     });
+}
+function EditBedrag(e) {
+
+    var prijs = $('#prijs1').val();
+
+    $.ajax({
+        url: '../PHP/Edit-Bestedingen.php',
+        type: 'POST',
+        data: {
+            'update-bedrag': 1,
+            'id': e,
+            'prijs': prijs,
+        },
+        success: function (response) {
+            localStorage.setItem("Update", response.OperationStatus)
+            location.reload();
+
+        }
+    });
+}
+function GetBedrag(e) {
+
+    $.ajax({
+        type: 'post',
+        url: '../PHP/Edit-Bestedingen.php',
+        data: {
+            "get-bedrag": 1,
+            "id": e,
+        },
+        dataType: "text",
+        success: function (response) {
+            $('#detail').html(response);
+            $('#exampleModalPreview1').modal('toggle');
+        }
+    });
+
+    
 }
 
 function EditDienst(e) {
@@ -103,8 +184,8 @@ function EditDienst(e) {
             'fac': fac,
         },
         success: function (response) {
+            localStorage.setItem("Update", response.OperationStatus)
             location.reload();
-
 
         }
     });

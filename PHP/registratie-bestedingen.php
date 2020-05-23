@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="../vendor/bootstrap-select.css">
     <link rel="stylesheet" href="../vendor/dropdown/fstdropdown.css">
     <script src="../vendor/dropdown/fstdropdown.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <?php
 include "dbConn.php";
@@ -538,14 +538,14 @@ if (mysqli_num_rows($res)>0) {
                   echo"<td>$bedragr</td>";
                   echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                   <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
-      <a class='dropdown-item' onclick=EditRow($id) href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
+      <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
 
                    } 
                    echo"<td>
                    <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                 <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
     <a class='dropdown-item' onclick=EditRowDienst($idb) href='#'>Edit<i class='fas fa-edit sa'></i></a>      
-    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update'>Delete<i class='fas fa-trash-alt sa'></i></a>      
+    <a class='dropdown-item' onclick=DeleteMateriaal($idb) href='#'>Delete<i class='fas fa-trash-alt sa'></i></a>      
     </div>
                    
                    
@@ -615,9 +615,9 @@ if (mysqli_num_rows($res)>0) {
                 <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
              <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>
             <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Edit<i class='fas fa-edit sa'></i></a>      
-            <a class='dropdown-item' href='#' data-role='update' data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>      
+            <a class='dropdown-item' href='#'  onclick=DeleteMateriaal($idb) >Delete<i class='fas fa-trash-alt sa'></i></a>      
             <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i> </a>
-            <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
+            <a class='dropdown-item' href='#' onclick=GetBedrag($idb) >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
              </div>
                 </td>
                 
@@ -672,7 +672,8 @@ if (mysqli_num_rows($res)>0) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
+    <script src="../vendor/bootbox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 
 </html>

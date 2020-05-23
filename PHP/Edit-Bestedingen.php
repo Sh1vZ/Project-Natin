@@ -164,6 +164,41 @@ echo '<option value="Niet Verekenbaar">Niet Verekenbaar</option>';
 <?php
     }
 }
+?>
+<?php
+ if (isset($_POST["get-bedrag"])) {
+     $id=$_POST['id'];
+    
+     $sql="SELECT * FROM bestedingen WHERE bID = $id";
+     $res=mysqli_query($conn, $sql);
+     if (mysqli_num_rows($res)>0) {
+         while ($row = mysqli_fetch_assoc($res)) {
+             $prijs=$row["Prijs"];
+         } 
+         ?>
+<form action="" method="" style="width:60vw; margin:0 auto">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+            <label for="pwd">Prijs:</label>
+            <input class="form-control" type="number" name='prijs' id='prijs1' placeholder='Prijs $' in="0"
+                value="<?=$prijs?>" step="0.1">
+            </div>
+        </div>
+    </div>
+        </form>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" name="" onclick=EditBedrag(<?=$id?>) class="btn btn-success">Submit</button>
+</div>
+<?php
+     }
+ }
+ ?>
+
+
+
+<?php
 
 if (isset($_POST["update-dienst"])) {
     
@@ -176,9 +211,37 @@ if (isset($_POST["update-dienst"])) {
      $query=mysqli_query($conn, $stmt);
 
   }
+if (isset($_POST["update-bedrag"])) {
+    
+    $prijs=$_POST["prijs"];
+    $id=$_POST["id"];
+   
+    
 
+    $stmt= "UPDATE bestedingen SET Prijs=$prijs  WHERE bID=$id";
+     $query=mysqli_query($conn, $stmt);
 
-?>
+  }
 
+  if(isset($_POST['Delete-Materialen'])){
+    $id=  $_POST['id'];
+ 
+    $sql = "DELETE FROM bestedingen WHERE bID=$id";
+    mysqli_query($conn,$sql);
+    echo 1;
+    exit;
+ }
+ 
+  if(isset($_POST['Update-Bedrag'])){
+    $id=  $_POST['id'];
+    $nummer=$_POST['nummer'];
+    $sql = "UPDATE bestedingen SET Prijs=$nummer  WHERE bID=$id";
+    mysqli_query($conn,$sql);
+    echo 1;
+    exit;
+ }
+ 
 
+ ?>
+ 
 
