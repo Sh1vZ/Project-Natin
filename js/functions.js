@@ -7,6 +7,12 @@ $(document).ready(function () {
         toastr.success('Succesvol Ingevoerd', 'Bericht')
         sessionStorage.removeItem('Submit');
     }
+
+    if (sessionStorage.getItem('Update')) {
+        toastr.success('Succesvol Bijgewerkt', 'Bericht')
+        sessionStorage.removeItem('Update');
+    }
+
     if (localStorage.getItem("Delete")) {
         toastr.error('Succesvol Verwijderd', 'Bericht');
         localStorage.clear();
@@ -18,10 +24,6 @@ $(document).ready(function () {
     }
 
 });
-
-function Submit() {
-    sessionStorage.setItem('Submit', true);
-}
 
 function goBack(e) {
     window.location = `view-projecten.php?id=${e}`;
@@ -364,6 +366,110 @@ function DeleteTaak(e){
                     type: 'POST',
                     data: {
                         "Delete-Taak": 1,
+                        "id": e,
+                    },
+                    success: function (response) {
+                        // Removing row from HTML Table
+                        if (response == 1) {
+                            localStorage.setItem("Delete", response.OperationStatus)
+                            location.reload();
+    
+                        } else {
+                            bootbox.alert('Record not deleted.');
+                        }
+    
+                    }
+                });
+            }
+        }
+    });
+}
+
+//ADMINISTRATIE-PERSONEN
+
+function foo() {
+    $('#an').removeClass('disabled');
+    $('#ag').removeClass('disabled');
+    $('#stud')[0].reset();
+    $('#stud1')[0].reset();
+    $('#organisatie2').html(" ");
+    $('#richting').html(" ");
+}
+
+function Org() {
+    $('#details').removeClass('active');
+    $('#an').addClass('disabled');
+    $('#ag').addClass('active');
+    $('#an').removeClass('active');
+    $('#access-security').addClass('active');
+    $('#access-security').removeClass('fade');
+    $('#edit-org').attr('name', 'edit-org');
+    $('#exampleModalPreview').modal('toggle');
+}
+
+
+function Nat() {
+    $('#access-security').removeClass('active');
+    $('#ag').addClass('disabled');
+    $('#an').addClass('active');
+    $('#ag').removeClass('active');
+    $('#details').addClass('active');
+    $('#details').removeClass('fade')
+    $('#edit-stud').attr('name', 'edit-stud');;
+    $('#exampleModalPreview').modal('toggle');
+}
+
+
+function EditRow(e) {
+    var naam = $('#' + e).children('td[data-target=naam]').text();
+    var vnaam = $('#' + e).children('td[data-target=vnaam]').text();
+    var org = $('#' + e).children('td[data-target=org]').text();
+    var richting = $('#' + e).children('td[data-target=richting]').text();
+    var functie = $('#' + e).children('td[data-target=functie]').text();
+    var telnum = $('#' + e).children('td[data-target=telnum]').text();
+
+    if (org == 'Natin') {
+        Nat();
+        $('#vnaam').val(vnaam);
+        $('#anaam').val(naam);
+        $('#telnumm').val(telnum);
+        $('#func').val(functie);
+        $('#richting2').html(`Huidige richting is ${richting}`);
+        $('#sid').val(e);
+    } else {
+        Org();
+        $('#vnaamo').val(vnaam);
+        $('#anaamo').val(naam);
+        $('#telnummo').val(telnum);
+        $('#funco').val(functie);
+        $('#organisatie2').html(`Huidige richting is ${org}`);
+        $('#oid').val(e);
+    }
+
+}
+
+function DeletePersoon(e){
+
+    bootbox.confirm({
+        message: "Bent U zeker dat u deze wilt verwijderen?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-danger'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-success'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                // AJAX Request
+                $.ajax({
+                    url: './PHP/Edit-Persoon.php',
+                    type: 'POST',
+                    data: {
+                        "Delete-Persoon": 1,
                         "id": e,
                     },
                     success: function (response) {

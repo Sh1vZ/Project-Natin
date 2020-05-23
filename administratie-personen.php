@@ -23,12 +23,12 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/dashboard.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <?php
 include "./PHP/dbConn.php";
 session_start();
+
 ?>
 
 <body id="page-top">
@@ -226,8 +226,8 @@ session_start();
                                                         <div id="richting2" style="color:red;"></div>
                                                         <input type="text" id='richting' list="richting1"
                                                             onBlur="checkAvailability()" class="form-control"
-                                                            id="richting" name="richting">
-                                                        <datalist id="richting1" style="width: 100px;">
+                                                            id="richting" name="richting" required>
+                                                        <datalist id="richting1" style="width: 100px;" required>
                                                             <?php
 $sql    = "SELECT * FROM richting where Richting != 'Other'";
 $result = mysqli_query($conn, $sql);
@@ -308,11 +308,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                     <div class="form-group">
                                                         <label for="pwd">Organisatie: <span
                                                                 id="user-availability-status-orga"></span></label>
-                                                        <div id="organisatie2" style="color:red;"></div>
+                                                            <div id="organisatie2" style="color:red;"></div>
                                                         <input type="text" id='organisatie' list="organisatie1"
                                                             onBlur="checkAvailabilityorga()" class="form-control"
-                                                            name="organisatie">
-                                                        <datalist id="organisatie1" style="width: 100px;">
+                                                            name="organisatie" required >
+                                                        <datalist id="organisatie1" style="width: 100px;" required>
                                                             <?php
 $sql    = "SELECT * FROM organisatie";
 $result = mysqli_query($conn, $sql);
@@ -373,6 +373,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 <!-- Modal -->
 
+
+
+    
+
                 <div class='container-fluid'>
                     <div class='card shadow mb-4'>
 
@@ -427,7 +431,13 @@ if (mysqli_num_rows($res) > 0) {
                 <td data-target='richting'>$richting</td>
                 <td data-target='functie'>$fucntie</td>
                 <td data-target='telnum'>$telnum</td>
-                <td><a class='link' onclick=EditRow($id) href='#' data-role='update' data-id='$id' ><i class='fas fa-edit sa1'></i></a> </td>
+                <td>
+                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
+    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Edit<i class='fas fa-edit sa'></i></a> 
+    <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Delete<i class='fas fa-trash-alt sa'></i></a>
+    </div>   
+                </td>
                   </tr>
 
                 ";
@@ -472,79 +482,22 @@ if (mysqli_num_rows($res) > 0) {
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="./js/functions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('.data1').DataTable({
+    <script src="./vendor/bootbox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<?php
 
-        });
-    });
-
-    function foo() {
-        $('#an').removeClass('disabled');
-        $('#ag').removeClass('disabled');
-        $('#stud')[0].reset();
-        $('#stud1')[0].reset();
-        $('#organisatie2').html(" ");
-        $('#richting').html(" ");
+if (isset($_GET['msg'])) {
+    if ("success" == $_GET['msg']) {
+        echo '<script> toastr.success("Succesvol Ingevoerd", "Bericht")
+        </script>';
     }
-
-    function Org() {
-        $('#details').removeClass('active');
-        $('#an').addClass('disabled');
-        $('#ag').addClass('active');
-        $('#an').removeClass('active');
-        $('#access-security').addClass('active');
-        $('#access-security').removeClass('fade');
-        $('#edit-org').attr('name', 'edit-org');
-        $('#exampleModalPreview').modal('toggle');
-    }
-
-
-    function Nat() {
-        $('#access-security').removeClass('active');
-        $('#ag').addClass('disabled');
-        $('#an').addClass('active');
-        $('#ag').removeClass('active');
-        $('#details').addClass('active');
-        $('#details').removeClass('fade')
-        $('#edit-stud').attr('name', 'edit-stud');;
-        $('#exampleModalPreview').modal('toggle');
-    }
-
-
-    function EditRow(e) {
-        var naam = $('#' + e).children('td[data-target=naam]').text();
-        var vnaam = $('#' + e).children('td[data-target=vnaam]').text();
-        var org = $('#' + e).children('td[data-target=org]').text();
-        var richting = $('#' + e).children('td[data-target=richting]').text();
-        var functie = $('#' + e).children('td[data-target=functie]').text();
-        var telnum = $('#' + e).children('td[data-target=telnum]').text();
-
-        if (org == 'Natin') {
-            Nat();
-            $('#vnaam').val(vnaam);
-            $('#anaam').val(naam);
-            $('#telnumm').val(telnum);
-            $('#func').val(functie);
-            $('#richting2').html(`Huidige richting is ${richting}`);
-            $('#sid').val(e);
-        } else {
-            Org();
-            $('#vnaamo').val(vnaam);
-            $('#anaamo').val(naam);
-            $('#telnummo').val(telnum);
-            $('#funco').val(functie);
-            $('#organisatie2').html(`Huidige richting is ${org}`);
-            $('#oid').val(e);
-        }
-
-    }
-    </script>
-
+    
+}
+?>
 </body>
-
 </html>

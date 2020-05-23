@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiiss", $anaam, $vnaam, $id, $richting, $functie, $telnumm);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?signup=success");
+            header("Location:../administratie-personen.php?msg=success");
             exit();
         }
 
@@ -53,7 +53,7 @@ if (isset($_POST["submit-org"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiss", $anaam, $vnaam, $organisatie, $functie, $telnumm);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?signup=success");
+            header("Location:../administratie-personen.php?msg=success");
             exit();
         }
 
@@ -83,7 +83,7 @@ if (isset($_POST["edit-org"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssissi", $anaam, $vnaam, $organisatie, $functie, $telnumm, $id);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?edit=success");
+            header("Location:../administratie-personen.php?msg=update");
             exit();
         }
 
@@ -116,7 +116,7 @@ if (isset($_POST["edit-stud"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiissi", $anaam, $vnaam, $id, $richting, $functie, $telnumm, $sid);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?signup=success");
+            header("Location:../administratie-personen.php?msg=update");
             exit();
         }
 

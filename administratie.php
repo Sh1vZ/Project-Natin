@@ -31,6 +31,8 @@
 <?php
 include "./PHP/dbConn.php";
 session_start();
+
+
 ?>
 
 <body id="page-top">
@@ -190,23 +192,7 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                     </div>
                 </div>
 
-                <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Delete?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id='Delete'>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
 
                 <!-- Modal -->
                 <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
@@ -279,7 +265,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" id="edite" onclick=Submit() name="submit"
+                                <button type="submit" id="edite"  name="submit"
                                     class="btn btn-success">Submit</button>
                                 </form>
                             </div>
@@ -430,6 +416,19 @@ if (mysqli_num_rows($res) > 0) {
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/bootbox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <?php
+
+if (isset($_GET['msg'])) {
+    if ("success" == $_GET['msg']) {
+        echo '<script> toastr.success("Succesvol Ingevoerd", "Bericht")
+        </script>';
+    }
+    if ("update" == $_GET['msg']) {
+        echo "<script> toastr.success('Succesvol Bijgewerkt', 'Bericht')
+        </script>";
+    }
+}
+?>
 </body>
 
 </html>
