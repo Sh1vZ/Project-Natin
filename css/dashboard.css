@@ -363,12 +363,10 @@ li .active {
   border-color: rgb(71, 158, 71);
 }
 
-<<<<<<< Updated upstream
-.a {
-=======
-<<<<<<< Updated upstream
+
+
 .a{
->>>>>>> Stashed changes
+
   transition: 0s !important;
   animation-name: fade-in;
   animation-duration: 0.5s;
@@ -404,7 +402,7 @@ li .active {
     opacity: 1;
   }
 }
-=======
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -489,4 +487,4 @@ li .active {
   from {opacity: 0;}
   to {opacity: 1;}
 }
->>>>>>> Stashed changes
+
