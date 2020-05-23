@@ -494,7 +494,8 @@ if($result){
                             echo"<th scope='col'>acties</th>";
                           
                           
-                
+                          }
+                        
                          ?>
 
 
@@ -528,7 +529,7 @@ if (mysqli_num_rows($res)>0) {
      
         echo "
         <tr>";
-          
+        
                echo "<td>$a</td>          
                 <td>$anaam $vnaam </td>
                 <td>$org</td>
@@ -601,8 +602,7 @@ if (mysqli_num_rows($res)>0) {
      
         echo "
         <tr>";
-
-
+        
                echo "<td>$a</td>          
                 <td data-target='mat'>$mat</td>
                 <td data-target='fac'>$facu</td> "; 
