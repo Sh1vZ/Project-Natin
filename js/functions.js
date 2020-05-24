@@ -9,19 +9,19 @@ $(document).ready(function () {
 
     toastr.options = {
         "closeButton": true
-      }
+    }
 
     if (sessionStorage.getItem('Submit')) {
         toastr.success('Succesvol Ingevoerd', 'Bericht')
         toastr.options = {
             "closeButton": true
-          }
+        }
         sessionStorage.removeItem('Submit');
     }
 
     if (sessionStorage.getItem('Update')) {
         toastr.info('Succesvol Bijgewerkt', 'Bericht')
-       
+
         sessionStorage.removeItem('Update');
     }
 
@@ -59,7 +59,7 @@ function EditRowBesteding(e) {
 }
 
 
-function DeleteMateriaal(e){
+function DeleteMateriaal(e) {
 
     bootbox.confirm({
         message: "Bent U zeker dat u deze wilt verwijderen?",
@@ -88,11 +88,11 @@ function DeleteMateriaal(e){
                         if (response == 1) {
                             localStorage.setItem("Delete", response.OperationStatus)
                             location.reload();
-    
+
                         } else {
                             bootbox.alert('Record not deleted.');
                         }
-    
+
                     }
                 });
             }
@@ -145,6 +145,7 @@ function EditBesteding(e) {
         }
     });
 }
+
 function EditBedrag(e) {
 
     var prijs = $('#prijs1').val();
@@ -164,6 +165,7 @@ function EditBedrag(e) {
         }
     });
 }
+
 function GetBedrag(e) {
 
     $.ajax({
@@ -180,7 +182,7 @@ function GetBedrag(e) {
         }
     });
 
-    
+
 }
 
 function EditDienst(e) {
@@ -285,20 +287,20 @@ $('.delete').click(function () {
                         if (response == 1) {
                             localStorage.setItem("Delete", response.OperationStatus)
                             location.reload();
-    
+
                         } else {
                             bootbox.alert('Record not deleted.');
                         }
-    
+
                     }
                 });
             }
         }
     });
 
-       
 
-    });
+
+});
 
 
 //TAAAAAAAK
@@ -316,7 +318,7 @@ function EditTaak(e) {
             "id": id,
         },
         dataType: "text",
-        success: function(response) {
+        success: function (response) {
             $('#form-container').html(response);
             $('.selectpicker').selectpicker({});
             $('#exampleModal').modal('toggle');
@@ -347,14 +349,14 @@ function edit(e) {
             'richting': richting,
 
         },
-        success: function(response) {
+        success: function (response) {
             localStorage.setItem("Update", response.OperationStatus)
             location.reload();
         }
     });
 }
 
-function DeleteTaak(e){
+function DeleteTaak(e) {
 
     bootbox.confirm({
         message: "Bent U zeker dat u deze wilt verwijderen?",
@@ -383,11 +385,11 @@ function DeleteTaak(e){
                         if (response == 1) {
                             localStorage.setItem("Delete", response.OperationStatus)
                             location.reload();
-    
+
                         } else {
                             bootbox.alert('Record not deleted.');
                         }
-    
+
                     }
                 });
             }
@@ -458,7 +460,7 @@ function EditRow(e) {
 
 }
 
-function DeletePersoon(e){
+function DeletePersoon(e) {
 
     bootbox.confirm({
         message: "Bent U zeker dat u deze wilt verwijderen?",
@@ -487,11 +489,11 @@ function DeletePersoon(e){
                         if (response == 1) {
                             localStorage.setItem("Delete", response.OperationStatus)
                             location.reload();
-    
+
                         } else {
                             bootbox.alert('Record not deleted.');
                         }
-    
+
                     }
                 });
             }
@@ -537,9 +539,9 @@ function updateGebruikers(e) {
             'telnummer': telnummer,
             'email': email,
             'rollen': rollen,
-            'password': password,  
+            'password': password,
         },
-        success: function(response) {
+        success: function (response) {
             localStorage.setItem("Update", response.OperationStatus)
             location.reload();
         }
@@ -547,7 +549,7 @@ function updateGebruikers(e) {
 }
 
 
-function DeleteGebruiker(e){
+function DeleteGebruiker(e) {
 
     bootbox.confirm({
         message: "Bent U zeker dat u deze wilt verwijderen?",
@@ -576,11 +578,11 @@ function DeleteGebruiker(e){
                         if (response == 1) {
                             localStorage.setItem("Delete", response.OperationStatus)
                             location.reload();
-    
+
                         } else {
                             bootbox.alert('Record not deleted.');
                         }
-    
+
                     }
                 });
             }
