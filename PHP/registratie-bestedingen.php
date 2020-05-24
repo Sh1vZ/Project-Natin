@@ -395,11 +395,6 @@ $id=$_GET["id"];
     <!-- Modal -->
 
 
-    
-
-
-
-
     <?php
 
 if (isset($_POST["submit"])) {
@@ -421,7 +416,8 @@ if (isset($_POST["submit"])) {
       } else {
           mysqli_stmt_bind_param($stmt, "iis", $idt, $diensten, $fac);
           mysqli_stmt_execute($stmt);
-          echo"<script> window.location = 'registratie-bestedingen.php?id=$id&idt=$idt'</script>";
+          echo"<script> window.location = 'registratie-bestedingen.php?id=$id&idt=$idt';
+          sessionStorage.setItem('Submit',true);</script>";
       }
       
       mysqli_stmt_close($stmt);
@@ -452,7 +448,8 @@ if (isset($_POST["submit-materialen"])) {
       } else {
           mysqli_stmt_bind_param($stmt, "issdd", $idt, $mat, $fac,$aant,$prijs);
           mysqli_stmt_execute($stmt);
-          echo"<script> window.location = 'registratie-bestedingen.php?id=$id&idt=$idt'</script>";
+          echo"<script> window.location = 'registratie-bestedingen.php?id=$id&idt=$idt';
+          sessionStorage.setItem('Submit',true);</script>";
       }
       
       mysqli_stmt_close($stmt);
