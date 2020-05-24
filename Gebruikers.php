@@ -59,7 +59,7 @@ session_start();
             <!-- Divider -->
                 <hr class="sidebar-divider my-0">
             <!--Nav Item - Projecten-->        
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="administratie.php">
                     <i class="fas fa-file-medical"></i>
                     <?php
@@ -96,7 +96,7 @@ session_start();
                     if ($_SESSION['role'] == 'Beheerder') 
                     {
                 ?>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="Gebruikers.php">
                                 <i class="fas fa-user-edit"></i>
                                 <span>Registreer Gebruikers</span>
@@ -215,71 +215,61 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
 
                 
 
-                <!-- Modal -->
+                <!-- REGISTRATIE USERS - Modal -->
                 <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Project</h5>
+                                <h5 class="modal-title" id="exampleModalPreviewLabel">Registreer Gebruikers</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="./PHP/registratie-projecten.php" method="POST" id="form-admin"
+                                <form action="./PHP/registratie-user.php" method="POST" id="form-admin"
                                     style="width:60vw; margin:0 auto">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pwd">Project Naam:</label>
-                                                <input type="text" id='naam' class="form-control" name="project-naam"
-                                                    placeholder="" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="pwd">Begin Datum:</label>
-                                                <input type="date" id='datum-begin' class="form-control"
-                                                    name="datum-begin" placeholder="Begin Datum" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="form-group">
-                                                <label for="pwd">Eind Datum:</label>
-                                                <input type="date" id='datum-eind' class="form-control"
-                                                    name="datum-eind" placeholder="Begin Datum" required>
+                                                <label for="pwd">Usernaam:</label>
+                                                <input type="text" id='user-usernaam' class="form-control" name="user-usernaam"required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pwd">Project Leider:</label> <span style="color:red;"
-                                                    id=ac></span>
-                                                <select class="selectpicker form-control" title="Kies Leider"
-                                                    data-live-search="true" name="project-leider">
-                                                    <?php
-$sql    = "SELECT * FROM personen";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<option value='" . $row['ID'] . "'>" . $row['Voornaam'] . " " . $row['Achternaam'] . "</option>";
-}
-?>
+                                                <label for="pwd">Rollen:</label> <span style="color:red;" id=ac></span>
+                                                <select class="selectpicker form-control" title="Kies Rollen" data-live-search="true" name="user-rollen">
+                                                    <option value="Beheerder">Beheerder</option>
+                                                    <option value="Financieel">Financieel</option>
+                                                    <option value="Administratie">Administratie</option> 
                                                 </select>
-
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 mb-2">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pwd">Project Omschrijving:</label>
-                                                <textarea class="form-control" id="omschr" name="omschrijving"
-                                                    placeholder="Voer in..." rows="3" required></textarea>
-                                                <input type="hidden" name="pid" id="pid">
+                                                <label for="pwd">Tel.nummer:</label>
+                                                <input type="text" id='user-telnummer' class="form-control" name="user-telnummer"required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pwd">Email:</label>
+                                                <input type="text" id='user-email' class="form-control" name="user-email"required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pwd">Password:</label>
+                                                <input type="text" id='user-password' class="form-control" name="user-password"required>
                                             </div>
                                         </div>
                                     </div>
@@ -302,7 +292,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalPreviewLabel">Edit </h5>
+                                <h5 class="modal-title" id="exampleModalPreviewLabel">Edit</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -325,7 +315,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <h1 class=" m-0 h3 mb-4 text-gray-800 center"><?php
 
 if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
-    ?>Registreer projecten</h1> <?php } else {
+    ?>Registreer Gebruikers</h1> <?php } else {
     ?>
                             Projecten</h5></a>
                             <?php }?>
@@ -334,62 +324,47 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                                     <thead>
                                         <tr id="firstrow" class='tableRows'>
                                             <th>#</th>
-                                            <th>Projectnaam</th>
-                                            <th style="width:30%">Project Omschrijving</th>
-                                            <th>Begin Datum</th>
-                                            <th>Eind Datum</th>
-                                            <th>Project Leider</th>
-                                            <th>Project Status</th>
+                                            <th>Usernaam</th>
+                                            <th style="width:30%">Rollen</th>
+                                            <th>Telnummer</th>
+                                            <th>Email</th>
+                                            <th>Password</th>
                                             <th>Acties</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-$stmt = "SELECT project.Naam,project.ID, project.Omschrijving, project.BeginDatum, project.EindDatum, personen.Achternaam, personen.Voornaam, project.Status
-FROM project
-left JOIN personen
-ON project.ProjectleiderID = personen.ID ORDER BY project.ID DESC ";
+$stmt=" SELECT user.ID, user.Usernaam, user.Rollen, user.Telnummer, user.Email, user.Password
+From user
+ORDER BY user.ID Asc ";
 $res = mysqli_query($conn, $stmt);
 
 if (mysqli_num_rows($res) > 0) {
     $i = 1;
     while ($row = mysqli_fetch_assoc($res)) {
-        $naam   = $row['Naam'];
-        $omschr = $row["Omschrijving"];
-        $begind = $row["BeginDatum"];
-        $eindd  = $row["EindDatum"];
-        $vnaam  = $row["Voornaam"];
-        $anaam  = $row["Achternaam"];
-        $status = $row["Status"];
-        $id     = $row["ID"];
-        $a      = $i++;
+        $usernaam   = $row['Usernaam'];
+        $rollen     = $row["Rollen"];
+        $telnummer  = $row["Telnummer"];
+        $email      = $row["Email"];
+        $password   = $row["Password"];
+        $id         = $row["ID"];
+        $a          = $i++;
 
         echo "
 
                 <tr id=$id>
                     <td>$a</td>
-                    <td >$naam</td>
-                    <td>$omschr</td>
-                    <td>$begind</td>
-                    <td>$eindd</td>
-                    <td>$anaam $vnaam</td>
-                    <td class='" . (($status == "OPEN") ? "text-success" : "text-danger") . " font-weight-bold'>$status</td>
+                    <td>$usernaam</td>
+                    <td>$rollen</td>
+                    <td>$telnummer</td>
+                    <td>$email</td>
+                    <td>$password</td>
                     <td>
                     <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                            <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>View <i class='fas fa-eye sa'></i> </a>
-             ";
-                            if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
-                                echo "
-                                        <a class='dropdown-item' onclick=EditRowProjecten($id) href='#'>Edit<i class='fas fa-edit sa'></i></a>
-                                    ";
-                            }
-                            if ($_SESSION['role'] == 'Beheerder'){
-                                echo "
-                                        <a class='dropdown-item delete' href='#'  data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>
-                                    ";
-                            }
-        echo " 
+                            <a class='dropdown-item' onclick=EditRowProjecten($id) href='#'>Edit<i class='fas fa-edit sa'></i></a>
+                            <a class='dropdown-item delete' href='#'  data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>
+             
                         </div>
                     </td>
                 </tr>

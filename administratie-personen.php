@@ -46,25 +46,62 @@ session_start();
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="home.php">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item ">
-                <a class="nav-link" href="administratie.php">
+                <li class="nav-item ">
+                    <a class="nav-link" href="home.php">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+            <!--Nav Item - Projecten-->        
+                <li class="nav-item">
+                    <a class="nav-link" href="administratie.php">
                     <i class="fas fa-file-medical"></i>
-                    <span>Registreer Projecten</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="administratie-personen.php">
-                    <i class="fas fa-user-edit"></i>
-                    <span>Registreer Personen</span></a>
-            </li>
-            </li>
-
-
+                    <?php
+                        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') 
+                        {
+                    ?>
+                        <span>Registreer Projecten</span></a>
+                    <?php
+                        }
+                        else
+                        {
+                    ?>
+                            <span>Overzicht Projecten</span></a>
+                    <?php
+                        }
+                    ?>
+                </li>
+            <!--Nav Item - Personen-->
+                <?php
+                    if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') 
+                    {
+                ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="administratie-personen.php">
+                                <i class="fas fa-user-edit"></i>
+                                <span>Registreer Personen</span>
+                            </a>
+                        </li>
+                <?php
+                    }
+                ?>
+            <!--Nav Item - Gebruikers-->
+                <?php
+                    if ($_SESSION['role'] == 'Beheerder') 
+                    {
+                ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Gebruikers.php">
+                                <i class="fas fa-user-edit"></i>
+                                <span>Registreer Gebruikers</span>
+                            </a>
+                        </li>
+                <?php
+                    }
+                ?>
+        <!--Nav Items - END-->
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -419,23 +456,28 @@ if (mysqli_num_rows($res) > 0) {
 
         echo "
                 <tr id=$id>
-                <td>$a</td>
-                <td data-target='naam'>$anaam</td>
-                <td data-target='vnaam'>$vnaam</td>
-                <td data-target='org'>$org</td>
-                <td data-target='richting'>$richting</td>
-                <td data-target='functie'>$fucntie</td>
-                <td data-target='telnum'>$telnum</td>
-                <td>
-                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-                <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-    <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Edit<i class='fas fa-edit sa'></i></a> 
-    <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Delete<i class='fas fa-trash-alt sa'></i></a>
-    </div>   
-                </td>
-                  </tr>
-
-                ";
+                    <td>$a</td>
+                    <td data-target='naam'>$anaam</td>
+                    <td data-target='vnaam'>$vnaam</td>
+                    <td data-target='org'>$org</td>
+                    <td data-target='richting'>$richting</td>
+                    <td data-target='functie'>$fucntie</td>
+                    <td data-target='telnum'>$telnum</td>
+                    <td>
+                        <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                        <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
+                            <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Edit<i class='fas fa-edit sa'></i></a>
+            ";
+                            if ($_SESSION['role'] == 'Beheerder') {
+                                echo "
+                                        <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Delete<i class='fas fa-trash-alt sa'></i></a>
+                                    ";
+                            }
+        echo "   
+                        </div>   
+                    </td>
+                </tr>
+             ";
     }
 } else {
 

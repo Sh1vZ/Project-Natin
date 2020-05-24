@@ -9,18 +9,18 @@ if (isset($_POST["submit"])) {
     $password  = $_POST["user-password"];
 
     if (empty($usernaam) || empty($rollen) || empty($telnummer) || empty($email) || empty($password)) {
-        header("Location:../Beheerder_Users.php?error=emptyfields");
+        header("Location:../Gebruikers.php?error=emptyfields");
         exit();
     } else {
         $sql  = "INSERT INTO user (Usernaam,Rollen,Telnummer,Email,Password) VALUES(?,?,?,?,?)";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location:../Beheerder_Users.php?error=sqlerror");
+            header("Location:../Gebruikers.php?error=sqlerror");
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "ssssi", $usernaam, $rollen, $telnummer, $email, $password);
             mysqli_stmt_execute($stmt);
-            header("Location:../Beheerder_Users.php?signup=success");
+            header("Location:../Gebruikers.php?signup=success");
             exit();
         }
 

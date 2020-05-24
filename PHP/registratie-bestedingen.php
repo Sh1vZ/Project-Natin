@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AFAA | Materialen en Diensten </title>
+    <title>AFA | Materialen en Diensten </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -487,18 +487,14 @@ if($result){
                                         <th scope='col'>Diensten</th>
                                         <th scope='col'>Organisatie</th>
                                         <th scope='col'>Facatuurtype</th>
-                                        <th scope='col'>Acties</th>
                                         <?php
-                          if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { 
-                            echo"<th scope='col'>Bedrag</th>";
-                            echo"<th scope='col'>acties</th>";
-                          
-                          
-                          }
-                        
-                         ?>
-
-
+                                            if($_SESSION['role'] == 'Financieel'){
+                                                echo"
+                                                        <th scope='col'>Bedrag</th>
+                                                    ";
+                                            }
+                                        ?>
+                                        <th scope='col'>Acties</th>
                                     </tr>
                                 </thead>
 
@@ -528,31 +524,43 @@ if (mysqli_num_rows($res)>0) {
         $a=$i++;
      
         echo "
-        <tr>";
-        
-               echo "<td>$a</td>          
-                <td>$anaam $vnaam </td>
-                <td>$org</td>
-                <td>$facu</td>";
-                if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
-                  echo"<td>$bedragr</td>";
-                  echo" <td><a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-                  <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
-      <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>";
-
-                   } 
-                   echo"<td>
-                   <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-                <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-    <a class='dropdown-item' onclick=EditRowDienst($idb) href='#'>Edit<i class='fas fa-edit sa'></i></a>      
-    <a class='dropdown-item' onclick=DeleteMateriaal($idb) href='#'>Delete<i class='fas fa-trash-alt sa'></i></a>      
-    </div>
-                   
-                   
-                   ";
-                echo" </tr>"; 
-                   
-                  }
+                <tr>
+                    <td>$a</td>          
+                    <td>$anaam $vnaam </td>
+                    <td>$org</td>
+                    <td>$facu</td>
+            ";
+                    if($_SESSION['role'] == 'Financieel'){
+                        echo"
+                                <td>$bedragr</td>
+                            ";
+                    }
+        echo"            
+                    <td>
+                        <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                        <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>";
+                            if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+                                    echo"
+                                            <a class='dropdown-item' onclick=EditRowDienst($idb) href='#'>Edit<i class='fas fa-edit sa'></i></a>
+                                        ";
+                            }    
+                            if ($_SESSION['role'] == 'Beheerder'){
+                                echo"
+                                        <a class='dropdown-item' onclick=DeleteMateriaal($idb) href='#'>Delete<i class='fas fa-trash-alt sa'></i></a>
+                                    ";
+                            }
+                            if($_SESSION['role'] == 'Financieel'){
+                                echo"
+                                        <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i></a>
+                                        <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a> 
+                                    ";
+                            }
+        echo"
+                        </div>
+                    </td>
+                </tr>
+            "; 
+    }
 }
 
 ?>
@@ -561,7 +569,7 @@ if (mysqli_num_rows($res)>0) {
                     </div>
                 </div>
             </div>
-
+            <!--Materialen Tabel-->
             <div class="col-md-6">
                 <div class='card shadow mb-4'>
                     <div class='card-body'>
@@ -601,29 +609,39 @@ if (mysqli_num_rows($res)>0) {
         $a=$i++;
      
         echo "
-        <tr>";
-        
-               echo "<td>$a</td>          
-                <td data-target='mat'>$mat</td>
-                <td data-target='fac'>$facu</td> "; 
-                echo"
-                <td data-target='aant'>$aant</td>
-                <td data-target='prijs'>$prijs</td>
-                <td>$bedragr</td>
-                ";
-                echo"<td>
-                <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-             <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>
-            <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Edit<i class='fas fa-edit sa'></i></a>      
-            <a class='dropdown-item' href='#'  onclick=DeleteMateriaal($idb) >Delete<i class='fas fa-trash-alt sa'></i></a>      
-            <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i> </a>
-            <a class='dropdown-item' href='#' onclick=GetBedrag($idb) >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>    
-             </div>
-                </td>
-                
-                ";                echo" </tr>"; 
-
-} } 
+                <tr> 
+                    <td>$a</td>          
+                    <td data-target='mat'>$mat</td>
+                    <td data-target='fac'>$facu</td> 
+                    <td data-target='aant'>$aant</td>
+                    <td data-target='prijs'>$prijs</td>
+                    <td>$bedragr</td>
+                    <td>
+                        <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
+                        <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>";
+                        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+                            echo"
+                                    <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Edit<i class='fas fa-edit sa'></i></a>
+                                ";
+                        }
+                        if ($_SESSION['role'] == 'Beheerder'){         
+                            echo"
+                                    <a class='dropdown-item' href='#'  onclick=DeleteMateriaal($idb) >Delete<i class='fas fa-trash-alt sa'></i></a>
+                                ";
+                        }
+                        if ($_SESSION['role'] == 'Financieel'){
+                            echo"
+                                    <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i></a>
+                                    <a class='dropdown-item' href='#' onclick=GetBedrag($idb) >Prijs<i class='fas fa-dollar-sign sa'></i></a></td>
+                            ";
+                        }
+        echo"
+                        </div>
+                    </td>
+                </tr>
+            "; 
+    }
+} 
 
 ?>
                             </table>
