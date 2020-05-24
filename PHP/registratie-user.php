@@ -18,10 +18,11 @@ if (isset($_POST["submit"])) {
             header("Location:../Gebruikers.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "ssssi", $usernaam, $rollen, $telnummer, $email, $password);
+            mysqli_stmt_bind_param($stmt, "sssss", $usernaam, $rollen, $telnummer, $email, $password);
             mysqli_stmt_execute($stmt);
-            header("Location:../Gebruikers.php?signup=success");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../Gebruikers.php';
+            sessionStorage.setItem('Submit',true);
+            </script>";    
         }
 
         mysqli_stmt_close($stmt);

@@ -1,7 +1,11 @@
 // DIENSTEN+BESTEDINGEN
 
 $(document).ready(function () {
-    $('.data1').DataTable({});
+    $('.data1').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Dutch.json"
+        }
+    });
 
     if (sessionStorage.getItem('Submit')) {
         toastr.success('Succesvol Ingevoerd', 'Bericht')
@@ -9,7 +13,7 @@ $(document).ready(function () {
     }
 
     if (sessionStorage.getItem('Update')) {
-        toastr.success('Succesvol Bijgewerkt', 'Bericht')
+        toastr.info('Succesvol Bijgewerkt', 'Bericht')
         sessionStorage.removeItem('Update');
     }
 
@@ -19,7 +23,7 @@ $(document).ready(function () {
     }
 
     if (localStorage.getItem("Update")) {
-        toastr.success('Succesvol Bewerkt', 'Bericht');
+        toastr.info('Succesvol Bewerkt', 'Bericht');
         localStorage.clear();
     }
 
@@ -310,8 +314,6 @@ function EditTaak(e) {
             $('#exampleModal').modal('toggle');
         }
     });
-
-    // $('#exampleModalPreview').modal('toggle');
 }
 
 function edit(e) {
@@ -470,6 +472,95 @@ function DeletePersoon(e){
                     type: 'POST',
                     data: {
                         "Delete-Persoon": 1,
+                        "id": e,
+                    },
+                    success: function (response) {
+                        // Removing row from HTML Table
+                        if (response == 1) {
+                            localStorage.setItem("Delete", response.OperationStatus)
+                            location.reload();
+    
+                        } else {
+                            bootbox.alert('Record not deleted.');
+                        }
+    
+                    }
+                });
+            }
+        }
+    });
+}
+////Gebruikers
+
+
+function EditGebruikers(e) {
+    $.ajax({
+        type: 'post',
+        url: './PHP/Edit-Gebruikers.php',
+        data: {
+            "get-gebruikers": 1,
+            "id": e,
+        },
+        dataType: "text",
+        success: function (response) {
+            $('#detail').html(response);
+            $('.selectpicker').selectpicker({});
+            $('#exampleModalPreview1').modal('toggle');
+        }
+    });
+
+}
+
+function updateGebruikers(e) {
+
+    var user = $('#user-usernaam1').val();
+    var rollen = $('#rollen').val();
+    var telnummer = $('#user-telnummer1').val();
+    var email = $('#user-email1').val();
+    var password = $('#user-password1').val();
+
+    $.ajax({
+        url: './PHP/Edit-Gebruikers.php',
+        type: 'POST',
+        data: {
+            'update-gebruikers': 1,
+            'id': e,
+            'user': user,
+            'telnummer': telnummer,
+            'email': email,
+            'rollen': rollen,
+            'password': password,  
+        },
+        success: function(response) {
+            localStorage.setItem("Update", response.OperationStatus)
+            location.reload();
+        }
+    });
+}
+
+
+function DeleteGebruiker(e){
+
+    bootbox.confirm({
+        message: "Bent U zeker dat u deze wilt verwijderen?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-danger'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-success'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                // AJAX Request
+                $.ajax({
+                    url: './PHP/Edit-Gebruikers.php',
+                    type: 'POST',
+                    data: {
+                        "Delete-Gebruiker": 1,
                         "id": e,
                     },
                     success: function (response) {

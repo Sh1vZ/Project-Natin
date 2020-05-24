@@ -24,8 +24,9 @@ if (isset($_POST["submit"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiiss", $anaam, $vnaam, $id, $richting, $functie, $telnumm);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?msg=success");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../administratie.php';
+            sessionStorage.setItem('Submit',true);
+            </script>";    
         }
 
         mysqli_stmt_close($stmt);
@@ -53,8 +54,9 @@ if (isset($_POST["submit-org"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiss", $anaam, $vnaam, $organisatie, $functie, $telnumm);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?msg=success");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
+            sessionStorage.setItem('Submit',true);
+            </script>";    
         }
 
         mysqli_stmt_close($stmt);
@@ -83,8 +85,9 @@ if (isset($_POST["edit-org"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssissi", $anaam, $vnaam, $organisatie, $functie, $telnumm, $id);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?msg=update");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
+            sessionStorage.setItem('Update',true);
+            </script>";   
         }
 
         mysqli_stmt_close($stmt);
@@ -116,8 +119,9 @@ if (isset($_POST["edit-stud"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssiissi", $anaam, $vnaam, $id, $richting, $functie, $telnumm, $sid);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie-personen.php?msg=update");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
+            sessionStorage.setItem('Update',true);
+            </script>";   
         }
 
         mysqli_stmt_close($stmt);

@@ -362,9 +362,8 @@ if (mysqli_num_rows($res) > 0) {
                     <td>
                     <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                            <a class='dropdown-item' onclick=EditRowProjecten($id) href='#'>Edit<i class='fas fa-edit sa'></i></a>
-                            <a class='dropdown-item delete' href='#'  data-id='$id' >Delete<i class='fas fa-trash-alt sa'></i></a>
-             
+                            <a class='dropdown-item' onclick=EditGebruikers($id) href='#'>Edit<i class='fas fa-edit sa'></i></a>
+                            <a class='dropdown-item ' href='#' onclick=DeleteGebruiker($id)>Delete<i class='fas fa-trash-alt sa'></i></a>
                         </div>
                     </td>
                 </tr>
@@ -422,19 +421,8 @@ if (mysqli_num_rows($res) > 0) {
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/bootbox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <?php
+    
 
-if (isset($_GET['msg'])) {
-    if ("success" == $_GET['msg']) {
-        echo '<script> toastr.success("Succesvol Ingevoerd", "Bericht")
-        </script>';
-    }
-    if ("update" == $_GET['msg']) {
-        echo "<script> toastr.success('Succesvol Bijgewerkt', 'Bericht')
-        </script>";
-    }
-}
-?>
 </body>
 
 </html>

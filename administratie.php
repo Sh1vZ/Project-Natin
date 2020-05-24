@@ -449,16 +449,6 @@ if (mysqli_num_rows($res) > 0) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <?php
 
-if (isset($_GET['msg'])) {
-    if ("success" == $_GET['msg']) {
-        echo '<script> toastr.success("Succesvol Ingevoerd", "Bericht")
-        </script>';
-    }
-    if ("update" == $_GET['msg']) {
-        echo "<script> toastr.success('Succesvol Bijgewerkt', 'Bericht')
-        </script>";
-    }
-}
 ?>
 </body>
 

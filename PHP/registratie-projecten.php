@@ -20,9 +20,9 @@ if (isset($_POST["submit"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssssi", $projectnaam, $omschrijving, $begind, $eindd, $leider);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie.php?msg=success");
-            exit();
-            
+            echo "<script type='text/javascript'>window.location = '../administratie.php';
+            sessionStorage.setItem('Submit',true);
+            </script>";    
         }
         
         mysqli_stmt_close($stmt);
@@ -50,8 +50,9 @@ if (isset($_POST["edit"])) {
         } else {
             mysqli_stmt_bind_param($stmt, "ssssii", $projectnaam, $omschrijving, $begind, $eindd, $leider, $id);
             mysqli_stmt_execute($stmt);
-            header("Location:../administratie.php?msg=success");
-            exit();
+            echo "<script type='text/javascript'>window.location = '../administratie.php';
+            sessionStorage.setItem('Update',true);
+            </script>";    
         }
 
         mysqli_stmt_close($stmt);
