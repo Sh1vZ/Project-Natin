@@ -7,13 +7,21 @@ $(document).ready(function () {
         }
     });
 
+    toastr.options = {
+        "closeButton": true
+      }
+
     if (sessionStorage.getItem('Submit')) {
         toastr.success('Succesvol Ingevoerd', 'Bericht')
+        toastr.options = {
+            "closeButton": true
+          }
         sessionStorage.removeItem('Submit');
     }
 
     if (sessionStorage.getItem('Update')) {
         toastr.info('Succesvol Bijgewerkt', 'Bericht')
+       
         sessionStorage.removeItem('Update');
     }
 
