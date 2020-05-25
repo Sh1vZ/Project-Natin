@@ -38,7 +38,7 @@
 
                 <form class="login100-form validate-form" method="POST" action="">
                     <span class="login100-form-title">
-                        Login
+                        Log in
                     </span>
 
                     <div class="wrap-input100 validate-input">
@@ -62,7 +62,7 @@
                     <div class="container-login100-form-btn">
                         <!-- Button -->
                         <button class="login100-form-btn" name="but_login">
-                            Login
+                            Inloggen
                         </button>
 
 

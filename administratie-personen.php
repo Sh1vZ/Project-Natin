@@ -466,11 +466,11 @@ if (mysqli_num_rows($res) > 0) {
                     <td>
                         <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                            <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Edit<i class='fas fa-edit sa'></i></a>
+                            <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Bewerken<i class='fas fa-edit sa'></i></a>
             ";
                             if ($_SESSION['role'] == 'Beheerder') {
                                 echo "
-                                        <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Delete<i class='fas fa-trash-alt sa'></i></a>
+                                        <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Verwijderen<i class='fas fa-trash-alt sa'></i></a>
                                     ";
                             }
         echo "   
