@@ -183,11 +183,11 @@
   padding-top: 0;
 }
 
-.card1 .general .more {
+#hoverText {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
   font-size: 0.9em;
+  padding-left: 390px;
+  padding-top: 135px;
 }
 
 .txt {
