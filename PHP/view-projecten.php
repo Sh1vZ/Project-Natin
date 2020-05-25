@@ -424,7 +424,7 @@ left join taak on  bestedingen.TaakID = taak.ID
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pwd">Richting:</label>
-                                                <select class="form-control selectpicker" title="Kies Leider"
+                                                <select class="form-control selectpicker" title="Kies Richting"
                                                     data-live-search="true" id="richting"
                                                     name="richting">
                                                     <?php
