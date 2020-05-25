@@ -295,7 +295,7 @@ if (mysqli_num_rows($res) > 0) {
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-6 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -303,7 +303,7 @@ if (mysqli_num_rows($res) > 0) {
                                     <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph()">Taken per Richting</button>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div id='card-dash' class="card-body">
                                     <div class="chart-area">
                                         <canvas id="graphCanvas"
                                             style="display: block; width: 1037px; height: 320px;"></canvas>
@@ -320,7 +320,7 @@ if (mysqli_num_rows($res) > 0) {
       if ($_SESSION['role'] == 'Financieel'or $_SESSION['role'] == 'Beheerder'){ ?>
 
 
-<div class="col-xl-8 col-lg-7">
+<div class="col-xl-6 col-lg-5">
  <div class="card shadow mb-4">
 <!-- Card Header - Dropdown -->
  <div
@@ -328,7 +328,7 @@ if (mysqli_num_rows($res) > 0) {
 <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph2()">Bestedingen per maand</button>
 </div>
                                 <!-- Card Body -->
- <div class="card-body">
+ <div id='card-dash' class="card-body">
  <div class="chart-area">                
 
                      
@@ -340,7 +340,7 @@ if (mysqli_num_rows($res) > 0) {
                     </div>
 
                               <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="full-width ">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -348,7 +348,7 @@ if (mysqli_num_rows($res) > 0) {
                                     <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph3()">Bestedingen per jaar</button>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div id='card-Pjaar' class="card-body">
                                     <div class="chart-area">
                                     <canvas id="graphCanvas3" style="display: block; width: 1037px; height: 320px;"></canvas>
                                     </div>
@@ -427,9 +427,9 @@ if (mysqli_num_rows($res) > 0) {
                         labels: name,
                         datasets: [{
                             label: 'Aantal Taken',
-                            backgroundColor: '#b4cd93',
-                            borderColor: '#7dc383',
-                            hoverBackgroundColor: '#7dc383',
+                            backgroundColor: ' #218838',
+                            borderColor: '#28a745',
+                            hoverBackgroundColor: '#28a745',
                             hoverBorderColor: '#666666',
                             data: marks
                         }]

@@ -1,11 +1,5 @@
-<?php
-include "dbConn.php";
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,23 +29,19 @@ session_start();
       <!-- Sidebar - Brand -->
 
       </li>
+      <?php
+include "dbConn.php";
+session_start();
+$id=$_GET['id'];
+$idt=$_GET['idt'];
+?>
 
       <div id="addBtn" class="wrapper1">
-        <button onclick="goBack1(<?=$idb?>)" class="circle button">
+        <button onclick="goBack1(<?=$id?>,<?=$idt?>)" class="circle button">
           <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
-      <script>
-        function goBack1(e) {
-        window.location = `../PHP/registratie-bestedingen.php?id=${e}`;
-      }
-
-      function openPDF(element) {
-
-        window.open(<img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/>?>);
-    }
-
-      </script>
+     
 
 
 
@@ -170,7 +160,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' onclick='openFile()'>View</button></td>
+                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' href='https://www.thesitewizard.com/' target='_blank'>View</button></td>
                     </tr>
 
                     ";

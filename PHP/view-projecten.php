@@ -348,7 +348,7 @@ left join taak on  bestedingen.TaakID = taak.ID
     <div class='general'>
       <h1>$naam</h1>
       <p class= 'txt'> $omschrijving </p>
-      <span class='more'>Hover voor meer info</span>
+      <span id='hoverText' class='more'>Hover voor meer info</span>
     </div>
   </div>
 </div> 

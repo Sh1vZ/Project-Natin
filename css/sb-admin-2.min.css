@@ -4811,6 +4811,14 @@ input[type=submit].btn-block {
     padding: 1.25rem
 }
 
+#card-Pjaar{
+    height: 550PX;
+}
+
+#card-dash{
+    height: 300PX;
+}
+
 .card-title {
     margin-bottom: .75rem
 }
@@ -4840,7 +4848,7 @@ input[type=submit].btn-block {
 }
 
 .card-header:first-child {
-    border-radius: calc(.35rem - 1px) calc(.35rem - 1px) 0 0
+    border-radius: calc(.35rem - 1px) calc(.35rem - 1px) 0 0;
 }
 
 .card-header+.list-group .list-group-item:first-child {
@@ -6850,7 +6858,7 @@ button.bg-dark:hover {
 }
 
 .bg-white {
-    background-color: #fff8d2 !important
+    background-color: #fff !important
 }
 
 .bg-transparent {
@@ -10709,7 +10717,6 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-    background-color: #fff8d2;
     width: 100%;
     overflow-x: hidden
 }
