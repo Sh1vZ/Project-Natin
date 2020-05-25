@@ -41,6 +41,10 @@ function goBack(e) {
     window.location = `view-projecten.php?id=${e}`;
 }
 
+function goBack1(e,a) {
+    window.location = `./registratie-bestedingen.php?id=${e}&idt=${a}`;
+  }
+
 function EditRowBesteding(e) {
     $.ajax({
         type: 'post',
