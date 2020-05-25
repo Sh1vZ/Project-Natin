@@ -427,9 +427,9 @@ if (mysqli_num_rows($res) > 0) {
                         labels: name,
                         datasets: [{
                             label: 'Aantal Taken',
-                            backgroundColor: ' #218838',
-                            borderColor: '#28a745',
-                            hoverBackgroundColor: '#28a745',
+                            backgroundColor: ' #28a745',
+                            borderColor: '#218838',
+                            hoverBackgroundColor: '#218838',
                             hoverBorderColor: '#666666',
                             data: marks
                         }]

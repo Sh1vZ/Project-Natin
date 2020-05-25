@@ -160,7 +160,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' href='https://www.thesitewizard.com/' target='_blank'>View</button></td>
+                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) ."' width='70' height='38'> Click hier voor Bewijs</a></td>
                     </tr>
 
                     ";
