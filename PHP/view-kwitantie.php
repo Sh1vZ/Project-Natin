@@ -160,7 +160,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) ."' width='70' height='38'> Click hier voor Bewijs</a></td>
+                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) ."' width='70' height='38'><img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></a></td>
                     </tr>
 
                     ";
