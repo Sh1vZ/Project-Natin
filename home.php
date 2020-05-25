@@ -303,7 +303,7 @@ if (mysqli_num_rows($res) > 0) {
                                     <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph()">Taken per Richting</button>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div id='card-dash' class="card-body">
                                     <div class="chart-area">
                                         <canvas id="graphCanvas"
                                             style="display: block; width: 1037px; height: 320px;"></canvas>
@@ -328,7 +328,7 @@ if (mysqli_num_rows($res) > 0) {
 <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph2()">Bestedingen per maand</button>
 </div>
                                 <!-- Card Body -->
- <div class="card-body">
+ <div id='card-dash' class="card-body">
  <div class="chart-area">                
 
                      
@@ -348,7 +348,7 @@ if (mysqli_num_rows($res) > 0) {
                                     <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph3()">Bestedingen per jaar</button>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div id='card-Pjaar' class="card-body">
                                     <div class="chart-area">
                                     <canvas id="graphCanvas3" style="display: block; width: 1037px; height: 320px;"></canvas>
                                     </div>

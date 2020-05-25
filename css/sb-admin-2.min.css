@@ -4815,6 +4815,10 @@ input[type=submit].btn-block {
     height: 550PX;
 }
 
+#card-dash{
+    height: 300PX;
+}
+
 .card-title {
     margin-bottom: .75rem
 }
