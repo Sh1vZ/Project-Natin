@@ -362,8 +362,8 @@ if (mysqli_num_rows($res) > 0) {
                     <td>
                     <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                            <a class='dropdown-item' onclick=EditGebruikers($id) href='#'>Edit<i class='fas fa-edit sa'></i></a>
-                            <a class='dropdown-item ' href='#' onclick=DeleteGebruiker($id)>Delete<i class='fas fa-trash-alt sa'></i></a>
+                            <a class='dropdown-item' onclick=EditGebruikers($id) href='#'>Bewerken<i class='fas fa-edit sa'></i></a>
+                            <a class='dropdown-item ' href='#' onclick=DeleteGebruiker($id)>Verwijderen<i class='fas fa-trash-alt sa'></i></a>
                         </div>
                     </td>
                 </tr>
