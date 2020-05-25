@@ -46,11 +46,6 @@ session_start();
         window.location = `../PHP/registratie-bestedingen.php?id=${e}`;
       }
 
-      function openPDF(element) {
-
-        window.open(<img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/>?>);
-    }
-
       </script>
 
 
@@ -170,7 +165,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' onclick='openFile()'>View</button></td>
+                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' href='https://www.thesitewizard.com/' target='_blank'>View</button></td>
                     </tr>
 
                     ";

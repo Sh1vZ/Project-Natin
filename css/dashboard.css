@@ -26,6 +26,12 @@
   cursor: pointer;
 }
 
+#imgKwitantie{
+    display:block;
+    width:100%; height:100%;
+    object-fit: cover;
+}
+
 .icon1 {
   position: absolute;
   top: 30%;
