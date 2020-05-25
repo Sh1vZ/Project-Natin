@@ -16,11 +16,15 @@ session_start();
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../vendor/dropdown/fstdropdown.css">
   <script src="../vendor/dropdown/fstdropdown.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 </head>
 
 <body id="page-top">
@@ -137,7 +141,7 @@ if (mysqli_num_rows($res) > 0) {
           <div class='table-responsive-xl'>
             <form action="" enctype="multipart/form-data">
 
-              <table id="" class='table table-hover data1'>
+              <table id="" class='table table-hover '>
                 <thead>
                   <tr id='firstrow'>
                     <th>Bedrag</th>
@@ -204,7 +208,7 @@ if (mysqli_num_rows($res) > 0) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="pwd">Werkelijk bedrag:</label>
-                    <input type="number" id="bedrag" class="form-control" name="bedrag" placeholder="">
+                    <input type="number" id="bedrag" class="form-control" name="bedr" placeholder="">
                   </div>
                 </div>
               </div>
@@ -212,7 +216,7 @@ if (mysqli_num_rows($res) > 0) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="pwd">Inleverdatum:</label>
-                    <input type="date" id="Idatum" class="form-control" name="Idatum" placeholder="Begin Datum">
+                    <input type="date" id="Idatum" class="form-control" name="datum" placeholder="Begin Datum">
                   </div>
                 </div>
 
@@ -244,39 +248,37 @@ if (mysqli_num_rows($res) > 0) {
         </div>
       </div>
     </div>
-    <!-- <script>
-function submitForm() {
-  // $('form[name="form"]').submit();
-  // $('input[type="text"], textarea').val('');
-  document.submit.reset();
-
-}
- </script> -->
   </div>
   <?php
 if (isset($_POST['submitKwitantie'])) {
 
-    $bedrag   = $_POST['bedrag'];
-    $InlDatum = $_POST['Idatum'];
-    $foto     = $_FILES["image"];
-    $idb      = $_GET["idb"];
-
-    $filename = $foto['name'];
-    $filetmp  = $foto['tmp_name'];
-
-    $fileext   = explode('.', $filename);
-    $filecheck = strtolower(end($fileext));
-
-    $fileextstored = array('png', 'jpg', 'jpeg');
-
-    if (in_array($filecheck, $fileextstored)) {
-
-        $sql = "INSERT INTO kwitantie (BestedingenID, WerkelijkeBedrag , IngeleverdDatum , Foto)
-      VALUES ('$idb','$bedrag', '$InlDatum','file_get_contents($filetmp)')";
-        $result = mysqli_query($conn, $sql);
-    }
-
+  $bedrag   = $_POST['bedr'];
+  $InlDatum = $_POST['datum'];
+  $idb      = $_GET["idb"];
+  $id      = $_GET["id"];
+  $idt      = $_GET["idt"];
+  $data = file_get_contents($_FILES['image']['tmp_name']);
+  if (empty($bedrag) || empty($InlDatum)) {
+      header("Location:view-kwitantie.php?error=emptyfields");
+      exit();
+  } else {
+      $sql  = "INSERT INTO kwitantie (BestedingenID,WerkelijkeBedrag,IngeleverdDatum,Foto) values (?,?,?,?)";
+      $stmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header("Location:view-kwitantie.php?error=sqlerror");
+          exit();
+      } else {
+          mysqli_stmt_bind_param($stmt, "idss", $idb, $bedrag, $InlDatum,$data);
+          mysqli_stmt_execute($stmt);
+          echo "<script type='text/javascript'>window.location = 'view-kwitantie.php?idb=$idb&id=$id&idt=$idt';
+            sessionStorage.setItem('Submit',true);
+            </script>";    
+      }
+      mysqli_stmt_close($stmt);
+      mysqli_close($conn);
+  }
 }
+
 
 ?>
 
@@ -320,11 +322,20 @@ if (isset($_POST['submitKwitantie'])) {
       </div>
     </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom scripts for all pages-->
-  <script src="../js/sb-admin-2.min.js"></script>
+   <!-- Bootstrap core JavaScript-->
+   <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../js/tooltip.js"></script>
+    <script src="../js/functions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="../vendor/bootbox.js"></script>
 </body>
 
 </html>
