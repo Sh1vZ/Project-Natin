@@ -618,12 +618,12 @@ if (mysqli_num_rows($res)>0) {
                         <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>";
                         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
                             echo"
-                                    <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Edit<i class='fas fa-edit sa'></i></a>
+                                    <a class='dropdown-item'  href='#' onclick=EditRowBesteding($idb)>Bewerken<i class='fas fa-edit sa'></i></a>
                                 ";
                         }
                         if ($_SESSION['role'] == 'Beheerder'){         
                             echo"
-                                    <a class='dropdown-item' href='#'  onclick=DeleteMateriaal($idb) >Delete<i class='fas fa-trash-alt sa'></i></a>
+                                    <a class='dropdown-item' href='#'  onclick=DeleteMateriaal($idb) >Verwijderen<i class='fas fa-trash-alt sa'></i></a>
                                 ";
                         }
                         if ($_SESSION['role'] == 'Financieel'){
