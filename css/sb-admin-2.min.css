@@ -1643,7 +1643,7 @@ pre code {
     color: #858796
 }
 
-tr#firstrow {
+#firstrow {
     background-color: rgb(84,162,84);
     border-top-left-radius:.35rem;
     border-top-right-radius:.35rem;
