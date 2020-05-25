@@ -4811,6 +4811,10 @@ input[type=submit].btn-block {
     padding: 1.25rem
 }
 
+#card-Pjaar{
+    height: 550PX;
+}
+
 .card-title {
     margin-bottom: .75rem
 }
