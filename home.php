@@ -84,7 +84,7 @@ session_start();
                 ?>
                         <li class="nav-item">
                             <a class="nav-link" href="administratie-personen.php">
-                                <i class="fas fa-user-edit"></i>
+                                <i class="fas fa-user-plus"></i>
                                 <span>Registreer Personen</span>
                             </a>
                         </li>
