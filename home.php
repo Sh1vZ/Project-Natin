@@ -241,7 +241,7 @@ if (mysqli_num_rows($res) > 0) {
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i id="dashboardIcon" class="fas fa-calendar fa-3x text-primary"></i>
+                                            <i id="dashboardIcon" class="fas fa-calendar-alt fa-3x text-primary"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@ if (mysqli_num_rows($res) > 0) {
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i id="dashboardIcon" class="fas fa-dollar-sign fa-3x text-success"></i>
+                                            <i id="dashboardIcon" class="fas fa-users fa-3x text-success"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +300,7 @@ if (mysqli_num_rows($res) > 0) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <button class="m-0 font-weight-bold text-primary" onclick="showGraph()">Taken per Richting</button>
+                                    <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph()">Taken per Richting</button>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -325,7 +325,7 @@ if (mysqli_num_rows($res) > 0) {
 <!-- Card Header - Dropdown -->
  <div
  class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-<button class="m-0 font-weight-bold text-primary" onclick="showGraph2()">Bestedingen per maand</button>
+<button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph2()">Bestedingen per maand</button>
 </div>
                                 <!-- Card Body -->
  <div class="card-body">
@@ -345,7 +345,7 @@ if (mysqli_num_rows($res) > 0) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <button class="m-0 font-weight-bold text-primary" onclick="showGraph3()">Bestedingen per jaar</button>
+                                    <button id='tableButton' class="m-0 font-weight-bold text-secondary" onclick="showGraph3()">Bestedingen per jaar</button>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -427,9 +427,9 @@ if (mysqli_num_rows($res) > 0) {
                         labels: name,
                         datasets: [{
                             label: 'Aantal Taken',
-                            backgroundColor: '#1cc88a',
-                            borderColor: '#46d5f1',
-                            hoverBackgroundColor: '#137552',
+                            backgroundColor: '#b4cd93',
+                            borderColor: '#7dc383',
+                            hoverBackgroundColor: '#7dc383',
                             hoverBorderColor: '#666666',
                             data: marks
                         }]

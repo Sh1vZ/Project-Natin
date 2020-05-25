@@ -37,16 +37,20 @@ session_start();
       </li>
 
       <div id="addBtn" class="wrapper1">
-        <button onclick="goBack()" class="circle button">
+        <button onclick="goBack1(<?=$idb?>)" class="circle button">
           <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
       <script>
-        function goBack() {
-          window.location = 'registratie-bestedingen.php?id=<?php $id = $_GET["id"];
-echo "$id";?>&idt=<?php $idt                                          = $_GET["idt"];
-echo "$idt";?>';
-        }
+        function goBack1(e) {
+        window.location = `../PHP/registratie-bestedingen.php?id=${e}`;
+      }
+
+      function openPDF(element) {
+
+        window.open(<img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/>?>);
+    }
+
       </script>
 
 
@@ -166,7 +170,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><img src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></td>
+                    <td><button id='tableButton' type='button' class='btn btn-outline-primary' onclick='openFile()'>View</button></td>
                     </tr>
 
                     ";
