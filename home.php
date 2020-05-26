@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Natin-AFA</title>
+    <title>Natin-AFA | Dashboard</title>
 
     <!-- Custom fonts for this template-->
 
