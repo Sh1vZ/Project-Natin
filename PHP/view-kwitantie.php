@@ -94,7 +94,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-               
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -159,7 +159,7 @@
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' width='70' height='38'><img class='img-thumbnail' src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></a></td>
+                    <td><a  href='data:image/jpeg;base64 ," . base64_encode($row["Foto"]) . "' width='70' height='38' target='_blank'><img class='img-thumbnail'  src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "'  height='200' width='200' /></a></td>
                     </tr>
 
                     ";
@@ -309,8 +309,8 @@
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-success" href="./logout.php">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+          <a class="btn btn-success" href="./logout.php">Uitloggen</a>
         </div>
       </div>
     </div>
