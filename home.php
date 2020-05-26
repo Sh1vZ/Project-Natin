@@ -295,7 +295,7 @@ if (mysqli_num_rows($res) > 0) {
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-6 col-lg-5">
+                        <div class="col-xl-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -304,10 +304,10 @@ if (mysqli_num_rows($res) > 0) {
                                 </div>
                                 <!-- Card Body -->
                                 <div id='card-dash' class="card-body">
-                                    <div class="chart-area">
+                                  
                                         <canvas id="graphCanvas"
-                                            style="display: block; width: 1037px; height: 320px;"></canvas>
-                                    </div>
+                                            style="display: block; width: 1680px; height: 280px;"></canvas>
+                                  
                                 </div>
                             </div>
                         </div>

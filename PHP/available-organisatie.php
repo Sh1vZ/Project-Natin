@@ -7,7 +7,6 @@ if (!empty($_POST["organisatie"])) {
     $result     = mysqli_query($conn, $query);
     $user_count = mysqli_num_rows($result);
     if ($user_count > 0) {
-
     } else {
         echo "<span class='status-not-available'> : Organisatie <span class='text-success'>$a</span> Succesvol ingevoerd.";
         $qry = mysqli_query($conn, "INSERT INTO organisatie (Naam) VALUES('$a')");

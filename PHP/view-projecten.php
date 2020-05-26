@@ -476,38 +476,21 @@ left join taak on  bestedingen.TaakID = taak.ID
                                     <div class="row">
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group">
-                                                        <label for="pwd">Richting <span
-                                                                id="user-availability-status"></span> </label>
-                                                        <div id="richting2" style="color:red;"></div>
-                                                        <input type="text" id='richting' list="richting1"
-                                                            onBlur="checkAvailability()" class="form-control"
-                                                            id="richting" name="richting" required>
-                                                        <datalist id="richting1" style="width: 100px;" required>
-                                                            <?php
-$sql    = "SELECT * FROM richting where Richting != 'Other'";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<option value='" . $row['ID'] . " " . "($row[Richting])'>" . $row['Richting'] . "</option>";
-}
-?>
-                                                        </datalist>
+                                                    <label for="pwd">Richting:</label>
+                                                <select class="form-control selectpicker" title="Kies Richting"
+                                                    data-live-search="true" id="richting"
+                                                    name="richting">
+                                                    <?php
+                             $sql = "SELECT * FROM richting where Richting != 'Other'";
+                             $result = mysqli_query($conn, $sql);
+                              while ($row = mysqli_fetch_assoc($result)) {
+                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
+                            }
+                     ?>
+                                                </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <script>
-                                            function checkAvailability() {
-                                                jQuery.ajax({
-                                                    url: "available-richting.php",
-                                                    data: 'richting=' + $("#richting").val(),
-                                                    type: "POST",
-                                                    success: function(data) {
-                                                        $("#user-availability-status").html(data);
-
-                                                    },
-                                                    error: function() {}
-                                                });
-                                            }
-                                            </script>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">

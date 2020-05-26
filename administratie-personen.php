@@ -307,9 +307,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Sluiten</button>
+                                            data-dismiss="modal">Close</button>
                                         <button type="submit" id="edit-stud" name="submit"
-                                            class="btn btn-success">Oplsaan</button>
+                                            class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -392,9 +392,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Sluiten</button>
+                                            data-dismiss="modal">Close</button>
                                         <button type="submit" id='edit-org' name="submit-org"
-                                            class="btn btn-success">opslaan</button>
+                                            class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -465,14 +465,15 @@ if (mysqli_num_rows($res) > 0) {
                     <td data-target='telnum'>$telnum</td>
                     <td>
                         <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
-                        <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                        <a class='dropdown-item' href='./PHP/view-taken.php?id=$id'> Taken bekijken <i class='fas fa-eye sa'></i> </a>
+                        <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
                             <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Bewerken<i class='fas fa-edit sa'></i></a>
             ";
                             if ($_SESSION['role'] == 'Beheerder') {
                                 echo "
                                         <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Verwijderen<i class='fas fa-trash-alt sa'></i></a>
                                     ";
+                            } else{
+
                             }
         echo "   
                         </div>   
@@ -529,15 +530,5 @@ if (mysqli_num_rows($res) > 0) {
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="./vendor/bootbox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<?php
-
-// if (isset($_GET['msg'])) {
-//     if ("success" == $_GET['msg']) {
-//         echo '<script> toastr.success("Succesvol Ingevoerd", "Bericht")
-//         </script>';
-//     }
-    
-// }
-?>
 </body>
 </html>

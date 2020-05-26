@@ -117,8 +117,9 @@ if(isset($_POST['Delete-Gebruiker'])){
     mysqli_query($conn,$sql);
     echo 1;
     exit;
+    echo 0;
+    exit;
  }
- echo 0;
- exit;
+
 
 ?>

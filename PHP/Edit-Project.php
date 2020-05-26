@@ -50,7 +50,7 @@ if (isset($_POST["get-project"])) {
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="pwd">Project Leider:</label>
-                    <select class="selectpicker form-control" title="Kies Leider" id='leider1' data-live-search="true"
+                    <select class="selectpicker form-control" title="Kies Richting" id='leider1' data-live-search="true"
                         name="project-leider">
                         <?php
 $sql    = "SELECT * FROM personen";
