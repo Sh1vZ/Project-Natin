@@ -68,11 +68,11 @@ function DeleteMateriaal(e) {
         message: "Bent U zeker dat u deze wilt verwijderen?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'JA',
                 className: 'btn-danger'
             },
             cancel: {
-                label: 'No',
+                label: 'NEE',
                 className: 'btn-success'
             }
         },
@@ -267,11 +267,11 @@ $('.delete').click(function () {
         message: "Bent U zeker dat u deze wilt verwijderen?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'JA',
                 className: 'btn-danger'
             },
             cancel: {
-                label: 'No',
+                label: 'NEE',
                 className: 'btn-success'
             }
         },
@@ -365,11 +365,11 @@ function DeleteTaak(e) {
         message: "Bent U zeker dat u deze wilt verwijderen?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'JA',
                 className: 'btn-danger'
             },
             cancel: {
-                label: 'No',
+                label: 'NEE',
                 className: 'btn-success'
             }
         },
@@ -469,11 +469,11 @@ function DeletePersoon(e) {
         message: "Bent U zeker dat u deze wilt verwijderen?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'JA',
                 className: 'btn-danger'
             },
             cancel: {
-                label: 'No',
+                label: 'NEE',
                 className: 'btn-success'
             }
         },
@@ -558,11 +558,11 @@ function DeleteGebruiker(e) {
         message: "Bent U zeker dat u deze wilt verwijderen?",
         buttons: {
             confirm: {
-                label: 'Yes',
+                label: 'JA',
                 className: 'btn-danger'
             },
             cancel: {
-                label: 'No',
+                label: 'NEE',
                 className: 'btn-success'
             }
         },
