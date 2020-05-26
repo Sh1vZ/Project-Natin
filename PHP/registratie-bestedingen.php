@@ -587,13 +587,8 @@ where TaakID=$idt AND  DienstenID IS NOT NULL";
                     <td data-target='mat'>$mat</td>
                     <td data-target='fac'>$facu</td> 
                     <td data-target='aant'>$aant</td>";
-<<<<<<< HEAD
                     if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
                         echo"
-=======
-                                        if ($_SESSION['role'] == 'Financieel') {
-                                            echo "
->>>>>>> bdce24b03ecedef7c77d1a96d67085f7020cbc36
                     <td data-target='prijs'>$prijs</td>
                                 <td>$bedragr</td>
                             ";
