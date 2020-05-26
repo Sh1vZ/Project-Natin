@@ -302,7 +302,7 @@
                         if ($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { ?>
 
 
-                            <div class="col-xl-6 col-lg-5">
+                            <div class="col-xl-12">
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -313,7 +313,7 @@
                                         <div class="chart-area">
 
 
-                                            <canvas id="graphCanvas2" style="display: block; width: 1037px; height: 320px;"></canvas>
+                                            <canvas id="graphCanvas2" style="display: block; width: 1680px; height: 280px;"></canvas>
                                         </div>
                                     </div>
                                 </div>
