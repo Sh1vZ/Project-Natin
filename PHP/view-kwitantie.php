@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +18,7 @@
   <link rel="stylesheet" href="../vendor/dropdown/fstdropdown.css">
   <script src="../vendor/dropdown/fstdropdown.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 </head>
 
 <body id="page-top">
@@ -30,18 +30,20 @@
 
       </li>
       <?php
-include "dbConn.php";
-session_start();
-$id=$_GET['id'];
-$idt=$_GET['idt'];
-?>
+      include "dbConn.php";
+      session_start();
+      $id = $_GET['id'];
+      $idt = $_GET['idt'];
+      ?>
 
       <div id="addBtn" class="wrapper1">
-        <button onclick="goBack1(<?=$id?>,<?=$idt?>)" class="circle button">
+        <button onclick="goBack1(<?= $id ?>,<?= $idt ?>)" class="circle button">
           <i id="addSign" class="fas fa-chevron-left fa-lg"></i>
         </button>
       </div>
-     
+
+
+
 
 
 
@@ -87,7 +89,7 @@ $idt=$_GET['idt'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name'];?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['name']; ?> </span>
                 <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
               </a>
               <!-- Dropdown - User Information -->
@@ -108,18 +110,18 @@ $idt=$_GET['idt'];
         <div class="container-fluid">
           <!-- Page Heading -->
           <?php
-$idb = $_GET["idb"];
-$sql = "SELECT * FROM Bestedingen WHERE bID=$idb";
-$res = mysqli_query($conn, $sql);
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_assoc($res)) {
-        $Mat = $row['Materialen'];
+          $idb = $_GET["idb"];
+          $sql = "SELECT * FROM Bestedingen WHERE bID=$idb";
+          $res = mysqli_query($conn, $sql);
+          if (mysqli_num_rows($res) > 0) {
+            while ($row = mysqli_fetch_assoc($res)) {
+              $Mat = $row['Materialen'];
 
-        // echo "<h3 class='card-title center'>$naam</h5>";
+              // echo "<h3 class='card-title center'>$naam</h5>";
 
-    }
-}
-?>
+            }
+          }
+          ?>
 
 
           <div class="card shadow mb-4">
@@ -143,30 +145,30 @@ if (mysqli_num_rows($res) > 0) {
                 <tbody>
 
                   <?php
-$idb = $_GET["idb"];
-$sql = "SELECT * FROM kwitantie WHERE BestedingenID=$idb";
-$res = mysqli_query($conn, $sql);
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_assoc($res)) {
+                  $idb = $_GET["idb"];
+                  $sql = "SELECT * FROM kwitantie WHERE BestedingenID=$idb";
+                  $res = mysqli_query($conn, $sql);
+                  if (mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
 
-        $taaknaam = $row["WerkelijkeBedrag"];
-        $InlDatum = $row["IngeleverdDatum"];
-        $foto     = $row["Foto"];
+                      $taaknaam = $row["WerkelijkeBedrag"];
+                      $InlDatum = $row["IngeleverdDatum"];
+                      $foto     = $row["Foto"];
 
-        echo "
+                      echo "
                     <tr>
                     <td>$taaknaam</td>
                     <td>$InlDatum</td>
-                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) ."' width='70' height='38'><img class='img-thumbnail' src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></a></td>
+                    <td><a href='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' width='70' height='38'><img class='img-thumbnail' src='data:image/jpeg;base64," . base64_encode($row["Foto"]) . "' height='200' width='200'/></a></td>
                     </tr>
 
                     ";
-    }
-}
-?>
-              </tbody>
-            </table>
-          </form>
+                    }
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </form>
           </div>
         </div>
       </div>
@@ -241,37 +243,37 @@ if (mysqli_num_rows($res) > 0) {
     </div>
   </div>
   <?php
-if (isset($_POST['submitKwitantie'])) {
+  if (isset($_POST['submitKwitantie'])) {
 
-  $bedrag   = $_POST['bedr'];
-  $InlDatum = $_POST['datum'];
-  $idb      = $_GET["idb"];
-  $id      = $_GET["id"];
-  $idt      = $_GET["idt"];
-  $data = file_get_contents($_FILES['image']['tmp_name']);
-  if (empty($bedrag) || empty($InlDatum)) {
+    $bedrag   = $_POST['bedr'];
+    $InlDatum = $_POST['datum'];
+    $idb      = $_GET["idb"];
+    $id      = $_GET["id"];
+    $idt      = $_GET["idt"];
+    $data = file_get_contents($_FILES['image']['tmp_name']);
+    if (empty($bedrag) || empty($InlDatum)) {
       header("Location:view-kwitantie.php?error=emptyfields");
       exit();
-  } else {
+    } else {
       $sql  = "INSERT INTO kwitantie (BestedingenID,WerkelijkeBedrag,IngeleverdDatum,Foto) values (?,?,?,?)";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header("Location:view-kwitantie.php?error=sqlerror");
-          exit();
+        header("Location:view-kwitantie.php?error=sqlerror");
+        exit();
       } else {
-          mysqli_stmt_bind_param($stmt, "idss", $idb, $bedrag, $InlDatum,$data);
-          mysqli_stmt_execute($stmt);
-          echo "<script type='text/javascript'>window.location = 'view-kwitantie.php?idb=$idb&id=$id&idt=$idt';
+        mysqli_stmt_bind_param($stmt, "idss", $idb, $bedrag, $InlDatum, $data);
+        mysqli_stmt_execute($stmt);
+        echo "<script type='text/javascript'>window.location = 'view-kwitantie.php?idb=$idb&id=$id&idt=$idt';
             sessionStorage.setItem('Submit',true);
-            </script>";    
+            </script>";
       }
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
+    }
   }
-}
 
 
-?>
+  ?>
 
 
   </div>
@@ -296,35 +298,40 @@ if (isset($_POST['submitKwitantie'])) {
     <i class="fas fa-angle-up"></i>
   </a>
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
-                                <a class="btn btn-primary" href="logout.php">Uitloggen</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-success" href="./logout.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="../js/sb-admin-2.min.js"></script>
+  <script src="../js/tooltip.js"></script>
+  <script src="../js/functions.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="../vendor/bootbox.js"></script>
+
+  <script src="../js/imageCheck.js"></script>
+
 </body>
 
 </html>
