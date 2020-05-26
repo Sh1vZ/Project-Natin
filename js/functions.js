@@ -21,7 +21,6 @@ $(document).ready(function () {
 
     if (sessionStorage.getItem('Update')) {
         toastr.info('Succesvol Bijgewerkt', 'Bericht')
-
         sessionStorage.removeItem('Update');
     }
 
