@@ -1,5 +1,5 @@
-document.getElementById("validate").addEventListener("click",Validate);
+document.getElementById("validate").addEventListener("click", Validate);
 
-function validate(e){
-    e.preventDefault();
+function validate(e) {
+  e.preventDefault();
 }

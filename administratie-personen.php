@@ -13,11 +13,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -46,62 +43,57 @@ session_start();
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
-                <li class="nav-item ">
-                    <a class="nav-link" href="home.php">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="home.php">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
             <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-            <!--Nav Item - Projecten-->        
-                <li class="nav-item">
-                    <a class="nav-link" href="administratie.php">
+            <hr class="sidebar-divider my-0">
+            <!--Nav Item - Projecten-->
+            <li class="nav-item">
+                <a class="nav-link" href="administratie.php">
                     <i class="fas fa-file-medical"></i>
                     <?php
-                        if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') 
-                        {
+                    if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                     ?>
                         <span>Registreer Projecten</span></a>
-                    <?php
-                        }
-                        else
-                        {
-                    ?>
-                            <span>Overzicht Projecten</span></a>
-                    <?php
-                        }
-                    ?>
-                </li>
+            <?php
+                    } else {
+            ?>
+                <span>Overzicht Projecten</span></a>
+            <?php
+                    }
+            ?>
+            </li>
             <!--Nav Item - Personen-->
-                <?php
-                    if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') 
-                    {
-                ?>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="administratie-personen.php">
-                                <i class="fas fa-user-plus"></i>
-                                <span>Registreer Personen</span>
-                            </a>
-                        </li>
-                <?php
-                    }
-                ?>
+            <?php
+            if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
+            ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="administratie-personen.php">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Registreer Personen</span>
+                    </a>
+                </li>
+            <?php
+            }
+            ?>
             <!--Nav Item - Gebruikers-->
-                <?php
-                    if ($_SESSION['role'] == 'Beheerder') 
-                    {
-                ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Gebruikers.php">
-                                <i class="fas fa-user-edit"></i>
-                                <span>Registreer Gebruikers</span>
-                            </a>
-                        </li>
-                <?php
-                    }
-                ?>
-        <!--Nav Items - END-->
+            <?php
+            if ($_SESSION['role'] == 'Beheerder') {
+            ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="Gebruikers.php">
+                        <i class="fas fa-user-edit"></i>
+                        <span>Registreer Gebruikers</span>
+                    </a>
+                </li>
+            <?php
+            }
+            ?>
+            <!--Nav Items - END-->
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -124,18 +116,14 @@ session_start();
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-success" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -147,15 +135,13 @@ session_start();
                         </li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?=$_SESSION['name'];?>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['name']; ?>
                                 </span>
                                 <i class="fas fa-user-circle fa-3x fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Uitloggen
@@ -172,16 +158,12 @@ session_start();
                 </div>
 
                 <div id="addBtn" class="wrapper">
-                    <button class="circle button" id="modalActivate" type="button" data-toggle="modal" onclick=foo()
-                        data-target="#exampleModalPreview">
-                        <img id="addSign"
-                            src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
-                            alt="" />
+                    <button class="circle button" id="modalActivate" type="button" data-toggle="modal" onclick=foo() data-target="#exampleModalPreview">
+                        <img id="addSign" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png" alt="" />
                     </button>
                 </div>
 
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -199,11 +181,10 @@ session_start();
                         </div>
                     </div>
                 </div>
-        
+
 
                 <!-- Modal -->
-                <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                <div class="modal fade top" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -214,8 +195,7 @@ session_start();
                                 </button>
                             </div>
                             <ul class="nav nav-tabs" id="tabContent">
-                                <li class="active"><a class="active" id='an' href="#details"
-                                        data-toggle="tab">Registreer Natin </a></li>
+                                <li class="active"><a class="active" id='an' href="#details" data-toggle="tab">Registreer Natin </a></li>
                                 <li><a href="#access-security" id='ag' data-toggle="tab">Registreer Organisaties</a>
                                 </li>
                             </ul>
@@ -223,21 +203,18 @@ session_start();
                             <div class="tab-content">
                                 <div class="tab-pane active " id="details">
                                     <div class="modal-body">
-                                        <form action="./PHP/registratie-studenten.php" id='stud' method="POST"
-                                            style="width:60vw; margin:0 auto">
+                                        <form action="./PHP/registratie-studenten.php" id='stud' method="POST" style="width:60vw; margin:0 auto">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="pwd">Voornaam</label>
-                                                        <input type="text" id='vnaam' class="form-control" name="vnaam"
-                                                            placeholder="" required>
+                                                        <input type="text" id='vnaam' class="form-control" name="vnaam" placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-group">
                                                         <label for="pwd">Achternaam</label>
-                                                        <input type="text" id='anaam' class="form-control" name="anaam"
-                                                            placeholder="" required>
+                                                        <input type="text" id='anaam' class="form-control" name="anaam" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,52 +222,47 @@ session_start();
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Organisatie</label>
-                                                        <input type="text" id='org' class="form-control"
-                                                            name="organisatie" placeholder="Natin" readonly>
+                                                        <input type="text" id='org' class="form-control" name="organisatie" placeholder="Natin" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group">
-                                                        <label for="pwd">Richting <span
-                                                                id="user-availability-status"></span> </label>
+                                                        <label for="pwd">Richting <span id="user-availability-status"></span> </label>
                                                         <div id="richting2" style="color:red;"></div>
-                                                        <input type="text" id='richting' list="richting1"
-                                                            onBlur="checkAvailability()" class="form-control"
-                                                            id="richting" name="richting" required>
+                                                        <input type="text" id='richting' list="richting1" onBlur="checkAvailability()" class="form-control" id="richting" name="richting" required>
                                                         <datalist id="richting1" style="width: 100px;" required>
                                                             <?php
-$sql    = "SELECT * FROM richting where Richting != 'Other'";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<option value='" . $row['ID'] . " " . "($row[Richting])'>" . $row['Richting'] . "</option>";
-}
-?>
+                                                            $sql    = "SELECT * FROM richting where Richting != 'Other'";
+                                                            $result = mysqli_query($conn, $sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                                echo "<option value='" . $row['ID'] . " " . "($row[Richting])'>" . $row['Richting'] . "</option>";
+                                                            }
+                                                            ?>
                                                         </datalist>
                                                     </div>
                                                 </div>
                                             </div>
                                             <script>
-                                            function checkAvailability() {
-                                                jQuery.ajax({
-                                                    url: "./PHP/available-richting.php",
-                                                    data: 'richting=' + $("#richting").val(),
-                                                    type: "POST",
-                                                    success: function(data) {
-                                                        $("#user-availability-status").html(data);
+                                                function checkAvailability() {
+                                                    jQuery.ajax({
+                                                        url: "./PHP/available-richting.php",
+                                                        data: 'richting=' + $("#richting").val(),
+                                                        type: "POST",
+                                                        success: function(data) {
+                                                            $("#user-availability-status").html(data);
 
-                                                    },
-                                                    error: function() {}
-                                                });
-                                            }
+                                                        },
+                                                        error: function() {}
+                                                    });
+                                                }
                                             </script>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Functie</label>
-                                                        <input type="text" id='func' class="form-control" name="functie"
-                                                            placeholder="" required>
+                                                        <input type="text" id='func' class="form-control" name="functie" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -298,39 +270,33 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Telefoon Nummer</label>
-                                                        <input type="text" id='telnumm' class="form-control"
-                                                            name="telnumm" placeholder="" required>
+                                                        <input type="text" id='telnumm' class="form-control" name="telnumm" placeholder="" required>
                                                         <input type="hidden" name="sid" id="sid">
                                                     </div>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="submit" id="edit-stud" name="submit"
-                                            class="btn btn-success">Submit</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="edit-stud" name="submit" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
                                 <!-- ORGANISATIE -->
                                 <div class="tab-pane fade" id="access-security">
                                     <div class="modal-body">
-                                        <form action="./PHP/registratie-studenten.php" id='stud1' method="POST"
-                                            style="width:60vw; margin:0 auto">
+                                        <form action="./PHP/registratie-studenten.php" id='stud1' method="POST" style="width:60vw; margin:0 auto">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="pwd">Voornaam</label>
-                                                        <input type="text" id='vnaamo' class="form-control" name="vnaam"
-                                                            placeholder="" required>
+                                                        <input type="text" id='vnaamo' class="form-control" name="vnaam" placeholder="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="form-group">
                                                         <label for="pwd">Achternaam</label>
-                                                        <input type="text" id='anaamo' class="form-control" name="anaam"
-                                                            placeholder="" required>
+                                                        <input type="text" id='anaamo' class="form-control" name="anaam" placeholder="" required>
                                                     </div>
                                                 </div>
 
@@ -338,44 +304,40 @@ while ($row = mysqli_fetch_assoc($result)) {
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="pwd">Organisatie: <span
-                                                                id="user-availability-status-orga"></span></label>
-                                                            <div id="organisatie2" style="color:red;"></div>
-                                                        <input type="text" id='organisatie' list="organisatie1"
-                                                            onBlur="checkAvailabilityorga()" class="form-control"
-                                                            name="organisatie" required >
+                                                        <label for="pwd">Organisatie: <span id="user-availability-status-orga"></span></label>
+                                                        <div id="organisatie2" style="color:red;"></div>
+                                                        <input type="text" id='organisatie' list="organisatie1" onBlur="checkAvailabilityorga()" class="form-control" name="organisatie" required>
                                                         <datalist id="organisatie1" style="width: 100px;" required>
                                                             <?php
-$sql    = "SELECT * FROM organisatie";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<option value='" . $row['ID'] . " " . "($row[Naam])'>" . $row['Naam'] . "</option>";
-}
-?>
+                                                            $sql    = "SELECT * FROM organisatie";
+                                                            $result = mysqli_query($conn, $sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                                echo "<option value='" . $row['ID'] . " " . "($row[Naam])'>" . $row['Naam'] . "</option>";
+                                                            }
+                                                            ?>
                                                         </datalist>
                                                     </div>
                                                 </div>
                                             </div>
                                             <script>
-                                            function checkAvailabilityorga() {
-                                                jQuery.ajax({
-                                                    url: "./PHP/available-organisatie.php",
-                                                    data: 'organisatie=' + $("#organisatie").val(),
-                                                    type: "POST",
-                                                    success: function(data) {
-                                                        $("#user-availability-status-orga").html(data);
+                                                function checkAvailabilityorga() {
+                                                    jQuery.ajax({
+                                                        url: "./PHP/available-organisatie.php",
+                                                        data: 'organisatie=' + $("#organisatie").val(),
+                                                        type: "POST",
+                                                        success: function(data) {
+                                                            $("#user-availability-status-orga").html(data);
 
-                                                    },
-                                                    error: function() {}
-                                                });
-                                            }
+                                                        },
+                                                        error: function() {}
+                                                    });
+                                                }
                                             </script>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Functie</label>
-                                                        <input type="text" id='funco' class="form-control"
-                                                            name="functie" placeholder="" required>
+                                                        <input type="text" id='funco' class="form-control" name="functie" placeholder="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,18 +345,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="pwd">Telefoon Nummer</label>
-                                                        <input type="text" class="form-control" name="telnumm"
-                                                            placeholder="" id='telnummo' required>
+                                                        <input type="text" class="form-control" name="telnumm" placeholder="" id='telnummo' required>
                                                         <input type="hidden" name="oid" id="oid">
                                                     </div>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="submit" id='edit-org' name="submit-org"
-                                            class="btn btn-success">Submit</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" id='edit-org' name="submit-org" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -407,7 +366,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 
-    
+
 
                 <div class='container-fluid'>
                     <div class='card shadow mb-4'>
@@ -431,30 +390,30 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </thead>
 
                                     <?php
-$stmt = "SELECT personen.ID, personen.Achternaam, personen.Voornaam, organisatie.Naam, richting.richting, personen.Functie, personen.Telnummer
+                                    $stmt = "SELECT personen.ID, personen.Achternaam, personen.Voornaam, organisatie.Naam, richting.richting, personen.Functie, personen.Telnummer
 FROM personen
 left JOIN organisatie ON personen.OrganisatieID = organisatie.ID
 left JOIN richting ON personen.RichtingID = richting.ID ORDER BY personen.ID  DESC";
-$res = mysqli_query($conn, $stmt);
+                                    $res = mysqli_query($conn, $stmt);
 
-if (mysqli_num_rows($res) > 0) {
-    $i = 1;
-    while ($row = mysqli_fetch_assoc($res)) {
-        $anaam    = $row['Achternaam'];
-        $vnaam    = $row['Voornaam'];
-        $org      = $row['Naam'];
-        $richting = $row['richting'];
-        $fucntie  = $row["Functie"];
-        $telnum   = $row["Telnummer"];
-        // $leider=$row[""];
-        // $taak=$row[""];
-        if (empty($richting)) {
-            $richting = '-';
-        }
-        $id = $row["ID"];
-        $a  = $i++;
+                                    if (mysqli_num_rows($res) > 0) {
+                                        $i = 1;
+                                        while ($row = mysqli_fetch_assoc($res)) {
+                                            $anaam    = $row['Achternaam'];
+                                            $vnaam    = $row['Voornaam'];
+                                            $org      = $row['Naam'];
+                                            $richting = $row['richting'];
+                                            $fucntie  = $row["Functie"];
+                                            $telnum   = $row["Telnummer"];
+                                            // $leider=$row[""];
+                                            // $taak=$row[""];
+                                            if (empty($richting)) {
+                                                $richting = '-';
+                                            }
+                                            $id = $row["ID"];
+                                            $a  = $i++;
 
-        echo "
+                                            echo "
                 <tr id=$id>
                     <td>$a</td>
                     <td data-target='naam'>$anaam</td>
@@ -468,27 +427,25 @@ if (mysqli_num_rows($res) > 0) {
                         <div class=' a dropdown-menu' aria-labelledby='dropdownMenuButton'>
                             <a class='dropdown-item' onclick=EditRow($id) href='#' data-role='update' >Bewerken<i class='fas fa-edit sa'></i></a>
             ";
-                            if ($_SESSION['role'] == 'Beheerder') {
-                                echo "
+                                            if ($_SESSION['role'] == 'Beheerder') {
+                                                echo "
                                         <a class='dropdown-item' href='#' onclick=DeletePersoon($id) >Verwijderen<i class='fas fa-trash-alt sa'></i></a>
                                     ";
-                            } else{
-
-                            }
-        echo "   
+                                            } else {
+                                            }
+                                            echo "   
                         </div>   
                     </td>
                 </tr>
              ";
-    }
-} else {
+                                        }
+                                    } else {
+                                    }
 
-}
 
-
-?> 
-                            </tbody>   
-                            </table>
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -531,4 +488,5 @@ if (mysqli_num_rows($res) > 0) {
     <script src="./vendor/bootbox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
+
 </html>

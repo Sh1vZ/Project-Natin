@@ -14,9 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
@@ -68,24 +66,24 @@
 
                         <div class="  text-center a p-t-25">
                             <?php
-if (isset($_GET['error'])) {
-    if ("emptyfields" == $_GET['error']) {
-        echo '<div class="alert alert-danger ">
+                            if (isset($_GET['error'])) {
+                                if ("emptyfields" == $_GET['error']) {
+                                    echo '<div class="alert alert-danger ">
                 <strong>Error</strong> Vul alles in.
               </div>';
-    }
-    if ("wrongpwd" == $_GET['error']) {
-        echo '<div class="alert alert-danger ">
+                                }
+                                if ("wrongpwd" == $_GET['error']) {
+                                    echo '<div class="alert alert-danger ">
                 <strong>Error</strong> Password is incorrect.
               </div>';
-    }
-    if ("nouser" == $_GET['error']) {
-        echo '<div class="alert alert-danger ">
+                                }
+                                if ("nouser" == $_GET['error']) {
+                                    echo '<div class="alert alert-danger ">
                 <strong>Error</strong> Gebruiker bestaat niet.
               </div>';
-    }
-}
-?>
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </form>
@@ -101,9 +99,9 @@ if (isset($_GET['error'])) {
     <script src="vendor/tilt/tilt.jquery.min.js"></script>
 
     <script>
-    $('.js-tilt').tilt({
-        scale: 1.1
-    })
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
     </script>
 
 
@@ -165,7 +163,6 @@ if (isset($_POST['but_login'])) {
                         header("Location:home.php");
                         exit();
                     }
-
                 } else {
                     header("Location:index.php?error=wrongpwd");
                     exit();

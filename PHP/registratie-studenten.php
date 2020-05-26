@@ -26,7 +26,7 @@ if (isset($_POST["submit"])) {
             mysqli_stmt_execute($stmt);
             echo "<script type='text/javascript'>window.location = '../administratie.php';
             sessionStorage.setItem('Submit',true);
-            </script>";    
+            </script>";
         }
 
         mysqli_stmt_close($stmt);
@@ -56,7 +56,7 @@ if (isset($_POST["submit-org"])) {
             mysqli_stmt_execute($stmt);
             echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
             sessionStorage.setItem('Submit',true);
-            </script>";    
+            </script>";
         }
 
         mysqli_stmt_close($stmt);
@@ -87,7 +87,7 @@ if (isset($_POST["edit-org"])) {
             mysqli_stmt_execute($stmt);
             echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
             sessionStorage.setItem('Update',true);
-            </script>";   
+            </script>";
         }
 
         mysqli_stmt_close($stmt);
@@ -121,7 +121,7 @@ if (isset($_POST["edit-stud"])) {
             mysqli_stmt_execute($stmt);
             echo "<script type='text/javascript'>window.location = '../administratie-personen.php';
             sessionStorage.setItem('Update',true);
-            </script>";   
+            </script>";
         }
 
         mysqli_stmt_close($stmt);

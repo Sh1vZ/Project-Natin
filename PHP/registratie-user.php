@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
             mysqli_stmt_execute($stmt);
             echo "<script type='text/javascript'>window.location = '../Gebruikers.php';
             sessionStorage.setItem('Submit',true);
-            </script>";    
+            </script>";
         }
 
         mysqli_stmt_close($stmt);

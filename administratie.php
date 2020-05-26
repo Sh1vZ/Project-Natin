@@ -300,7 +300,7 @@ session_start();
 
                                                                             if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                                                                             ?>Registreer projecten</h1> <?php } else {
-                                ?>
+                                                                                                        ?>
                             Projecten</h5></a>
                         <?php } ?>
                         <div class='table-responsive-xl'>

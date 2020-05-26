@@ -18,7 +18,5 @@ if (!empty($_POST["organisatie"])) {
             echo "<option value='" . $row['ID'] . " " . "($row[Naam])'>" . $row['Naam'] . "</option>";
         }
         echo "</datalist>";
-
     }
-
 }

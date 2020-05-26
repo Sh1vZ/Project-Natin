@@ -15,72 +15,67 @@ From user WHERE user.ID=$id";
             $email     = $row["Email"];
             $password  = $row["Password"];
         }
-        ?>
+?>
 
-<div class="modal-body">
-    <form action="./PHP/registratie-user.php" method="POST" id="form-admin" style="width:60vw; margin:0 auto">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="pwd">Usernaam:</label>
-                    <input type="text"  class="form-control" id="user-usernaam1" required
-                        value="<?=$usernaam;?>">
+        <div class="modal-body">
+            <form action="./PHP/registratie-user.php" method="POST" id="form-admin" style="width:60vw; margin:0 auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pwd">Usernaam:</label>
+                            <input type="text" class="form-control" id="user-usernaam1" required value="<?= $usernaam; ?>">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="pwd">Rollen:</label>
-                    <select class="selectpicker form-control" title="Kies Rollen" data-live-search="true"
-                        name="user-rollen" id="rollen">
-                        <option value="Beheerder">Beheerder</option>
-                        <option value="Financieel">Financieel</option>
-                        <option value="Administratie">Administratie</option>
-                    </select>
-                    <script>
-                    $('#rollen').selectpicker('val', '<?=$rollen;?>');
-                    </script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pwd">Rollen:</label>
+                            <select class="selectpicker form-control" title="Kies Rollen" data-live-search="true" name="user-rollen" id="rollen">
+                                <option value="Beheerder">Beheerder</option>
+                                <option value="Financieel">Financieel</option>
+                                <option value="Administratie">Administratie</option>
+                            </select>
+                            <script>
+                                $('#rollen').selectpicker('val', '<?= $rollen; ?>');
+                            </script>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="pwd">Tel.nummer:</label>
-                    <input type="text"  class="form-control" id="user-telnummer1" required
-                        value="<?=$telnummer;?>">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pwd">Tel.nummer:</label>
+                            <input type="text" class="form-control" id="user-telnummer1" required value="<?= $telnummer; ?>">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="pwd">Email:</label>
-                    <input type="text"  class="form-control" id="user-email1" required
-                        value="<?=$email;?>">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pwd">Email:</label>
+                            <input type="text" class="form-control" id="user-email1" required value="<?= $email; ?>">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="text"  class="form-control" id="user-password1" required
-                        value="<?=$password;?>">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="text" class="form-control" id="user-password1" required value="<?= $password; ?>">
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" onclick=updateGebruikers(<?=$id;?>) name="submit" class="btn btn-success">Submit</button>
-    </form>
-</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" onclick=updateGebruikers(<?= $id; ?>) name="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
 
 
 <?php
-}
+    }
 }
 
 if (isset($_POST["update-gebruikers"])) {
@@ -108,18 +103,17 @@ if (isset($_POST["update-gebruikers"])) {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }
-
 }
 
-if(isset($_POST['Delete-Gebruiker'])){
-    $id=  $_POST['id'];
+if (isset($_POST['Delete-Gebruiker'])) {
+    $id =  $_POST['id'];
     $sql = "DELETE FROM user WHERE ID=$id";
-    mysqli_query($conn,$sql);
+    mysqli_query($conn, $sql);
     echo 1;
     exit;
     echo 0;
     exit;
- }
+}
 
 
 ?>

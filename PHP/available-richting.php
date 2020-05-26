@@ -7,7 +7,6 @@ if (!empty($_POST["richting"])) {
     $result     = mysqli_query($conn, $query);
     $user_count = mysqli_num_rows($result);
     if ($user_count > 0) {
-
     } else {
         echo "<span class='status-not-available'> :Richting <span class='text-success'>$a</span> Succesvol ingevoerd.";
         $qry = mysqli_query($conn, "INSERT INTO richting (Richting) VALUES('$a')");
@@ -19,7 +18,5 @@ if (!empty($_POST["richting"])) {
             echo "<option value='" . $row['ID'] . " " . "($row[Richting])'>" . $row['Richting'] . "</option>";
         }
         echo "</datalist>";
-
     }
-
 }
