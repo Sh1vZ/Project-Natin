@@ -609,7 +609,7 @@ if (mysqli_num_rows($res)>0) {
                     <td data-target='mat'>$mat</td>
                     <td data-target='fac'>$facu</td> 
                     <td data-target='aant'>$aant</td>";
-                    if($_SESSION['role'] == 'Financieel'){
+                    if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder'){
                         echo"
                     <td data-target='prijs'>$prijs</td>
                                 <td>$bedragr</td>
