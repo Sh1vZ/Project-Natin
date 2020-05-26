@@ -449,6 +449,106 @@ if (mysqli_num_rows($res) > 0) {
     }
     </script>
 
+<script>
+        $(document).ready(function () {
+            showGraph2();
+        });
+
+
+        function showGraph2()
+        {
+            {
+                $.post("./PHP/overview2.php",
+                function (data)
+                {
+                    // console.log(data);
+                    var marks = [];
+                    var datum = [];
+
+                    for (var i in data) {
+                        marks.push(data[i].bedrag);
+                        datum.push(data[i].eind);
+                    }
+
+                    var chartdata = {
+                        labels: datum,
+                        datasets: [
+                            {
+                                label: 'Bestedingen',
+                                backgroundColor: ' #218838',
+                            borderColor: '#28a745',
+                            hoverBackgroundColor: '#28a745',
+                            hoverBorderColor: '#666666',
+                                data: marks
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas2");
+
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'line',
+                        data: chartdata,
+                        animation:{
+                        animateScale:true
+                        }
+                    });
+                });
+            }
+        }
+        </script>
+
+
+<script>
+        $(document).ready(function () {
+            showGraph3();
+        });
+
+
+        function showGraph3()
+        {
+            {
+                $.post("./PHP/overview3.php",
+                function (data)
+                {
+                    // console.log(data);
+                    var marks = [];
+                    var datum = [];
+
+                    for (var i in data) {
+                        marks.push(data[i].bedrag);
+                        datum.push(data[i].eind);
+                    }
+
+                    var chartdata = {
+                        labels: datum,
+                        datasets: [
+                            {
+                                label: 'Bestedingen',
+                                backgroundColor: ' #218838',
+                            borderColor: '#28a745',
+                            hoverBackgroundColor: '#28a745',
+                            hoverBorderColor: '#666666',
+                                data: marks
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas3");
+
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'bar',
+                        data: chartdata,
+                        animation:{
+                        animateScale:true
+                        }
+                    });
+                });
+            }
+        }
+        </script>
+        
+
 </body>
 
 </html>

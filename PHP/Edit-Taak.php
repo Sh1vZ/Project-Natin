@@ -87,9 +87,8 @@ $sql    = "SELECT * FROM richting where Richting != 'Other' AND Richting !='$ric
         </div>
     </form>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" name="Edit-Taak" onclick=edit(<?php echo "$id"; ?>) class="btn btn-success">Save
-            changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+        <button type="button" name="Edit-Taak" onclick=edit(<?php echo "$id"; ?>) class="btn btn-success">Opslaan</button>
     </div>
 
 </div>

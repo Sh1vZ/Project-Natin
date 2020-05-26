@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 require_once('dbConn.php');
 
+
 	
 $sqlQuery = "SELECT taak.RichtingID, date_format(taak.EindDatum,'%M') as eind, Sum(bestedingen.Bedrag) as bedrag, richting.Richting
 from taak 

@@ -160,14 +160,10 @@ session_start();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
+                            
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Uitloggen
                                 </a>
                             </div>
                         </li>
@@ -198,20 +194,25 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="./PHP/logout.php">Uitloggen</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
 
                 
 
@@ -285,9 +286,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                 <button type="submit" id="edite"  name="submit"
-                                    class="btn btn-success">Submit</button>
+                                    class="btn btn-success">Opslaan</button>
                                 </form>
                             </div>
                         </div>
@@ -302,7 +303,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalPreviewLabel">Edit </h5>
+                                <h5 class="modal-title" id="exampleModalPreviewLabel">Bewerken </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -340,7 +341,7 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                                             <th>Eind Datum</th>
                                             <th>Project Leider</th>
                                             <th>Project Status</th>
-                                            <th>Acties</th>
+                                            <th>Meer opties</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -377,7 +378,7 @@ if (mysqli_num_rows($res) > 0) {
                     <td>
                     <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu  ' aria-labelledby='dropdownMenuButton'>
-                            <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>Meer<i class='fas fa-eye sa'></i> </a>
+                            <a class='dropdown-item' href='./PHP/view-projecten.php?id=$id'>Bekijken<i class='fas fa-eye sa'></i> </a>
              ";
                             if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
                                 echo "

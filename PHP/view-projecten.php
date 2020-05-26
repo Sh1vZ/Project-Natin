@@ -141,6 +141,49 @@ session_start();
                                 </form>
                             </div>
                         </li>
+                        <?php
+           
+         
+           $id=$_GET["id"];
+          $sql = "SELECT * FROM project where ID=$id";
+          $result = mysqli_query($conn, $sql);
+           while ($row = mysqli_fetch_assoc($result)) {
+           $status=$row['Status'];   
+         } if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
+         if($status=="OPEN"){
+           
+         echo" <div id='addBtn' class='wrapper2'>
+         <button class='circle button' id='modalActivate' type='button' data-toggle='modal'
+           data-target='#finishModal'>
+           <i class='fas fa-check fa-lg' id='addSign'></i>
+         </button>
+       </div>";
+         }}
+
+?>
+
+                         <!-- FINISH-->
+                <div class="modal fade" id="finishModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Taak registreren als Compleet?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Kies voor "ja" om taak te registreren als compleet.</div>
+                            <form action="" method="POST">
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                    <button type="submit" name="submit-finish" class="btn btn-success">Ja</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -151,11 +194,8 @@ session_start();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profiel
-                                </a>
-                                <div class="dropdown-divider"></div>
+                            
+                               
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Uitloggen
@@ -355,6 +395,19 @@ left join taak on  bestedingen.TaakID = taak.ID
 ";
     }}
 
+
+    if (isset($_POST["submit-finish"])) {
+
+        $id=$_GET["id"];
+  
+        $sql="UPDATE project SET `Status`='Compleet' WHERE ID=$id";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+          echo"<script> window.location = 'view-projecten.php?id=$id'</script>";
+        }
+        
+        }
+
 ?>
                             <?php }?> </div>
                     </div>
@@ -421,23 +474,40 @@ left join taak on  bestedingen.TaakID = taak.ID
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="pwd">Richting:</label>
-                                                <select class="form-control selectpicker" title="Kies Richting"
-                                                    data-live-search="true" id="richting"
-                                                    name="richting">
-                                                    <?php
-                             $sql = "SELECT * FROM richting where Richting != 'Other'";
-                             $result = mysqli_query($conn, $sql);
-                              while ($row = mysqli_fetch_assoc($result)) {
-                              echo "<option value='".$row['ID'] ."'>" . $row['Richting']."</option>";   
-                            }
-                     ?>
-                                                </select>
+                                                <div class="col-md-12 mb-2">
+                                                    <div class="form-group">
+                                                        <label for="pwd">Richting <span
+                                                                id="user-availability-status"></span> </label>
+                                                        <div id="richting2" style="color:red;"></div>
+                                                        <input type="text" id='richting' list="richting1"
+                                                            onBlur="checkAvailability()" class="form-control"
+                                                            id="richting" name="richting" required>
+                                                        <datalist id="richting1" style="width: 100px;" required>
+                                                            <?php
+$sql    = "SELECT * FROM richting where Richting != 'Other'";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    echo "<option value='" . $row['ID'] . " " . "($row[Richting])'>" . $row['Richting'] . "</option>";
+}
+?>
+                                                        </datalist>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            <script>
+                                            function checkAvailability() {
+                                                jQuery.ajax({
+                                                    url: "available-richting.php",
+                                                    data: 'richting=' + $("#richting").val(),
+                                                    type: "POST",
+                                                    success: function(data) {
+                                                        $("#user-availability-status").html(data);
+
+                                                    },
+                                                    error: function() {}
+                                                });
+                                            }
+                                            </script>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -538,23 +608,24 @@ left join taak on  bestedingen.TaakID = taak.ID
     </a>
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="logout.php">Uitloggen</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-success" href="./logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

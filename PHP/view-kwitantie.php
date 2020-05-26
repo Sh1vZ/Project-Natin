@@ -92,14 +92,11 @@ $idt=$_GET['idt'];
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Uitloggen
                 </a>
               </div>
             </li>
@@ -223,8 +220,8 @@ if (mysqli_num_rows($res) > 0) {
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" onclick="submitForm()" name="submitKwitantie" class="btn btn-success">Submit</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                  <button type="submit" onclick="submitForm()" name="submitKwitantie" class="btn btn-success">Opslaan</button>
             </form>
           </div>
         </div>
@@ -299,37 +296,35 @@ if (isset($_POST['submitKwitantie'])) {
     <i class="fas fa-angle-up"></i>
   </a>
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-success" href="./logout.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-   <!-- Bootstrap core JavaScript-->
-   <script src="../vendor/jquery/jquery.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-    <script src="../js/tooltip.js"></script>
-    <script src="../js/functions.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="../vendor/bootbox.js"></script>
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="logout.php">Uitloggen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

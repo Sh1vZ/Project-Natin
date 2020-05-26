@@ -60,8 +60,8 @@ echo '<option value="Niet Verekenbaar">Niet Verekenbaar</option>';
     </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" name="" onclick=EditBesteding(<?=$id?>) class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+    <button type="submit" name="" onclick=EditBesteding(<?=$id?>) class="btn btn-success">Opslaan</button>
 </div>
 
 <?php
@@ -156,8 +156,8 @@ echo '<option value="Niet Verekenbaar">Niet Verekenbaar</option>';
     </div>
 </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" name="" onclick=EditDienst(<?=$id?>) class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+    <button type="submit" name="" onclick=EditDienst(<?=$id?>) class="btn btn-success">Opslaan</button>
     </form>
 </div>
 
@@ -188,8 +188,8 @@ echo '<option value="Niet Verekenbaar">Niet Verekenbaar</option>';
     </div>
         </form>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" name="" onclick=EditBedrag(<?=$id?>) class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+    <button type="submit" name="" onclick=EditBedrag(<?=$id?>) class="btn btn-success">Opslaan</button>
 </div>
 <?php
      }

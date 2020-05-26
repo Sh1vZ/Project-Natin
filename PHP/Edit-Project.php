@@ -76,8 +76,8 @@ $sql    = "SELECT * FROM personen";
         </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" id="" onclick=UpdateProject(<?=$id;?>) name="submit" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+    <button type="submit" id="" onclick=UpdateProject(<?=$id;?>) name="submit" class="btn btn-success">Opslaan</button>
     </form>
 </div>
 <?php

@@ -43,7 +43,7 @@
 
                     <div class="wrap-input100 validate-input">
                         <!-- Username-->
-                        <input class="input100" type="text" name="name" placeholder="Username">
+                        <input class="input100" type="text" name="name" placeholder="Gebruikersnaam">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fas fa-user" aria-hidden="true"></i>
@@ -52,7 +52,7 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <!-- Password-->
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <input class="input100" type="password" name="pass" placeholder="Wachtwoord">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>

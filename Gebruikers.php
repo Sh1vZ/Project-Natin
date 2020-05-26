@@ -160,14 +160,10 @@ session_start();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
+                            
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Uitloggen
                                 </a>
                             </div>
                         </li>
@@ -198,16 +194,16 @@ if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder') {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-success" href="./PHP/logout.php">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="./PHP/logout.php">Uitloggen</a>
                             </div>
                         </div>
                     </div>

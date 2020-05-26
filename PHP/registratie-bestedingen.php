@@ -111,14 +111,10 @@ $id=$_GET["id"];
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user-circle fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
+                           
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-1x fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                   Uitloggen
                                 </a>
                             </div>
                         </li>
@@ -173,11 +169,11 @@ $id=$_GET["id"];
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Submit" below if you are ready to Mark as complete.</div>
+                            <div class="modal-body">Kies voor "ja" om taak te registreren als compleet.</div>
                             <form action="" method="POST">
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" name="submit-finish" class="btn btn-success">Submit</button>
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                    <button type="submit" name="submit-finish" class="btn btn-success">Ja</button>
                             </form>
                         </div>
                     </div>
@@ -187,24 +183,29 @@ $id=$_GET["id"];
 
             <!-- Logout Modal-->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-success" href="logout.php">Logout</a>
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Klik op "Uitloggen" als u gereed bent.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleren</button>
+                                <a class="btn btn-primary" href="logout.php">Uitloggen</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+
+
+
+
             <!--- invoer bedrag modal --->
             <div class="modal fade top" id="BedragModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -226,9 +227,9 @@ $id=$_GET["id"];
 
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                 <button type="submit" name="submitBedrag" class="btn btn-success"
-                                    chk=<?php $idt ?>>Submit</button>
+                                    chk=<?php $idt ?>>Opslaan</button>
                             </div>
                         </div>
                     </div>
@@ -316,8 +317,8 @@ $id=$_GET["id"];
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                            <button type="submit" name="submit" class="btn btn-success">Opslaan</button>
                             </form>
                         </div>
                     </div>
@@ -341,13 +342,7 @@ $id=$_GET["id"];
                                             in="0" value="" step="0.1">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 mb-2">
-                                        <label for="pwd">Prijs:</label>
-                                        <input class="form-control" type="number" name='prijs' placeholder='Prijs $'
-                                            in="0" value="" step="0.1">
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="pwd">Facatuur:</label>
@@ -360,8 +355,8 @@ $id=$_GET["id"];
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="submit-materialen" class="btn btn-success">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                            <button type="submit" name="submit-materialen" class="btn btn-success">Opslaan</button>
                             </form>
                         </div>
                     </div>
@@ -379,7 +374,7 @@ $id=$_GET["id"];
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPreviewLabel">Edit </h5>
+                    <h5 class="modal-title" id="exampleModalPreviewLabel">Bewerken </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -402,7 +397,7 @@ if (isset($_POST["submit"])) {
   $fac=$_POST["factuur"];
   $id=$_GET["id"];
   $idt=$_GET["idt"];
-  $idt=$_GET["idt"];
+ 
 
   if (empty($diensten) || empty($fac)) {
       header("Location:registratie-bestedingen.php?error=emptyfields");
@@ -484,6 +479,7 @@ if($result){
                                         <th scope='col'>Diensten</th>
                                         <th scope='col'>Organisatie</th>
                                         <th scope='col'>Facatuurtype</th>
+                                      
                                         <?php
                                             if($_SESSION['role'] == 'Financieel'){
                                                 echo"
@@ -491,12 +487,12 @@ if($result){
                                                     ";
                                             }
                                         ?>
-                                        <th scope='col'>Acties</th>
+                                         <th scope='col'>Meer opties</th> 
                                     </tr>
                                 </thead>
 
                                 <?php                                  
-$stmt="SELECT taak.Naam, bestedingen.Materialen,bestedingen.Bedrag, bestedingen.bID, bestedingen.DienstenID, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype
+$stmt="SELECT taak.Naam, bestedingen.Materialen,bestedingen.Bedrag, bestedingen.bID, bestedingen.DienstenID, personen.Achternaam, personen.Voornaam, organisatie.Naam , bestedingen.Factuurtype, bestedingen.Prijs
 from bestedingen 
 left join taak on bestedingen.TaakID = taak.ID
 left join personen on bestedingen.DienstenID = personen.ID
@@ -511,11 +507,12 @@ if (mysqli_num_rows($res)>0) {
       $vnaam=$row["Voornaam"];
       $org=$row["Naam"];
       $facu=$row["Factuurtype"];
-      $bedragr=$row["Bedrag"];
+   
       $idb=$row["bID"];
       $idd=$row["DienstenID"];
       $id=$_GET["id"];
       $idt=$_GET["idt"];
+      $prijs=$row["Prijs"]; 
      
      
         $a=$i++;
@@ -529,7 +526,7 @@ if (mysqli_num_rows($res)>0) {
             ";
                     if($_SESSION['role'] == 'Financieel'){
                         echo"
-                                <td>$bedragr</td>
+                                <td>$prijs</td>
                             ";
                     }
         echo"            
@@ -548,8 +545,7 @@ if (mysqli_num_rows($res)>0) {
                             }
                             if($_SESSION['role'] == 'Financieel'){
                                 echo"
-                                        <a class='dropdown-item' href='view-kwitantie.php?idb=$idb&id=$id&idt=$idt'>Kwitantie<i class='fas fa-receipt sa'></i></a>
-                                        <a class='dropdown-item' href='bedrag.php?idb=$idb&id=$id&idt=$idt' data-role='update' data-id='$id' >Bedrag<i class='fas fa-dollar-sign sa'></i></a> 
+                                        <a class='dropdown-item' href='#' onclick=GetBedrag($idb) >Bedrag<i class='fas fa-dollar-sign sa'></i></a></td>
                                     ";
                             }
         echo"
@@ -579,9 +575,11 @@ if (mysqli_num_rows($res)>0) {
                                         <th scope='col'>Materialen</th>
                                         <th scope='col'>Facatuurtype</th>
                                         <th scope='col'>Aantal</th>
+                                      <?php  if($_SESSION['role'] == 'Financieel' or $_SESSION['role'] == 'Beheerder') { ?>
                                         <th scope='col'>Prijs</th>
                                         <th scope='col'>Bedrag</th>
-                                        <th scope='col'>Acties</th>
+                                      <?php } ?>
+                                        <th scope='col'>Meer opties</th>
                                     </tr>
                                 </thead>
 
@@ -610,10 +608,15 @@ if (mysqli_num_rows($res)>0) {
                     <td>$a</td>          
                     <td data-target='mat'>$mat</td>
                     <td data-target='fac'>$facu</td> 
-                    <td data-target='aant'>$aant</td>
+                    <td data-target='aant'>$aant</td>";
+                    if($_SESSION['role'] == 'Financieel'){
+                        echo"
                     <td data-target='prijs'>$prijs</td>
-                    <td>$bedragr</td>
-                    <td>
+                                <td>$bedragr</td>
+                            ";
+                    } 
+                   
+                  echo"  <td>
                         <a class='link' id='dropdownMenuButton' data-toggle='dropdown' href=''><i class='fas fa-ellipsis-h sa1 ' ></i></a>
                         <div class=' a dropdown-menu dropleft' aria-labelledby='dropdownMenuButton'>";
                         if ($_SESSION['role'] == 'Administratie' or $_SESSION['role'] == 'Beheerder'){
